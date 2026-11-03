@@ -10,6 +10,8 @@ window.CC1_DATA = {
           "title": "Hypertension",
           "titleTh": "ความดันโลหิตสูง",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> ยา First-line มี 4 กลุ่มหลัก (Thiazides, CCB, ACEI, ARB) — <mark>Beta-blocker ไม่ใช่ยา First-line ทั่วไปแล้ว</mark> (ยกเว้นมี CAD, HFrEF, post-MI)",
+            "🎯 <b>ข้อห้ามเด็ดขาด:</b> <mark>ห้ามใช้ ACEI หรือ ARB ในหญิงตั้งครรภ์เด็ดขาด (Category X / Fetopathy)</mark> และห้ามใช้ ACEI ร่วมกับ ARB คู่กัน (เสี่ยงไตวายเฉียบพลัน)",
             "ยาเลือกแรกทั่วไป: ACEI/ARB, CCB (dihydropyridine), thiazide/thiazide-like — Beta-blocker ไม่ใช่ first-line เว้นมี compelling indication",
             "DM/CKD ที่มี albuminuria → ACEI หรือ ARB เป็นหลัก ห้ามใช้ ACEI + ARB ร่วมกัน",
             "ตั้งครรภ์: methyldopa, labetalol, nifedipine ER; ห้าม ACEI/ARB/direct renin inhibitor",
@@ -93,6 +95,8 @@ window.CC1_DATA = {
           "title": "Dyslipidemia",
           "titleTh": "ไขมันในเลือดผิดปกติ",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> อิงเกณฑ์ Thai DLP Guideline เป็นหลัก — First-line คือ <mark>Statin (High-intensity สำหรับ ASCVD: Atorvastatin 40-80 mg, Rosuvastatin 20-40 mg)</mark> หากไม่ถึงเป้าเติม <mark>Ezetimibe 10 mg</mark>",
+            "🎯 <b>ข้อห้ามคู่ยาอันตราย:</b> <mark>ห้ามใช้ Statin ร่วมกับ Gemfibrozil เด็ดขาด</mark> เสี่ยงเกิด Rhabdomyolysis สูงมาก หากจำเป็นต้องคุมไตรกลีเซอไรด์คู่สแตตินให้เลือก Fenofibrate",
             "Statin เป็น first-line ลด LDL-C และลด ASCVD; secondary prevention ใช้ high-intensity (atorvastatin 40–80, rosuvastatin 20–40)",
             "Simvastatin + amlodipine: simvastatin ไม่เกิน 20 mg/วัน; + diltiazem/verapamil: ไม่เกิน 10 mg/วัน; + gemfibrozil: หลีกเลี่ยง",
             "TG ≥ 500 mg/dL → เป้าหลักคือป้องกัน pancreatitis → fenofibrate ก่อน, คุม DM, งดแอลกอฮอล์",
@@ -164,6 +168,8 @@ window.CC1_DATA = {
           "title": "Stable Heart Failure",
           "titleTh": "ภาวะหัวใจล้มเหลวเรื้อรัง (HFrEF / HFpEF)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> HFrEF 4 เสาหลัก (Fantastic Four): <mark>ARNI/ACEI/ARB + Beta-blocker (Carvedilol, Bisoprolol, Metoprolol succinate) + MRA (Spironolactone) + SGLT2i</mark>",
+            "🎯 <b>ข้อสอบชอบหลอก:</b> <mark>ห้ามใช้ Non-DHP CCB (Verapamil, Diltiazem) ใน HFrEF เด็ดขาด</mark> เพราะกดการบีบตัวของหัวใจรุนแรง",
             "4 เสาหลักที่ลดอัตราการเสียชีวิตใน HFrEF (LVEF ≤ 40%): 1) ARNI หรือ ACEI/ARB, 2) Beta-blocker (เฉพาะ 3 ตัว: Bisoprolol, Carvedilol, Metoprolol succinate), 3) MRA (Spironolactone, Eplerenone), 4) SGLT2i (Dapagliflozin, Empagliflozin)",
             "เมื่อเปลี่ยนจาก ACEI เป็น ARNI (Sacubitril/Valsartan) ต้องเว้นระยะหยุด ACEI อย่างน้อย 36 ชั่วโมง (washout period) เพื่อป้องกัน Angioedema; ห้ามใช้ ARNI ร่วมกับ ACEI หรือ ARB",
             "Loop diuretics (Furosemide) ใช้ลดอาการบวมและน้ำเกิน (congestion) เท่านั้น ไม่ได้ลดอัตราการเสียชีวิตในระยะยาว",
@@ -218,6 +224,8 @@ window.CC1_DATA = {
           "title": "Coronary Artery Disease (CCS & ACS)",
           "titleTh": "โรคหลอดเลือดหัวใจตีบและกล้ามเนื้อหัวใจขาดเลือด",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> ACS เฉียบพลันให้ <mark>Aspirin 162-325 mg เคี้ยวทันที</mark> ร่วมกับ P2Y12 inhibitor (Ticagrelor/Prasugrel ดีกว่า Clopidogrel ใน ACS ทั่วไป)",
+            "🎯 <b>Drug Interaction:</b> Clopidogrel ต้องเลี่ยง Omeprazole (ยับยั้ง CYP2C19 ทำให้ยาไม่ออกฤทธิ์) ให้เปลี่ยนเป็น Pantoprazole แทน",
             "ยาพื้นฐานทุกรายใน CAD เพื่อป้องกันเหตุการณ์หลอดเลือดหัวใจ (Event prevention): Single Antiplatelet (Aspirin 75–100 mg หรือ Clopidogrel 75 mg) + High-intensity Statin (Atorvastatin 40–80 mg หรือ Rosuvvastatin 20–40 mg) ± ACEI/ARB",
             "ยาแก้อาการเจ็บเค้นอก (Anti-anginal First-line): Beta-blocker และ/หรือ CCB; ส่วน Sublingual Nitroglycerin (หรือ ISDN SL) ใช้บรรเทาอาการเจ็บหน้าอกเฉียบพลัน",
             "วิธีใช้ยาอมใต้ลิ้น (ISDN 5 mg SL / NTG SL): นั่งหรือนอนก่อนอม 1 เม็ดใต้ลิ้น หากไม่ดีขึ้นใน 5 นาที อมซ้ำได้ทุก 5 นาที รวมไม่เกิน 3 เม็ด (15 นาที) — หากเม็ดที่ 1 ไม่ทุเลาควรรีบเรียกรถพยาบาล (1669) ทันที; ห้ามใช้ร่วมกับยากลุ่ม PDE-5 inhibitors (Sildenafil, Tadalafil)",
@@ -269,6 +277,8 @@ window.CC1_DATA = {
           "title": "Venous Thromboembolism (DVT & PE)",
           "titleTh": "ภาวะลิ่มเลือดอุดตันในหลอดเลือดดำ",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> DVT/PE ปัจจุบันแนะนำ <mark>DOACs (Rivaroxaban, Apixaban) เป็น First-line</mark> เหนือ Warfarin ไม่ต้องเจาะ INR",
+            "🎯 <b>หญิงตั้งครรภ์/มะเร็ง:</b> <mark>LMWH (Enoxaparin)</mark> คือ Drug of Choice (Warfarin ห้ามในหญิงตั้งครรภ์)",
             "การรักษา VTE เฉียบพลัน: DOACs (Apixaban, Rivaroxaban เริ่มกินได้เลยโดยไม่ต้องฉีดยาอนุพันธ์เฮพารินนำ; ส่วน Dabigatran และ Edoxaban ต้องฉีด parenteral anticoagulant นำ 5–10 วันก่อน)",
             "Rivaroxaban ขนาดรักษา VTE (15 mg BID 21 วัน แล้ว 20 mg OD) ต้องรับประทานพร้อมอาหารเพื่อเพิ่มการดูดซึม (จาก 66% เป็น >80%)",
             "ผู้ป่วยตั้งครรภ์ที่เป็น VTE: ยาที่ปลอดภัยและเป็นตัวเลือกหลักคือ LMWH (Enoxaparin) — ห้ามใช้ Warfarin (Teratogenic) และห้ามใช้ DOACs",
@@ -327,6 +337,7 @@ window.CC1_DATA = {
           "title": "Upper Respiratory Tract Infections",
           "titleTh": "โรคติดเชื้อทางเดินหายใจส่วนบน (URI — Cold, Flu, Pharyngitis, Sinusitis, AOM)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Pharyngitis จาก Strep group A First-line คือ <mark>Penicillin V หรือ Amoxicillin นาน 10 วันเต็ม</mark> ป้องกันไข้รูมาติก",
             "แยกโรคหวัด (Common Cold) vs ไข้หวัดใหญ่ (Influenza): หวัดเกิดจาก Rhinovirus ไม่มีไข้สูง/ปวดเมื่อย ให้รักษาตามอาการ; ไข้หวัดใหญ่เกิดจาก Influenza virus มีไข้สูงเฉียบพลัน ปวดเมื่อยตัวรุนแรง (Myalgia) ให้ Oseltamivir 75 mg BID 5 วัน ภายใน 48 ชม.",
             "คอหอยอักเสบ (Pharyngitis): ส่วนใหญ่เกิดจากไวรัส; หากเกิดจากแบคทีเรียสาเหตุหลักคือ Group A Streptococcus (GAS/S. pyogenes) ประเมินด้วย Modified Centor Criteria (คะแนน ≥3 จึงพิจารณาตรวจ Rapid Ag หรือให้ยาปฏิชีวนะ Amoxicillin 500 mg BID นาน 10 วัน เพื่อป้องกัน Rheumatic fever)",
             "ไซนัสอักเสบเฉียบพลัน (Acute Rhinosinusitis): สงสัยแบคทีเรียเมื่อมีอาการนาน >10 วัน หรือมีไข้สูง ปวดหน้า ร่วมกับน้ำมูกข้นหนอง หรืออาการแย่ลงหลังทำท่าจะดีขึ้น (Double sickening) ให้ Amoxicillin-Clavulanate 1-2 g BID นาน 5-7 วัน",
@@ -387,6 +398,7 @@ window.CC1_DATA = {
           "title": "Urinary Tract Infections",
           "titleTh": "โรคติดเชื้อทางเดินปัสสาวะ (UTI — Cystitis, Pyelonephritis, CAUTI — Thai 2568)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Uncomplicated Cystitis First-line คือ <mark>Nitrofurantoin 100 mg bid 5 วัน หรือ Fosfomycin 3 g ซองเดียว</mark> (Nitrofurantoin ห้ามใช้ถ้า eGFR < 30 mL/min)",
             "การจำแนก: กระเพาะปัสสาวะอักเสบ (Cystitis: ปัสสาวะแสบขัด กะปริดกะปรอย ปวดท้องน้อย ไม่มีไข้) vs กรวยไตอักเสบ (Pyelonephritis: ไข้สูง หนาวสั่น เคาะเจ็บชายโครงด้านหลัง CVA tenderness)",
             "เกณฑ์ Uncomplicated: หญิงวัยเจริญพันธุ์ที่ไม่ได้ตั้งครรภ์ และไม่มีความผิดปกติของโครงสร้างทางเดินปัสสาวะ; Complicated: ผู้ชาย, หญิงตั้งครรภ์, ผู้ป่วยเบาหวาน, มีนิ่ว/ใส่สายสวน, ภูมิคุ้มกันบกพร่อง, ไตวาย",
             "เชื้อก่อโรคอันดับ 1 (>80%): Escherichia coli (Uropathogenic E. coli - UPEC)",
@@ -484,6 +496,8 @@ window.CC1_DATA = {
           "title": "Helminthic Infections",
           "titleTh": "โรคพยาธิ (Helminthic Infections — ตัวกลม ตัวแบน ตัวตืด)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> พยาธิเส้นด้าย/เข็มหมุด (Enterobius) ใช้ <mark>Mebendazole 100 mg เม็ดเดียว แล้วซ้ำใน 2 สัปดาห์</mark> และต้องรักษาคนทั้งบ้าน",
+            "🎯 <b>คนท้องไตรมาสแรก:</b> ยาถ่ายพยาธิที่ปลอดภัยที่สุดคือ <mark>Pyrantel pamoate</mark> (Albendazole/Mebendazole ห้ามในไตรมาส 1)",
             "การแบ่งกลุ่มพยาธิ: พยาธิตัวกลม (Nematodes), พยาธิใบไม้ (Trematodes), พยาธิตัวตืด (Cestodes)",
             "พยาธิเส้นด้าย / เข็มหมุด (Enterobius vermicularis): อาการคันก้นตอนกลางคืน (Pruritus ani), ตรวจด้วยวิธี Scotch adhesive tape technique ตอนเช้าตรู่ก่อนอาบน้ำ; รักษาด้วย Mebendazole 100 mg ครั้งเดียว หรือ Albendazole 400 mg ครั้งเดียว และ **ต้องให้ซ้ำอีกครั้งที่ 2 สัปดาห์ถัดไป** พร้อมรักษาทุกคนในครอบครัว",
             "พยาธิปากขอ (Hookworm: Necator americanus, Ancylostoma duodenale): ไชทะลุผิวหนัง ทำให้เกิดภาวะโลหิตจางจากการขาดธาตุเหล็ก (Iron Deficiency Anemia); รักษาด้วย Albendazole 400 mg ครั้งเดียว",
@@ -515,6 +529,8 @@ window.CC1_DATA = {
           "title": "HIV Infection & Antiretroviral Therapy",
           "titleTh": "การติดเชื้อเอชไอวีและยาต้านไวรัส (HIV / ART — Thai 2564/2567)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line ART ของไทยคือสูตร <mark>TLD (Tenofovir + Lamivudine + Dolutegravir)</mark> เป็นสูตรหลักทั้งผู้ใหญ่และคนท้อง",
+            "🎯 <b>ข้อสอบชอบหลอกยีนแพ้ยา:</b> <mark>Abacavir (ABC) ต้องตรวจ HLA-B*5701 ก่อนเริ่มยาทุกครั้ง</mark>; และ <mark>ห้ามจับคู่ d4T (Stavudine) + ddI (Didanosine)</mark> เสี่ยงชาปลายมือเท้าและตับอ่อนอักเสบ",
             "เป้าหมายการรักษา: กดปริมาณไวรัสให้ undetectable (<50 copies/mL) ภายใน 24 สัปดาห์ เพื่อฟื้นฟู CD4 และป้องกันการถ่ายทอดเชื้อ (U=U: Undetectable = Untransmittable)",
             "สูตรยาต้านไวรัสด่านแรกสำหรับผู้ใหญ่ไทย (First-line ART): TLD (Tenofovir disoproxil fumarate 300 mg + Lamivudine 300 mg + Dolutegravir 50 mg) วันละ 1 เม็ด ก่อนหรือหลังอาหาร",
             "Tenofovir (TDF) ผลข้างเคียงสำคัญ: ความเป็นพิษต่อไต (Renal tubular damage, Fanconi syndrome) และกระดูกบาง (Bone mineral density loss) ตรวจติดตาม CrCl และ Urine protein สม่ำเสมอ",
@@ -577,6 +593,8 @@ window.CC1_DATA = {
           "title": "Tuberculosis",
           "titleTh": "วัณโรค (Tuberculosis — TB Diagnosis, Treatment & ADR Management)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> สูตร 2HRZE / 4HR — <mark>Ethambutol ทำให้เกิด Optic neuritis (ตาบอดสีแดง-เขียว)</mark> ห้ามใช้ในเด็กเล็กที่บอกอาการไม่ได้",
+            "🎯 <b>ป้องกันพิษ:</b> <mark>Isoniazid (INH) ต้องให้คู่กับ Vitamin B6 (Pyridoxine 50-100 mg/day)</mark> เสมอเพื่อกันปลายประสาทอักเสบ",
             "สูตรมาตรฐานในการรักษาวัณโรคปอดดั้งเดิม: 2HRZE / 4HR (2 เดือนแรกให้ Isoniazid + Rifampicin + Pyrazinamide + Ethambutol; 4 เดือนถัดไปให้ Isoniazid + Rifampicin รวม 6 เดือน)",
             "อาการไม่พึงประสงค์เด่นจำเพาะตัวยา: H (Isoniazid) -> ปลายประสาทอักเสบ (Peripheral neuropathy ป้องกันด้วย Vitamin B6/Pyridoxine 50-100 mg/วัน); R (Rifampicin) -> สารคัดหลั่ง ปัสสาวะ เหงื่อ น้ำตา เปลี่ยนเป็นสีส้มแดง (Red-orange discoloration) และเป็น Strong CYP3A4 inducer; Z (Pyrazinamide) -> กรดยูริกในเลือดสูง ปวดข้อ (Hyperuricemia, Gout); E (Ethambutol) -> จอประสาทตาอักเสบ แยกสีแดง-เขียวไม่ได้ (Optic neuritis)",
             "Drug-Induced Liver Injury (DILI): ยาที่ก่อพิษต่อตับเรียงตามความรุนแรง Z > H > R; หาก AST/ALT >3 เท่าของขอบบนปกติร่วมกับมีอาการ (คลื่นไส้ เบื่ออาหาร ตัวเหลืองตาเหลือง) หรือ >5 เท่าโดยไม่มีอาการ **ต้องหยุดยา HRZ ทันที**",
@@ -664,6 +682,8 @@ window.CC1_DATA = {
           "title": "Bipolar Disorder & Lithium Monitoring",
           "titleTh": "โรคอารมณ์สองขั้วและการติดตามระดับยา Lithium (CANMAT Guideline)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line คือ <mark>Lithium</mark> (คุมระดับในเลือด: Acute mania 0.8-1.2 mEq/L, Maintenance 0.6-1.0 mEq/L)",
+            "🎯 <b>ยาที่ห้ามกินร่วมกับ Lithium:</b> <mark>NSAIDs, ACEI, ARB, Thiazide diuretics</mark> เพราะลดการขับ Lithium ทำให้เกิดพิษรุนแรง (Lithium toxicity)",
             "Bipolar I = มี Manic episode อย่างน้อย 1 ครั้ง (± Major depressive episode); Bipolar II = มี Hypomanic episode ร่วมกับ Major depressive episode (ไม่เคยมี Full mania)",
             "ห้ามใช้ Antidepressant เดี่ยว ๆ (Monotherapy) ในผู้ป่วย Bipolar โดยเฉพาะระยะ Mania หรือใช้ TCAs/SNRIs เพราะกระตุ้นให้เกิดการสลับขั้วเป็น Mania (Mood switching) สูงมาก",
             "Lithium มีดัชนีการรักษาแคบ (NTI): ระดับยาในเลือดระยะ Acute mania = 0.8–1.5 mEq/L, ระยะ Maintenance = 0.6–1.2 mEq/L โดยเจาะเลือดที่ 12 ชั่วโมงหลังกินยามื้อสุดท้าย (12-hr trough) และช่วยลดความเสี่ยงการฆ่าตัวตายได้",
@@ -709,6 +729,8 @@ window.CC1_DATA = {
           "title": "Major Depressive Disorder & Antidepressants",
           "titleTh": "โรคซึมเศร้าและยาต้านซึมเศร้าทุกกลุ่ม (CANMAT 2023 & 2Q/9Q/8Q)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line คือ <mark>SSRIs (Sertraline, Escitalopram, Fluoxetine)</mark> — ในผู้ป่วยโรคหัวใจ/Post-MI แนะนำ <mark>Sertraline ปลอดภัยที่สุด</mark>",
+            "🎯 <b>ยาที่เลิกแนะนำเป็น First-line:</b> TCAs (Amitriptyline) มีผลข้างเคียง Anticholinergic สูงและเป็นพิษต่อหัวใจรุนแรงเมื่อกินเกินขนาด",
             "เกณฑ์ DSM-5 ของ MDD: มีอาการ ≥ 5 ข้อใน 2 สัปดาห์ (ต้องมีอารมณ์เศร้า หรือ เบื่อหน่ายขาดความสนใจ Anhedonia อย่างน้อย 1 ข้อ); คัดกรองด้วย 2Q → ประเมินความรุนแรงด้วย 9Q (≥ 7 คะแนนเริ่มมีภาวะซึมเศร้า) → ประเมินความเสี่ยงฆ่าตัวตายด้วย 8Q",
             "ลำดับการออกฤทธิ์ของยาต้านซึมเศร้า: อาการทางกาย (นอนไม่หลับ อ่อนเพลีย) ดีขึ้นก่อนใน 1–2 สัปดาห์แรก ส่วนอาการทางอารมณ์เศร้าเห็นผลเต็มที่ใน 4–6 สัปดาห์ (ต้องเตือนเรื่องความเสี่ยงฆ่าตัวตายช่วงแรกที่เรี่ยวแรงกลับมาก่อนอารมณ์ดีขึ้น)",
             "ระยะการรักษา: Acute (8–16 สัปดาห์จน Remission) → Continuation (4–9 เดือน ป้องกัน Relapse) → Maintenance (6–24 เดือน หรือ ≥ 1–2 ปีในกลุ่มเสี่ยงสูง เพื่อป้องกัน Recurrence)",
@@ -797,6 +819,7 @@ window.CC1_DATA = {
           "title": "Smoking Cessation Pharmacotherapy",
           "titleTh": "การบริบาลทางเภสัชกรรมเพื่อการเลิกบุหรี่ (Smoking Cessation)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Bupropion <mark>ห้ามใช้ในผู้ป่วยที่มีประวัติโรคลมชัก (Seizure) หรือ Eating disorders</mark> เพราะลด Seizure threshold",
             "นิโคตินจับกับ α4β2 nicotinic receptor ที่ VTA กระตุ้นการหลั่ง Dopamine ที่ Nucleus accumbens; อาการถอนนิโคตินเกิดภายใน 24 ชม. โดยมีลักษณะจำเพาะคือ 'หัวใจเต้นช้าลง (Bradycardia)', อยากอาหาร/น้ำหนักขึ้น, ท้องผูก, ซึมเศร้า, หงุดหงิด",
             "ยาเลิกบุหรี่สายแรก (First-line): NRT (Gum, Patch), Bupropion SR, Varenicline (และในไทยมี Cytisine และชาชงหญ้าดอกขาวในบัญชียาหลักแห่งชาติ); สายที่สอง (Second-line): Nortriptyline, Clonidine",
             "Nicotine gum: สูบ < 25 มวน/วัน ใช้ขนาด 2 mg (ไม่เกิน 30 ชิ้น/วัน), สูบ ≥ 25 มวน/วัน ใช้ขนาด 4 mg (ไม่เกิน 15 ชิ้น/วัน) เคี้ยวแบบ Chew and park 30 นาที งดเครื่องดื่มที่เป็นกรด (กาแฟ น้ำส้ม น้ำอัดลม) 15 นาทีก่อนและระหว่างเคี้ยว",
@@ -915,6 +938,8 @@ window.CC1_DATA = {
           "title": "Allergic Rhinitis",
           "titleTh": "โรคจมูกอักเสบภูมิแพ้ (Allergic Rhinitis — ARIA Guidelines)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Moderate-to-severe AR ยาที่มีประสิทธิภาพสูงสุดและเป็น First-line คือ <mark>Intranasal Corticosteroids (INCS)</mark>",
+            "🎯 <b>หญิงตั้งครรภ์:</b> Antihistamine ที่ปลอดภัยคือ <mark>Chlorpheniramine (CPM), Loratadine, Cetirizine</mark> และหลีกเลี่ยง Oral Decongestant (Pseudoephedrine) ในไตรมาสแรก",
             "การจำแนกตาม ARIA Classification: ตามเวลา -> Intermittent (&lt;4 วัน/สัปดาห์ หรือ &lt;4 สัปดาห์ติดต่อกัน) vs Persistent (≥4 วัน/สัปดาห์ และ ≥4 สัปดาห์ติดต่อกัน); ตามความรุนแรง -> Mild (ไม่รบกวนชีวิต) vs Moderate-to-Severe (รบกวนการนอน กิจวัตร หรือการเรียนการทำงาน)",
             "อาการแสดง 4 อย่าง: คัดจมูก (Nasal congestion), น้ำมูกใสไหล (Rhinorrhea), คันจมูก/ตา (Itching), จามติดต่อกัน (Sneezing)",
             "Signs ทางคลินิก: Allergic shiners (ขอบตาดำคล้ำ), Allergic salute (ท่าเอามือดันปลายจมูกขึ้น), Allergic crease (รอยพับขวางที่สันจมูก), Dennie-Morgan lines (รอยย่นใต้ตาล่าง)",
@@ -982,6 +1007,7 @@ window.CC1_DATA = {
           "title": "Vaccines & Immunization",
           "titleTh": "วัคซีนและการสร้างเสริมภูมิคุ้มกัน (Vaccines & EPI Schedule)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> <mark>ห้ามให้ Live Attenuated Vaccine (วัคซีนเชื้อเป็น เช่น MMR, Varicella, Yellow fever, BCG) ในหญิงตั้งครรภ์และผู้ป่วยที่มีภาวะภูมิคุ้มกันบกพร่องรุนแรง</mark>",
             "การจำแนกชนิดวัคซีน: Live-Attenuated Vaccines (เชื้อเป็นอ่อนฤทธิ์: BCG, OPV, MMR, Varicella, Live-attenuated Japanese Encephalitis, Rotavirus, Shingles Zostavax) vs Inactivated / Subunit / mRNA (เชื้อตาย/ชิ้นส่วน: DTP, IPV, HepB, Hib, HPV, Influenza, COVID-19, PCV)",
             "ข้อห้ามเด็ดขาดของ Live-Attenuated Vaccines: **ห้ามให้ในหญิงตั้งครรภ์ และผู้ป่วยที่มีภาวะภูมิคุ้มกันบกพร่องรุนแรง (Severe Immunodeficiency, CD4 &lt;200 cells/mm3, ได้รับยากดภูมิขนาดสูง)**",
             "หลักเกณฑ์การเว้นระยะห่าง: วัคซีนเชื้อตายกับเชื้อตาย หรือเชื้อตายกับเชื้อเป็น ฉีดพร้อมกันหรือห่างกันเท่าใดก็ได้; **วัคซีนเชื้อเป็นชนิดฉีด 2 ตัว (เช่น MMR และ Varicella) หากไม่ได้ฉีดในวันเดียวกัน ต้องเว้นระยะห่างกันอย่างน้อย 28 วัน (4 สัปดาห์)** เพื่อป้องกัน Immune interference",
@@ -1068,6 +1094,8 @@ window.CC1_DATA = {
           "title": "Chronic Kidney Disease (CKD) & Complications Management",
           "titleTh": "โรคไตเรื้อรังและภาวะแทรกซ้อน (KDIGO 2024 CGA Staging, ปัจจัยเสี่ยง & การจัดการภาวะแทรกซ้อน)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> ชะลอไตเสื่อมใน DM/Proteinuria ใช้ <mark>ACEI หรือ ARB</mark> ร่วมกับ <mark>SGLT2 inhibitors (Dapagliflozin, Empagliflozin)</mark>",
+            "🎯 <b>Anemia of CKD:</b> เป้าหมายควบคุม Hb ด้วย ESA อยู่ที่ <mark>10 - 11.5 g/dL (ห้ามคุม Hb เกิน 11.5-12 g/dL เสี่ยงต่อ Stroke และเส้นเลือดอุดตัน)</mark>",
             "คำจำกัดความ CKD (KDIGO 2024): ความผิดปกติของโครงสร้างหรือการทำงานของไตที่เป็นติดต่อกันนาน > 3 เดือน (eGFR < 60 mL/min/1.73 m² หรือมี Albuminuria ACR ≥ 30 mg/g) โดยแบ่งระยะตาม CGA classification (Cause, GFR category G1–G5, Albuminuria category A1–A3)",
             "ปัจจัยเสี่ยงของ CKD 3 ระยะ (สไลด์หน้า 7–9 ออกสอบจำแนกบ่อย!): 1) Susceptibility (เพิ่มความไวต่อการเกิดโรคไต): อายุมาก, มวลไตลดลง, น้ำหนักแรกเกิดน้อย, ประวัติครอบครัวโรคไต, รายได้/การศึกษาต่ำ, การอักเสบทั่วร่างกาย, Dyslipidemia; 2) Initiation (จุดเริ่มต้นทำลายไตโดยตรง): เบาหวาน (DM), ความดันโลหิตสูง (HTN), โรคแพ้ภูมิตัวเอง, Polycystic kidney disease, พิษจากยา, ทางเดินปัสสาวะติดเชื้อ/อุดกั้น/นิ่ว; 3) Progression (เร่งให้ไตเสื่อมเร็วขึ้น): คุมน้ำตาลไม่ดี, ความดันสูงไม่ลง, โปรตีนรั่วในปัสสาวะ (> 1 g/day), สูบบุหรี่",
             "การชะลอความเสื่อมของไตตาม KDIGO 2024: จำกัดโปรตีน 0.8 g/kg/day ใน CKD G3–G5, ตั้งเป้า SBP < 120 mmHg (เมื่อวัดตามมาตรฐานและผู้ป่วยทนได้), HbA1c < 7%, ให้ยาหลักคือ ACEI หรือ ARB (ใน CKD G1–G4 ที่มี Albuminuria A2–A3 ทั้งที่มีและไม่มีเบาหวาน) ร่วมกับ SGLT2i (เมื่อ eGFR ≥ 20) และพิจารณาเพิ่ม nsMRA (Finerenone) ใน T2DM ที่มี eGFR ≥ 25, K+ ปกติ และยังมี Albuminuria ≥ 30 mg/g แม้ได้ RASi เต็มที่แล้ว",
@@ -1245,6 +1273,8 @@ window.CC1_DATA = {
           "title": "GERD",
           "titleTh": "โรคกรดไหลย้อน (Gastroesophageal Reflux Disease — GERD)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line คือ <mark>PPI (Omeprazole, Esomeprazole) กินก่อนอาหารเช้า 30-60 นาที</mark> 4-8 สัปดาห์",
+            "🎯 <b>Alarm Symptoms:</b> กลืนลำบาก กลืนเจ็บ น้ำหนักลด ซีด อาเจียนเป็นเลือด ถ่ายดำ ต้องส่งส่องกล้อง (EGD) ทันที ห้ามรักษาเอง",
             "กลไกหลัก: Transient Lower Esophageal Sphincter Relaxation (TLESR) หูรูดหลอดอาหารส่วนล่างคลายตัวผิดปกติ",
             "Typical symptoms: Heartburn (แสบร้อนกลางอกแลบขึ้นมาที่คอ) และ Acid regurgitation (เรอเปรี้ยว)",
             "Atypical symptoms: ไอเรื้อรัง, เจ็บหน้าอกที่ไม่ใช่จากหัวใจ, เสียงแหบตอนเช้า, โรคหืดกำเริบ, ฟันสึก",
@@ -1284,6 +1314,7 @@ window.CC1_DATA = {
           "title": "Peptic Ulcer Disease",
           "titleTh": "โรคแผลในทางเดินอาหาร (Peptic Ulcer Disease — PUD)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> สูตรกำจัด H. pylori แนะนำ <mark>Bismuth Quadruple Therapy (PPI + Bismuth + Metronidazole + Tetracycline) นาน 14 วัน</mark>",
             "2 สาเหตุหลัก: การติดเชื้อ Helicobacter pylori และการใช้ยา NSAIDs/Aspirin",
             "ตารางแยก Gastric Ulcer (GU) vs Duodenal Ulcer (DU): GU ปวดหลังอาหารทันที (Food worsens pain), สัมพันธ์กับมะเร็ง ต้องตัดชิ้นเนื้อ; DU ปวดตอนท้องว่างหรือกลางดึก (Food relieves pain), พบบ่อยกว่า ไม่ใช่มะเร็ง",
             "การตรวจ H. pylori: UBT (Urea Breath Test) มีความไวและความจำเพาะสูงที่สุดในการตรวจติดตามการกำจัดเชื้อ (Test of cure ที่ 4 สัปดาห์หลังสิ้นสุดการรักษา)",
@@ -1353,6 +1384,7 @@ window.CC1_DATA = {
           "title": "Upper GI Bleeding",
           "titleTh": "ภาวะเลือดออกในทางเดินอาหารส่วนต้น (Upper Gastrointestinal Bleeding — UGIB)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> เลือดออกจากเส้นเลือดขอดตับแข็ง (Variceal bleeding) ให้ <mark>Octreotide / Somatostatin IV</mark> ควบ <mark>Ceftriaxone 1 g IV OD 7 วัน</mark> ป้องกันติดเชื้อ SBP",
             "นิยาม: เลือดออกจากทางเดินอาหารเหนือต่อ Ligament of Treitz แสดงออกด้วย อาเจียนเป็นเลือด (Hematemesis), สีกากกาแฟ (Coffee-ground emesis) หรือถ่ายดำ (Melena)",
             "การประเมินความเสี่ยง: ใช้ Glasgow-Blatchford Score (GBS) ประเมินความจำเป็นในการนอน รพ. ส่องกล้อง หรือให้เลือด (คะแนน 0-1 พิจารณา Outpatient ได้)",
             "Forrest Classification: Forrest Ia (Spurting) และ Ib (Oozing) มีความเสี่ยงเลือดออกซ้ำสูงที่สุด (>50%) ต้องรักษาด้วย Endoscopic therapy ร่วมกับ High-dose IV PPI",
@@ -1427,6 +1459,8 @@ window.CC1_DATA = {
           "title": "Diarrhea",
           "titleTh": "ภาวะท้องเสียเฉียบพลันและเรื้อรัง (Diarrhea)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> การรักษาอันดับ 1 คือ <mark>ORS สูตร Reduced Osmolarity (~245 mOsm/L)</mark> จิบบ่อย ๆ",
+            "🎯 <b>ข้อสอบชอบออกข้อห้าม:</b> <mark>ห้ามใช้ Loperamide ในท้องเสียติดเชื้อที่มีไข้สูง ถ่ายเป็นมูกเลือด หรือสงสัย C. difficile</mark> เพราะเสี่ยงเกิด Toxic Megacolon ลำไส้เน่าทะลุ",
             "นิยาม: ถ่ายเหลวหรือเป็นน้ำตั้งแต่ 3 ครั้งขึ้นไป หรือถ่ายเป็นมูกเลือด 1 ครั้งใน 24 ชั่วโมง; Acute (<14 วัน), Persistent (14-28 วัน), Chronic (>28 วัน)",
             "การรักษาที่สำคัญที่สุด: สารละลายเกลือแร่ ORS (Oral Rehydration Salts) ต้องใช้สูตร Reduced Osmolarity ORS (~245 mOsm/L) จิบทีละน้อยแต่บ่อยครั้ง",
             "ห้ามใช้ Loperamide ใน: ท้องเสียติดเชื้อที่มีไข้สูง ถ่ายเป็นมูกเลือด (Dysentery/Invasive enteritis) หรือสงสัย Clostridioides difficile colitis เพราะเสี่ยงเกิด Toxic Megacolon",
@@ -1462,6 +1496,8 @@ window.CC1_DATA = {
           "title": "Constipation",
           "titleTh": "ภาวะท้องผูก (Constipation) และการใช้ยาระบาย",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line ท้องผูกทั่วไปคือ <mark>Bulk-forming laxative (Psyllium)</mark> ต้องดื่มน้ำตามมาก ๆ; ในคนท้อง/ผู้สูงอายุใช้ <mark>Lactulose หรือ PEG</mark> ปลอดภัยที่สุด",
+            "🎯 <b>ยาที่เลิกแนะนำระยะยาว:</b> ยาระบายกระตุ้น (Senna, Bisacodyl) ใช้เฉพาะระยะสั้น ห้ามกินต่อเนื่องนานเกิน 1-2 สัปดาห์ เสี่ยง Atonic colon ดื้อยา",
             "เกณฑ์ Rome IV: ถ่ายอุจจาระน้อยกว่า 3 ครั้งต่อสัปดาห์, อุจจาระแข็งเป็นเม็ดกระสุน (Bristol stool type 1-2), ต้องออกแรงเบ่งมาก, รู้สึกถ่ายไม่สุด",
             "ยาระบายทางเลือกแรก (First-line): Bulk-forming laxatives (Psyllium, Methylcellulose) หรือ Osmotic laxative (PEG / Macrogol 4000)",
             "Bulk-forming laxatives ต้องดื่มน้ำตามมากๆ อย่างน้อย 1-2 แก้ว มิฉะนั้นจะเกิด Esophageal หรือ Intestinal obstruction",
@@ -1637,6 +1673,8 @@ window.CC1_DATA = {
           "title": "Gout & Hyperuricemia",
           "titleTh": "โรคเกาต์และกรดยูริกในเลือดสูง",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Acute Gout First-line: <mark>Colchicine ขนาดยาใหม่ 1.2 mg (หรือ 1 mg) แล้วตามด้วย 0.6 mg ใน 1 ชม. (รวมไม่เกิน 1.8 mg ในวันแรก)</mark> — <mark>เลิกใช้สูตรกินทุก 2 ชม. จนท้องเสียแล้ว</mark>",
+            "🎯 <b>ข้อสอบออกทุกปี:</b> <mark>ต้องตรวจ HLA-B*5801 ก่อนเริ่ม Allopurinol ในคนไทยเสมอ</mark> เพื่อป้องกันการแพ้ยารุนแรง SJS/TEN และ <mark>ห้ามเริ่มยาลดกรดยูริกขณะข้อกำลังอักเสบเฉียบพลัน</mark>",
             "Acute gouty arthritis: ยาเลือกแรกคือ Colchicine (ขนาดต่ำ), NSAIDs, หรือ Corticosteroid — ห้ามเริ่มหรือหยุดยาลดกรดยูริก (ULT) ในช่วงข้ออักเสบเฉียบพลันหากไม่ได้ใช้อยู่เดิม",
             "Allopurinol: ต้องตรวจยีน HLA-B*58:01 ในคนไทยก่อนเริ่มยาเสมอ เพื่อป้องกัน SCARs (SJS/TEN, DRESS); เริ่มขนาดต่ำ (100 mg/วัน หรือ ≤ 50 mg ใน CKD) แล้วค่อยปรับ",
             "Colchicine: ADR ที่พบบ่อยที่สุดคือ ท้องเสีย คลื่นไส้ ปวดท้อง; ระวัง Drug Interaction รุนแรงกับ CYP3A4 / P-gp inhibitors (clarithromycin, cyclosporine, verapamil, diltiazem)",
@@ -1698,6 +1736,8 @@ window.CC1_DATA = {
           "title": "Osteoarthritis",
           "titleTh": "โรคข้อเสื่อม",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> เริ่มด้วย <mark>Topical NSAIDs (Diclofenac gel)</mark> ก่อน Oral NSAIDs เสมอ ปลอดภัยต่อทางเดินอาหารและไต",
+            "🎯 <b>เลือกใช้ NSAID:</b> เสี่ยง GI สูงให้ใช้ Celecoxib หรือ NSAID + PPI; เสี่ยงหัวใจ CVS สูงให้เลือก Naproxen ปลอดภัยที่สุด",
             "ลักษณะทางคลินิก: ปวดข้อเมื่อใช้งาน พักแล้วดีขึ้น ข้อฝืดตึงตอนเช้า (morning stiffness) นาน < 30 นาที มีเสียงกรอบแกรบ (crepitus) ในข้อเข่า",
             "การรักษาไม่ใช้ยาสำคัญที่สุด: ลดน้ำหนัก, ออกกำลังกายที่ลดแรงกระแทกข้อ เช่น ออกกำลังกายในน้ำ (aquatic exercise) หรือบริหารกล้ามเนื้อต้นขา (quadriceps strengthening)",
             "ยาเลือกแรก: Topical NSAIDs (เช่น diclofenac gel) สำหรับข้อเข่า/ข้อมือ (ปลอดภัยต่อ GI/CV กว่ายากิน) และ Oral NSAIDs; Paracetamol มีประสิทธิภาพลดปวดค่อนข้างจำกัด",
@@ -1794,6 +1834,8 @@ window.CC1_DATA = {
           "title": "Osteoporosis",
           "titleTh": "โรคกระดูกพรุน",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> First-line คือ <mark>Oral Bisphosphonates (Alendronate 70 mg สัปดาห์ละครั้ง)</mark>",
+            "🎯 <b>วิธีรับประทานที่ถูกต้อง:</b> <mark>กินตอนเช้าหลังตื่นนอน ท้องว่าง ดื่มน้ำเปล่าเต็มแก้ว (240 mL) และนั่งหรือยืนตัวตรงห้ามนอนราบอย่างน้อย 30 นาที</mark> ป้องกันหลอดอาหารเป็นแผลทะลุ",
             "เกณฑ์วินิจฉัย: BMD ด้วยวิธี DXA ที่กระดูกสันหลังส่วนเอวหรือสะโพก มีค่า T-score ≤ −2.5 SD หรือเคยมีกระดูกหักจากภยันตรายที่ไม่รุนแรง (Fragility fracture ที่สะโพกหรือกระดูกสันหลัง) แม้ T-score จะยังไม่ถึง −2.5",
             "First-line: Oral Bisphosphonates (Alendronate 70 mg สัปดาห์ละครั้ง, Risedronate 35 mg สัปดาห์ละครั้ง)",
             "วิธีรับประทาน Alendronate/Risedronate สำคัญมาก: กินตอนเช้าท้องว่างด้วยน้ำเปล่าเท่านั้น (เต็มแก้ว ≥ 200 mL) ห้ามเคี้ยว/บด และต้องนั่งหรือยืนตัวตรงห้ามเอนนอนอย่างน้อย 30 นาที (Ibandronate 60 นาที) เพื่อป้องกันหลอดอาหารอักเสบ (esophagitis) และเพิ่มการดูดซึม",
@@ -1849,6 +1891,8 @@ window.CC1_DATA = {
           "title": "Urinary Incontinence & BPH",
           "titleTh": "ภาวะกลั้นปัสสาวะไม่อยู่และต่อมลูกหมากโต (Urinary Incontinence & BPH)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Urge Incontinence / OAB First-line คือ <mark>Antimuscarinics (Oxybutynin, Tolterodine) หรือ Beta-3 agonist (Mirabegron)</mark>",
+            "🎯 <b>ข้อห้าม Antimuscarinics:</b> ห้ามใช้ในต้อหินมุมปิด (Narrow-angle glaucoma), ปัสสาวะคั่ง (Urinary retention), และลำไส้อุดตัน",
             "การจำแนกชนิดกลั้นปัสสาวะไม่อยู่: 1. Stress Incontinence (ปัสสาวะเล็ดขณะไอ จาม หัวเราะ ยกของหนัก เกิดจากหูรูดหย่อนยาน ขมิบกล้ามเนื้ออุ้งเชิงกราน Kegel exercise เป็นหลัก) 2. Urge Incontinence / Overactive Bladder (OAB: ปวดกะทันหันกลั้นไม่ได้ เข้าห้องน้ำไม่ทัน เกิดจาก Detrusor overactivity รักษาด้วย Antimuscarinics หรือ Beta-3 agonist Mirabegron) 3. Overflow Incontinence (ปัสสาวะล้นเอ่อ ปัสสาวะไม่ออก หยดติ๋งๆ เกิดจากต่อมลูกหมากโตอุดกั้น หรือเส้นประสาทกระเพาะปัสสาวะเสีย รักษาด้วย Alpha-blockers หรือสวนปัสสาวะ) 4. Functional Incontinence (กลั้นได้แต่เดินไปห้องน้ำไม่ทัน)",
             "ยาต้านมัสคารินิกสำหรับ OAB: Oxybutynin, Tolterodine, Solifenacin; ผลข้างเคียงเด่น: ปากแห้ง คอแห้ง ท้องผูก ตาพร่า ปัสสาวะคั่ง สับสน **ห้ามใช้ใน Uncontrolled Narrow-angle glaucoma หรือ Urinary retention**",
             "Mirabegron (Beta-3 Adrenergic Agonist): คลายกล้ามเนื้อกระเพาะปัสสาวะ ไม่มีผลข้างเคียง Anticholinergic เหมาะมากในผู้สูงอายุ; ข้อควรระวังสำคัญคือ **เพิ่มความดันโลหิต (Hypertension) ห้ามใช้หาก SBP ≥180 หรือ DBP ≥110 mmHg**",
@@ -1880,6 +1924,8 @@ window.CC1_DATA = {
           "title": "Hormonal Contraception",
           "titleTh": "การคุมกำเนิดและฮอร์โมนคุมกำเนิด (Oral Contraceptive Pills & Missed Dose Rules)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> ยาคุมกำเนิดชนิดฮอร์โมนรวม (COC) <mark>ห้ามใช้ในสตรีอายุ >= 35 ปีที่สูบบุหรี่จัด, มีประวัติ VTE/Stroke/CAD, มะเร็งเต้านม, หรือไมเกรนชนิดมีออร่า (Migraine with aura)</mark>",
+            "🎯 <b>หญิงให้นมบุตร:</b> แนะนำให้ใช้ <mark>Progestin-only pills (POP) หรือยาฉีด DMPA</mark> เพราะไม่รบกวนการหลั่งน้ำนม",
             "ส่วนประกอบของยาเม็ดคุมกำเนิดรวม (COCs): Estrogen (Ethinylestradiol: EE ขนาด 20-35 mcg ควบคุมรอบเดือน ยับยั้ง FSH) + Progestin (ยับยั้งการตกไข่ผ่าน LH surge ทำมูกปากมดลูกเหนียวข้น)",
             "การจำแนก Progestin: Gen 1 (Norethindrone), Gen 2 (Levonorgestrel: คุมกำเนิดดี สิวหน้ามันขนดก Androgenic สูง), Gen 3 (Desogestrel, Gestodene: Androgenic ต่ำ แต่เสี่ยง VTE สูงกว่า Gen 2 เล็กน้อย), Gen 4 (Drospirenone: ฤทธิ์ Anti-androgenic ลดสิวหน้ามัน และ Anti-mineralocorticoid ลดบวมน้ำ ลดน้ำหนักตัว ระวัง Hyperkalemia; Cyproterone acetate: ลดสิวขนดกเด่นมาก)",
             "ข้อห้ามเด็ดขาดของยาคุมกำเนิดที่มี Estrogen (WHO MEC Category 4): **สูบบุหรี่จัด (≥15 มวน/วัน) และอายุ ≥35 ปี, มีประวัติ VTE/Stroke/CAD, มีประวัติมะเร็งเต้านม, โรคตับแข็งขั้นรุนแรง, ไมเกรนที่มีออร่า (Migraine with aura เสี่ยง Ischemic stroke สูงมาก), ความดันโลหิตสูงรุนแรง (≥160/100 mmHg)**",
@@ -1982,6 +2028,7 @@ window.CC1_DATA = {
           "title": "Headache Disorders",
           "titleTh": "โรคปวดศีรษะ (Headache — Migraine, Tension, Cluster)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Ergotamine/Caffeine <mark>ห้ามใช้ในคนไข้ CAD, Stroke, ความดันโลหิตสูงที่คุมไม่ได้, คนท้อง</mark> และ <mark>ห้ามกินร่วมกับ Potent CYP3A4 inhibitors (เช่น Clarithromycin, Ketoconazole)</mark> เด็ดขาด เสี่ยงเกิด Ergotism หลอดเลือดตีบตันจนเนื้อเยื่อเน่าตาย",
             "แยก 3 โรคปวดศีรษะปฐมภูมิ: Tension-type (พบบ่อยสุด ปวดตื้อเหมือนสายรัดรอบศีรษะ 2 ข้าง ไม่คลื่นไส้), Migraine (ปวดตุ๊บๆ ข้างเดียวสัมพันธ์กับชีพจร ไวต่อแสงเสียง คลื่นไส้), Cluster (ปวดรุนแรงเหมือนแทงตาข้างเดียว ตาแดง น้ำตาไหล เหงื่อออกซีกหน้า พบในชายสูบบุหรี่)",
             "ไมเกรนระยะเฉียบพลัน (Acute Treatment): ปวดน้อย-ปานกลางใช้ NSAIDs/Paracetamol; ปวดปานกลาง-รุนแรงใช้ Triptans (Sumatriptan 50-100 mg) หรือ Ergotamine (1-2 mg Max 6 mg/day, 10 mg/week)",
             "Ergotamine คำเตือน: ห้ามใช้ใน CAD, PVD, Uncontrolled HTN, หญิงตั้งครรภ์ และห้ามใช้ร่วมกับ Strong CYP3A4 inhibitors (Protease inhibitors, Clarithromycin, Ketoconazole) เสี่ยงเกิด Ergotism (หลอดเลือดส่วนปลายหดเกร็งรุนแรง ขาดเลือดจนเนื้อตาย)",
@@ -2013,6 +2060,8 @@ window.CC1_DATA = {
           "title": "Pain Management",
           "titleTh": "การประเมินและการจัดการความปวด (Pain Assessment & WHO Analgesic Ladder)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> Paracetamol มีฤทธิ์แก้ปวดและลดไข้เท่านั้น <mark>ไม่มีฤทธิ์ต้านการอักเสบ</mark> ขนาดยาสูงสุด 4,000 mg/วัน (ในคนไข้ตับ/เรื้อรังแนะนำไม่เกิน 3,000 mg/วัน)",
+            "🎯 <b>ผู้ป่วยไตวาย:</b> มอร์ฟีนมีเมแทบอไลต์ M6G ขับทางไต <mark>ควรเลี่ยง Morphine ใน Severe Renal Failure</mark> แนะนำเปลี่ยนเป็น Fentanyl ปลอดภัยกว่า",
             "กลไก Pain Pathway 4 ขั้นตอน: 1. Transduction (เนื้อเยื่อบาดเจ็บหลั่ง Prostaglandins, Bradykinin) 2. Transmission (ส่งกระแสประสาทผ่าน A-delta และ C fibers เข้าไขสันหลัง) 3. Perception (สมองรับรู้ความปวด) 4. Modulation (ระบบยับยั้งความปวดหลั่ง Endorphins, Serotonin, NE)",
             "WHO Analgesic Ladder 3 ขั้น: Step 1 (Mild pain NRS 1-3): Non-opioids (Paracetamol, NSAIDs); Step 2 (Moderate pain NRS 4-6): Weak opioids (Tramadol, Codeine) + Step 1; Step 3 (Severe pain NRS 7-10): Strong opioids (Morphine, Fentanyl, Oxycodone) + Non-opioids",
             "Paracetamol: ขนาดยาสูงสุด 4,000 mg/วัน (ในผู้สูงอายุหรือโรคตับแนะนำไม่เกิน 2,000-3,000 mg/วัน) Antidote แก้พิษคือ N-Acetylcysteine (NAC) เติม Glutathione กำจัด NAPQI",
@@ -2075,6 +2124,9 @@ window.CC1_DATA = {
           "title": "Epilepsy & Seizures",
           "titleTh": "โรคลมชักและภาวะชัก (Epilepsy & Status Epilepticus)",
           "highYield": [
+            "🎯 <b>จุดเน้นจากคลิปเรียน:</b> <mark>ต้องตรวจ HLA-B*1502 ในคนไทยก่อนเริ่ม Carbamazepine เสมอ</mark> ป้องกัน SJS/TEN",
+            "🎯 <b>ยาที่ห้ามใช้:</b> <mark>ห้ามใช้ Carbamazepine, Phenytoin, Lamotrigine ใน Absence และ Myoclonic seizures</mark> เพราะจะกระตุ้นให้อาการชักแย่ลง",
+            "🎯 <b>คนท้อง:</b> <mark>หลีกเลี่ยง Valproate ในหญิงตั้งครรภ์</mark> เสี่ยงเกิด Neural tube defect และระดับสติปัญญาต่ำ",
             "การจำแนกชนิดอาการชัก (ILAE 2017): Focal onset (จุดเริ่มต้นเฉพาะที่ อาจมีหรือไม่มีสติรู้ตัว) vs Generalized onset (ชักเกร็งกระตุกทั้งตัว Tonic-clonic, ชักเหม่อ Absence)",
             "การเลือกยากันชัก (AEDs): Focal seizure ด่านแรกคือ Carbamazepine, Levetiracetam, Lamotrigine; Generalized Tonic-Clonic หรือชักผสม ด่านแรกคือ **Sodium Valproate** (Broad spectrum) หรือ Levetiracetam; Absence seizure ด่านแรกคือ Ethosuximide หรือ Valproate",
             "Carbamazepine ตรวจยีนก่อนเริ่มยา: คนไทยต้องตรวจยีน **HLA-B*1502** ก่อนเริ่มยาทุกราย หากผลบวกห้ามใช้เด็ดขาด เสี่ยงเกิด SJS/TEN รุนแรง",

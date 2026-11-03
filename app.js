@@ -12,7 +12,6 @@ const App = {
   init() {
     this.loadProgress();
     this.setupTheme();
-    this.setupFontSize();
     window.addEventListener('hashchange', () => this.handleRoute());
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -79,18 +78,6 @@ const App = {
       btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
     });
     btn.textContent = document.documentElement.dataset.theme === 'dark' ? '☀️' : '🌙';
-  },
-
-  setupFontSize() {
-    const btn = document.getElementById('fontSizeBtn');
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-      const scales = [1, 1.12, 1.25];
-      const nextIdx = (scales.indexOf(this.state.fontScale) + 1) % scales.length;
-      this.state.fontScale = scales[nextIdx];
-      document.documentElement.style.fontSize = `${this.state.fontScale * 100}%`;
-      localStorage.setItem('cc1.fontScale', String(this.state.fontScale));
-    });
   },
 
   getAllTopics() {
@@ -322,68 +309,9 @@ const App = {
           `;
         }).join('')}
       </div>
-
-      <!-- Full Inline Expandable Content directly on Home Page -->
-      <div style="margin-top: 2.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
-          <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">📖 เนื้อหาสรุปฉบับเต็ม + สไลด์ชีท Drive (กางอ่านได้ทันทีในหน้าเดียว)</h2>
-          <div style="display: flex; gap: 0.5rem;">
-            <button id="expandAllBtn" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;">📂 กางเนื้อหาทุกบททั้งหมด</button>
-            <button id="collapseAllBtn" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;">📁 ย่อเก็บทั้งหมด</button>
-          </div>
-        </div>
-
-        ${this.data.groups.map((g, gIdx) => `
-          <div style="margin-bottom: 1.75rem;">
-            <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; padding: 0.5rem 0.85rem; background: var(--primary-light); color: var(--primary); border-left: 5px solid var(--primary); border-radius: var(--radius-sm);">
-              ${g.icon} หมวดที่ ${gIdx + 1}: ${g.groupName}
-            </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              ${g.topics.map((t, tIdx) => `
-                <details class="card home-topic-details" ${gIdx === 0 && tIdx === 0 ? 'open' : ''} style="margin-bottom: 0;">
-                  <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; list-style: none;">
-                    <span>
-                      📌 ${t.titleTh || t.title}
-                      <small style="font-weight: 500; color: var(--text-secondary);">(${t.title})</small>
-                      ${(t.driveFiles && t.driveFiles.length) ? `<span class="badge badge-blue" style="font-size: 0.78rem; margin-left: 0.35rem;">📂 ชีท Drive ${t.driveFiles.length} ไฟล์</span>` : ''}
-                    </span>
-                    <span style="display: flex; gap: 0.5rem; align-items: center;">
-                      <a href="#/summary?topic=${t.id}" class="btn btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.85rem;" onclick="event.stopPropagation();">เปิดหน้าเต็ม ↗</a>
-                    </span>
-                  </summary>
-                  <div class="topic-content" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
-                    ${t.highYield && t.highYield.length ? `
-                      <div class="tip" style="margin-bottom: 1rem;">
-                        <b style="color: var(--primary);">⚡ จุดเน้น High-Yield ที่ออกสอบบ่อย:</b>
-                        <ul style="padding-left: 1.3rem; margin-top: 0.35rem;">
-                          ${t.highYield.map(y => `<li>${y}</li>`).join('')}
-                        </ul>
-                      </div>
-                    ` : ''}
-                    ${(t.sections || []).map((s, sIdx) => `
-                      <div style="margin-bottom: 1.1rem;">
-                        <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 0.45rem;">${sIdx + 1}) ${s.heading}</h4>
-                        <div style="line-height: 1.7; font-size: 1.02rem;">${s.html}</div>
-                      </div>
-                    `).join('')}
-                    ${this.renderDriveFilesWidget(t.driveFiles, true)}
-                  </div>
-                </details>
-              `).join('')}
-            </div>
-          </div>
-        `).join('')}
-      </div>
     `;
 
-    document.getElementById('expandAllBtn')?.addEventListener('click', () => {
-      document.querySelectorAll('.home-topic-details').forEach(d => { d.open = true; });
-    });
-    document.getElementById('collapseAllBtn')?.addEventListener('click', () => {
-      document.querySelectorAll('.home-topic-details').forEach(d => { d.open = false; });
-    });
-
-    // Bind live search (searches both structured topics AND all extracted Drive PDFs)
+    // Bind live search: shows ONLY matching topics directly without noisy clutter
     const searchInput = document.getElementById('globalSearchInput');
     const resultsBox = document.getElementById('searchResultsBox');
     searchInput?.addEventListener('input', () => {
@@ -395,60 +323,45 @@ const App = {
 
       const matches = [];
       allTopics.forEach(t => {
-        let hitWhere = [];
+        let isMatch = false;
         if ((t.title + ' ' + (t.titleTh || '')).toLowerCase().includes(q)) {
-          hitWhere.push('ชื่อหัวข้อ');
+          isMatch = true;
+        } else if ((t.highYield || []).some(hy => hy.toLowerCase().includes(q))) {
+          isMatch = true;
+        } else if ((t.sections || []).some(s => (s.heading + ' ' + this.stripHtml(s.html)).toLowerCase().includes(q))) {
+          isMatch = true;
+        } else if ((t.driveFiles || []).some(df => df.name.toLowerCase().includes(q))) {
+          isMatch = true;
         }
-        const hyHits = (t.highYield || []).filter(hy => hy.toLowerCase().includes(q));
-        if (hyHits.length > 0) {
-          hitWhere.push(`High-Yield: "${hyHits[0].slice(0, 90)}..."`);
-        }
-        (t.sections || []).forEach(s => {
-          const plain = (s.heading + ' ' + this.stripHtml(s.html)).toLowerCase();
-          const idx = plain.indexOf(q);
-          if (idx !== -1) {
-            const snippet = plain.slice(Math.max(0, idx - 35), Math.min(plain.length, idx + 85));
-            hitWhere.push(`${s.heading}: "...${snippet}..."`);
-          }
-        });
-        (t.driveFiles || []).forEach(df => {
-          if (df.name.toLowerCase().includes(q)) {
-            hitWhere.push(`ไฟล์ชีท Drive: ${df.name}`);
-          }
-          (df.blocks || []).forEach(b => {
-            const bplain = (b.title + ' ' + b.text).toLowerCase();
-            const idx = bplain.indexOf(q);
-            if (idx !== -1 && hitWhere.length < 4) {
-              const snippet = bplain.slice(Math.max(0, idx - 25), Math.min(bplain.length, idx + 75)).replace(/\n/g, ' ');
-              hitWhere.push(`📄 [${df.name} ${b.pages}]: "...${snippet}..."`);
-            }
-          });
-        });
-
-        if (hitWhere.length > 0) {
-          matches.push({ topic: t, hits: hitWhere.slice(0, 4) });
+        if (isMatch) {
+          matches.push(t);
         }
       });
 
       if (matches.length === 0) {
-        resultsBox.innerHTML = `<div class="card" style="margin-bottom:0; padding: 0.8rem;">ไม่พบคำว่า "<b>${this.escapeHtml(q)}</b>" ในคลังเนื้อหา</div>`;
+        resultsBox.innerHTML = `<div class="card" style="margin-bottom:0; padding: 0.8rem; font-size: 0.95rem;">ไม่พบบทเรียนที่ตรงกับคำว่า "<b>${this.escapeHtml(q)}</b>"</div>`;
         return;
       }
 
       resultsBox.innerHTML = `
-        <div class="card" style="margin-bottom: 0; max-height: 440px; overflow-y: auto; border: 2px solid var(--primary);">
-          <div style="font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem;">
-            พบ ${matches.length} หัวข้อที่เกี่ยวข้องกับ "${this.escapeHtml(searchInput.value.trim())}":
+        <div class="card" style="margin-bottom: 0; max-height: 420px; overflow-y: auto; border: 1.5px solid var(--primary); box-shadow: var(--shadow-md);">
+          <div style="font-size: 0.92rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>🔍 พบบทเรียนที่เกี่ยวข้อง (${matches.length} บท):</span>
+            <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="document.getElementById('searchResultsBox').innerHTML='';">ปิด ✕</button>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem;">
             ${matches.map(m => `
-              <a href="#/summary?topic=${m.topic.id}" style="text-decoration: none; color: inherit; padding: 0.65rem; border-radius: var(--radius-sm); background: var(--bg-primary); border: 1px solid var(--border-color);">
-                <div style="font-weight: 700; color: var(--primary);">
-                  ${m.topic.icon} ${m.topic.titleTh} (${m.topic.title}) — <span style="font-weight: 500; color: var(--text-secondary);">${m.topic.groupName}</span>
+              <a href="#/summary?topic=${m.id}" class="topic-row-link" style="background: var(--bg-primary); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-decoration: none;">
+                <div>
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                    หมวด: ${m.groupName}
+                  </div>
+                  <div style="font-weight: 700; font-size: 0.98rem; color: var(--text-primary); margin-top: 0.15rem;">
+                    ${m.icon || '📄'} ${m.titleTh || m.title}
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--text-secondary);">${m.title}</div>
                 </div>
-                <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">
-                  ${m.hits.map(h => `<div>• ${this.escapeHtml(h)}</div>`).join('')}
-                </div>
+                <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; white-space: nowrap;">อ่านบทนี้ →</span>
               </a>
             `).join('')}
           </div>
@@ -533,9 +446,6 @@ const App = {
                 </button>
                 <button id="toggleReadBtn" class="btn ${isRead ? 'btn-primary' : 'btn-outline'}" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
                   ${isRead ? '✅ อ่านจบแล้ว' : '☑️ ทำเครื่องหมายว่าอ่านจบ'}
-                </button>
-                <button id="printTopicBtn" class="btn btn-secondary" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;" title="พิมพ์หรือบันทึกเป็น PDF">
-                  🖨️ พิมพ์ / PDF
                 </button>
               </div>
             </div>
@@ -623,7 +533,6 @@ const App = {
       }
     });
     document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
-    document.getElementById('printTopicBtn')?.addEventListener('click', () => window.print());
 
     const filterInput = document.getElementById('sidebarFilterInput');
     filterInput?.addEventListener('input', () => {
@@ -637,74 +546,97 @@ const App = {
 
   // ================= VIEW: 23-FOLDER GOOGLE DRIVE LIBRARY =================
   renderDriveLibrary(c, activeFolderId) {
+    const isUnlocked = sessionStorage.getItem('cc1.drive_unlocked') === 'true';
     const folders = this.data.driveFolders || [];
     const totalFiles = folders.reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
-    const totalPages = folders.reduce((acc, f) => acc + (f.files || []).reduce((s, x) => s + (x.totalPages || 0), 0), 0);
-    const allTopics = this.getAllTopics();
-    const topicById = {};
-    allTopics.forEach(t => { topicById[t.id] = t; });
 
-    c.innerHTML = `
-      <div class="card" style="background: linear-gradient(135deg, var(--primary-light), var(--bg-surface)); border-color: var(--primary); margin-bottom: 1.25rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <span class="badge badge-blue">Google Drive Sync • Pharma Plus Institute</span>
-            <h1 style="font-size: 1.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.3rem;">
-              📂 สารบัญชีทเรียน Google Drive ทั้งหมด ${folders.length} โฟลเดอร์ (${totalFiles} ไฟล์ PDF • ${totalPages.toLocaleString()} หน้า)
-            </h1>
-            <p style="color: var(--text-secondary);">
-              เนื้อหาทั้งหมดจากชีทเรียนถูก<b>แปลเป็นภาษาไทยและสรุปจัดหมวดหมู่ลงในตารางแต่ละบทเรียบร้อยแล้ว</b> สามารถกดปุ่ม <b>"📖 อ่านสรุปภาษาไทยของหมวดนี้"</b> หรือกดเปิดไฟล์ PDF ต้นฉบับใน Google Drive ได้ทันที
+    if (!isUnlocked) {
+      c.innerHTML = `
+        <div style="max-width: 440px; margin: 3.5rem auto; text-align: center;">
+          <div class="card" style="padding: 2.5rem 1.75rem; border: 1.5px solid var(--border-glow); box-shadow: var(--shadow-lg);">
+            <div style="font-size: 3.2rem; margin-bottom: 0.75rem;">🔒</div>
+            <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; margin-bottom: 0.4rem;">
+              คลังชีท Google Drive
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">
+              กรุณากรอกรหัสผ่านเพื่อเข้าดูคลังชีทต้นฉบับ 23 โฟลเดอร์ (${totalFiles} ไฟล์ PDF)
             </p>
+            <form id="driveUnlockForm" onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <input type="password" id="drivePasswordInput" class="search-input" placeholder="ใส่รหัสผ่าน..." style="text-align: center; font-size: 1.25rem; letter-spacing: 0.25em; padding: 0.75rem 1rem;" autocomplete="off" autofocus>
+              <div id="drivePassError" style="color: var(--danger); font-size: 0.88rem; font-weight: 600; display: none;">
+                ❌ รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง
+              </div>
+              <button type="submit" id="submitUnlockBtn" class="btn btn-primary" style="padding: 0.75rem; font-size: 1rem; font-weight: 700;">
+                🔑 ปลดล็อกเข้าดูคลังชีท
+              </button>
+            </form>
           </div>
         </div>
-        <div style="margin-top: 1rem;">
-          <input type="search" id="driveSearchInput" class="search-input" placeholder="🔎 ค้นหาชื่อโฟลเดอร์ ชื่อไฟล์ PDF หรือหัวข้อที่สรุปไว้..." autocomplete="off">
+      `;
+      const form = document.getElementById('driveUnlockForm');
+      const input = document.getElementById('drivePasswordInput');
+      const err = document.getElementById('drivePassError');
+      form?.addEventListener('submit', () => {
+        if (input.value.trim() === '12345') {
+          sessionStorage.setItem('cc1.drive_unlocked', 'true');
+          this.renderDriveLibrary(c, activeFolderId);
+        } else {
+          err.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      });
+      return;
+    }
+
+    c.innerHTML = `
+      <div class="card" style="margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-blue">Google Drive Sync • 23 โฟลเดอร์</span>
+          <h1 style="font-family: var(--font-display); font-size: 1.65rem; font-weight: 800; margin-top: 0.35rem;">
+            📂 คลังชีทเรียน Google Drive (${totalFiles} ไฟล์ PDF)
+          </h1>
         </div>
+        <button id="lockDriveBtn" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+          🔒 ล็อกคลังชีท
+        </button>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <input type="search" id="driveSearchInput" class="search-input" placeholder="🔎 ค้นหาชื่อโฟลเดอร์หรือชื่อไฟล์ PDF..." autocomplete="off">
       </div>
 
       <div id="driveFoldersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
-        ${folders.map((folder, fIdx) => {
-          const linkedTopics = (folder.topics || []).map(x => topicById[x.topic]).filter(Boolean);
-          return `
-            <div class="card drive-folder-card" data-search="${this.escapeHtml((folder.name + ' ' + (folder.summaryTh || '') + ' ' + folder.files.map(x => x.name).join(' ')).toLowerCase())}" style="margin-bottom: 0;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.65rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
-                <h2 style="font-size: 1.35rem; font-weight: 700; color: var(--primary);">
-                  📁 ${fIdx + 1}. ${this.escapeHtml(folder.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${folder.files.length} ไฟล์ PDF)</small>
-                </h2>
-                <a href="${folder.url}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.85rem;">
-                  เปิดโฟลเดอร์ใน Google Drive ↗
-                </a>
-              </div>
-
-              ${folder.summaryTh ? `
-                <div class="tip" style="margin-bottom: 0.75rem; font-size: 0.98rem;">
-                  <b>🇹🇭 ขอบเขตเนื้อหาที่แปลไทยและสรุปเพิ่มเข้าในบทเรียนแล้ว:</b> ${this.escapeHtml(folder.summaryTh)}
-                </div>
-              ` : ''}
-
-              ${linkedTopics.length > 0 ? `
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem;">
-                  <span style="font-weight: 700; font-size: 0.92rem; color: var(--primary);">📖 อ่านสรุปภาษาไทยของหมวดนี้:</span>
-                  ${linkedTopics.map(t => `
-                    <a href="#/summary?topic=${t.id}" class="btn btn-primary" style="padding: 0.3rem 0.75rem; font-size: 0.88rem;">
-                      ${t.icon || '📘'} ${this.escapeHtml(t.titleTh || t.title)} →
-                    </a>
-                  `).join('')}
-                </div>
-              ` : ''}
-
-              <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                ${folder.files.map(df => `
-                  <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.86rem;">
-                    📄 ${this.escapeHtml(df.name)} <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
-                  </a>
-                `).join('')}
-              </div>
+        ${folders.map((folder, fIdx) => `
+          <div class="card drive-folder-card" data-search="${this.escapeHtml((folder.name + ' ' + folder.files.map(x => x.name).join(' ')).toLowerCase())}" style="margin-bottom: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.6rem;">
+              <h2 style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">
+                📁 ${fIdx + 1}. ${this.escapeHtml(folder.name)} <small style="font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">(${folder.files.length} ไฟล์)</small>
+              </h2>
+              <a href="${folder.url}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.85rem;">
+                เปิดโฟลเดอร์ใน Drive ↗
+              </a>
             </div>
-          `;
-        }).join('')}
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem;">
+              ${folder.files.map(df => `
+                <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="justify-content: space-between; padding: 0.5rem 0.8rem; font-size: 0.88rem; text-align: left;">
+                  <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px;" title="${this.escapeHtml(df.name)}">
+                    📄 ${this.escapeHtml(df.name)}
+                  </span>
+                  <small style="color: var(--text-muted); flex-shrink: 0;">${df.totalPages || 0} หน้า ↗</small>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
       </div>
     `;
+
+    document.getElementById('lockDriveBtn')?.addEventListener('click', () => {
+      sessionStorage.removeItem('cc1.drive_unlocked');
+      this.renderDriveLibrary(c, activeFolderId);
+    });
 
     const searchInput = document.getElementById('driveSearchInput');
     searchInput?.addEventListener('input', () => {
