@@ -740,6 +740,13 @@ body::before {
   max-height: calc(100vh - 6rem);
   overflow-y: auto;
   padding-right: 0.25rem;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+.sidebar-sticky-panel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
 }
 
 .sidebar-topic-link {
@@ -1087,4 +1094,107 @@ tbody tr:hover {
     border: 1px solid #ccc !important;
     break-inside: avoid;
   }
+}
+
+
+/* ==========================================================================
+   CC1 Quick Rx: Drug Cards, 1st-Line Green Badges, & Subgroup Banners
+   ========================================================================== */
+
+/* 1st-line badge in bright emerald green */
+.badge-1st-line {
+  display: inline-flex;
+  align-items: center;
+  background: #10b981 !important; /* emerald-500 */
+  color: #ffffff !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.18rem 0.65rem;
+  border-radius: 9999px;
+  margin-left: 0.45rem;
+  vertical-align: middle;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.35);
+  letter-spacing: 0.015em;
+}
+
+/* 2nd-line badge in slate gray */
+.badge-2nd-line {
+  display: inline-flex;
+  align-items: center;
+  background: #64748b !important; /* slate-500 */
+  color: #ffffff !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.16rem 0.55rem;
+  border-radius: 9999px;
+  margin-left: 0.45rem;
+  vertical-align: middle;
+}
+
+/* Treatment Subgroup Banner Frame (กรอบหัวข้อย่อย) */
+.rx-subgroup-banner {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(30, 64, 175, 0.03));
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-left: 5px solid #2563eb;
+  border-radius: 8px;
+  padding: 0.75rem 1.15rem;
+  margin: 1.6rem 0 1rem 0;
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  display: block;
+}
+[data-theme="dark"] .rx-subgroup-banner {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(15, 23, 42, 0.8));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+}
+
+/* Drug Card: Separate box/frame for each individual drug */
+.drug-card {
+  background: var(--bg-surface-solid);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.15rem 1.35rem;
+  margin: 1rem 0 1.25rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+[data-theme="dark"] .drug-card {
+  background: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.drug-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+}
+.drug-card-header {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.drug-card-header .drug-title {
+  color: var(--primary);
+  font-weight: 700;
+}
+[data-theme="dark"] .drug-card-header .drug-title {
+  color: #38bdf8;
+}
+.drug-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.drug-card li {
+  margin-bottom: 0.45rem;
+  line-height: 1.7;
 }
