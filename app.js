@@ -396,10 +396,10 @@ const App = {
           <div id="sidebarTopicList" style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${this.data.groups.map((g, gIdx) => `
               <div class="sidebar-group">
-                <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0 0.3rem;">
+                <div class="sidebar-group-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0 0.3rem;">
                   ${g.icon} ${gIdx + 1}. ${g.groupName}
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                <div class="sidebar-group-topics" style="display: flex; flex-direction: column; gap: 0.2rem;">
                   ${g.topics.map(t => {
                     const active = t.id === currentTopic.id;
                     const read = !!this.state.readTopics[t.id];
@@ -426,6 +426,9 @@ const App = {
                 </div>
               </div>
             `).join('')}
+            <div id="sidebarNoMatch" style="display: none; text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 1rem 0.5rem;">
+              ไม่พบหัวข้อที่ค้นหา
+            </div>
           </div>
         </aside>
 
@@ -535,19 +538,58 @@ const App = {
     document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
 
     const filterInput = document.getElementById('sidebarFilterInput');
+    const noMatchEl = document.getElementById('sidebarNoMatch');
     filterInput?.addEventListener('input', () => {
       const q = filterInput.value.trim().toLowerCase();
-      document.querySelectorAll('.sidebar-topic-link').forEach(a => {
-        const match = !q || (a.dataset.title || '').includes(q);
-        a.style.display = match ? 'flex' : 'none';
+      const isFiltering = q.length > 0;
+      let totalVisible = 0;
+
+      document.querySelectorAll('.sidebar-group').forEach(grp => {
+        const titleEl = grp.querySelector('.sidebar-group-title');
+        let groupMatches = 0;
+
+        grp.querySelectorAll('.sidebar-topic-link').forEach(a => {
+          const match = !isFiltering || (a.dataset.title || '').includes(q);
+          a.style.display = match ? 'flex' : 'none';
+          if (match) {
+            groupMatches++;
+            totalVisible++;
+          }
+        });
+
+        if (isFiltering) {
+          // When searching: hide chapter headers completely, show only matching topics (red box)
+          if (titleEl) titleEl.style.display = 'none';
+          grp.style.display = groupMatches > 0 ? 'block' : 'none';
+        } else {
+          // Restore regular chapter outline
+          if (titleEl) titleEl.style.display = 'block';
+          grp.style.display = 'block';
+        }
       });
+
+      if (noMatchEl) {
+        noMatchEl.style.display = (isFiltering && totalVisible === 0) ? 'block' : 'none';
+      }
     });
   },
 
   // ================= VIEW: 23-FOLDER GOOGLE DRIVE LIBRARY =================
   renderDriveLibrary(c, activeFolderId) {
     const isUnlocked = sessionStorage.getItem('cc1.drive_unlocked') === 'true';
-    const folders = this.data.driveFolders || [];
+    
+    // Naturally sort folders: Chapter 1..16 first, then remaining folders alphabetically
+    const parseChapterNum = (name) => {
+      const m = (name || '').match(/chapter\s*(\d+)/i);
+      return m ? parseInt(m[1], 10) : 9999;
+    };
+    const folders = [...(this.data.driveFolders || [])].sort((a, b) => {
+      const na = parseChapterNum(a.name);
+      const nb = parseChapterNum(b.name);
+      if (na !== nb) return na - nb;
+      return (a.name || '').localeCompare(b.name || '', 'th');
+    });
+
     const totalFiles = folders.reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
 
     if (!isUnlocked) {

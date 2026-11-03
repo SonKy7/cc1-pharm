@@ -4112,6 +4112,321 @@ window.CC1_DATA = {
   ],
   "driveFolders": [
     {
+      "id": "1KKm4IEdc5YoeRtKBF_ct-mGGbjd8V1wH",
+      "name": "Chapter 1 CVS",
+      "url": "https://drive.google.com/drive/folders/1KKm4IEdc5YoeRtKBF_ct-mGGbjd8V1wH",
+      "summaryTh": "สรุปความดันโลหิตสูง (Thai 2024/ESC 2024/ACC-AHA 2025 & Secondary HTN), ไขมันในเลือดสูง (องค์ประกอบ Lipoproteins, สูตร Friedewald, ยา/โรคที่เพิ่ม LDL & TG), หัวใจล้มเหลว (ปัจจัยกระตุ้น, NYHA I–IV, Stage A–D, GDMT 4 เสาหลัก), โรคหลอดเลือดหัวใจ (สมดุล O2, ปัจจัยเสี่ยง, Biomarkers), โรคหลอดเลือดสมอง และภาวะลิ่มเลือดอุดตันหลอดเลือดดำ (VTE OR risk factors, Wells score, D-dimer)",
+      "topics": [
+        {
+          "group": "cardio",
+          "topic": "htn"
+        },
+        {
+          "group": "cardio",
+          "topic": "dlp"
+        },
+        {
+          "group": "cardio",
+          "topic": "hf"
+        },
+        {
+          "group": "cardio",
+          "topic": "cad"
+        },
+        {
+          "group": "cardio",
+          "topic": "vte"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "stroke"
+        }
+      ],
+      "files": [
+        {
+          "id": "1SvkTi6M9aYT202cnrNt5Br5L1gBjhjbw",
+          "name": "CVS-Coronary heart disease.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/1SvkTi6M9aYT202cnrNt5Br5L1gBjhjbw/view",
+          "totalPages": 75
+        },
+        {
+          "id": "1XWQF7VyO-4CUdk7NH_7wBgpvM2KTNb7c",
+          "name": "CVS-Dyslipidemia.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/1XWQF7VyO-4CUdk7NH_7wBgpvM2KTNb7c/view",
+          "totalPages": 75
+        },
+        {
+          "id": "18Zfkh9sh1pXdGOPXcs6L3cvn8bAcXqIb",
+          "name": "CVS-Heart failure.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/18Zfkh9sh1pXdGOPXcs6L3cvn8bAcXqIb/view",
+          "totalPages": 56
+        },
+        {
+          "id": "1YI7iii8b0z3k-yl_ngIhhmu6Tc9P0Gf1",
+          "name": "CVS-Hypertension.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/1YI7iii8b0z3k-yl_ngIhhmu6Tc9P0Gf1/view",
+          "totalPages": 74
+        },
+        {
+          "id": "1lWpOYU6yMs7GvctEctLQk45Z0VncpZYt",
+          "name": "CVS-Stroke.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/1lWpOYU6yMs7GvctEctLQk45Z0VncpZYt/view",
+          "totalPages": 50
+        },
+        {
+          "id": "1Xzoh2ibHtK21UneOBoAnzPu_hT6aRKjh",
+          "name": "CVS-VTE.pdf",
+          "folder": "Chapter 1 CVS",
+          "url": "https://drive.google.com/file/d/1Xzoh2ibHtK21UneOBoAnzPu_hT6aRKjh/view",
+          "totalPages": 35
+        }
+      ]
+    },
+    {
+      "id": "1bgn7tlfCQKveCTiHvi6CS7Clm57JgMGU",
+      "name": "Chapter 2 Infection",
+      "url": "https://drive.google.com/drive/folders/1bgn7tlfCQKveCTiHvi6CS7Clm57JgMGU",
+      "summaryTh": "สรุปการติดเชื้อทางเดินหายใจส่วนบน (เปรียบเทียบหวัด vs ไข้หวัดใหญ่, คออักเสบ, ไซนัส, หูชั้นกลาง), ปอดอักเสบ (CAP, HAP, VAP), ทางเดินปัสสาวะอักเสบ (Thai 2568), โรคติดต่อทางเพศสัมพันธ์ (Thai 2567), ช่องคลอดอักเสบ (BV, เชื้อรา, พยาธิ), โรคพยาธิ (ตัวกลม ตัวแบน ตัวตืด), HIV, เชื้อฉวยโอกาส (OIs แยกตาม CD4) และวัณโรค (TB & การ Re-challenge ยาเมื่อเกิดผื่น)",
+      "topics": [
+        {
+          "group": "infectious",
+          "topic": "uri"
+        },
+        {
+          "group": "infectious",
+          "topic": "pneumonia"
+        },
+        {
+          "group": "infectious",
+          "topic": "uti"
+        },
+        {
+          "group": "infectious",
+          "topic": "stds"
+        },
+        {
+          "group": "infectious",
+          "topic": "vaginitis"
+        },
+        {
+          "group": "infectious",
+          "topic": "helminths"
+        },
+        {
+          "group": "infectious",
+          "topic": "hiv"
+        },
+        {
+          "group": "infectious",
+          "topic": "hiv_ois"
+        },
+        {
+          "group": "infectious",
+          "topic": "tb"
+        }
+      ],
+      "files": [
+        {
+          "id": "1Ju_DV6c7MS6P4lQ2ffARgarGLxtUVR7f",
+          "name": "Infection Helminthic Infection.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1Ju_DV6c7MS6P4lQ2ffARgarGLxtUVR7f/view",
+          "totalPages": 40
+        },
+        {
+          "id": "1QtM0-T6lSk4XiLmRKSmgD9Zr49HlCM46",
+          "name": "Infection HIV.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1QtM0-T6lSk4XiLmRKSmgD9Zr49HlCM46/view",
+          "totalPages": 88
+        },
+        {
+          "id": "1p49RTHS3PKEKjMIERCh6TwP_5B1Upkh3",
+          "name": "Infection OIs.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1p49RTHS3PKEKjMIERCh6TwP_5B1Upkh3/view",
+          "totalPages": 64
+        },
+        {
+          "id": "1UfT7beSWGHGQX3XRXwjuCaG5CTEymQZD",
+          "name": "Infection Pneumonia.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1UfT7beSWGHGQX3XRXwjuCaG5CTEymQZD/view",
+          "totalPages": 32
+        },
+        {
+          "id": "1xAM1B1mq-oKbxqhWuEBzmc5v-KgOlLRv",
+          "name": "Infection TB.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1xAM1B1mq-oKbxqhWuEBzmc5v-KgOlLRv/view",
+          "totalPages": 73
+        },
+        {
+          "id": "1w3O8zlcnTxPpbIL7-ZPsnuHd6ccT0Lid",
+          "name": "Infection Upper respiratory tract infection.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1w3O8zlcnTxPpbIL7-ZPsnuHd6ccT0Lid/view",
+          "totalPages": 70
+        },
+        {
+          "id": "1l0f_Dxlnhv707NztVlczyzrWoz1Oqa4_",
+          "name": "Infection Vaginitis.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1l0f_Dxlnhv707NztVlczyzrWoz1Oqa4_/view",
+          "totalPages": 30
+        },
+        {
+          "id": "1LnH-TBJzPr3lk4IRkY386gSm8-1fjNx5",
+          "name": "Infection-STDs.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1LnH-TBJzPr3lk4IRkY386gSm8-1fjNx5/view",
+          "totalPages": 81
+        },
+        {
+          "id": "1Afzs5zJ7Va7diCrLl6_waHViXX9-w3mj",
+          "name": "Infection-UTIs.pdf",
+          "folder": "Chapter 2 Infection",
+          "url": "https://drive.google.com/file/d/1Afzs5zJ7Va7diCrLl6_waHViXX9-w3mj/view",
+          "totalPages": 29
+        }
+      ]
+    },
+    {
+      "id": "1T9FAWXT8bYQ__V32ZyFRaewawUnMc7bR",
+      "name": "Chapter 3 Psychiatry",
+      "url": "https://drive.google.com/drive/folders/1T9FAWXT8bYQ__V32ZyFRaewawUnMc7bR",
+      "summaryTh": "สรุปโรควิตกกังวล (GAD, Panic), โรคอารมณ์สองขั้ว (Bipolar CANMAT & การติดตามระดับยา Lithium), โรคซึมเศร้า (MDD 2Q/9Q, ยาที่ทำให้ซึมเศร้า), โรคนอนไม่หลับ (วงจรการนอน NREM/REM, สารสื่อประสาท, 3P model) และการเลิกบุหรี่ (กลไก α4β2, อาการถอนนิโคติน, NRT/Varenicline/Bupropion/Cytisine)",
+      "topics": [
+        {
+          "group": "psychiatry",
+          "topic": "anxiety"
+        },
+        {
+          "group": "psychiatry",
+          "topic": "bipolar"
+        },
+        {
+          "group": "psychiatry",
+          "topic": "depression"
+        },
+        {
+          "group": "psychiatry",
+          "topic": "insomnia"
+        },
+        {
+          "group": "psychiatry",
+          "topic": "smoking_cessation"
+        }
+      ],
+      "files": [
+        {
+          "id": "1-Mqs0SRcpIvqnM2uVmxCqmxaeKvtXz0n",
+          "name": "Psychiatry-Anxiety.pdf",
+          "folder": "Chapter 3 Psychiatry",
+          "url": "https://drive.google.com/file/d/1-Mqs0SRcpIvqnM2uVmxCqmxaeKvtXz0n/view",
+          "totalPages": 27
+        },
+        {
+          "id": "17D5aoNJmiqNK_sLCyJ071BFc-ldGZLoP",
+          "name": "Psychiatry-Bipolar disorder.pdf",
+          "folder": "Chapter 3 Psychiatry",
+          "url": "https://drive.google.com/file/d/17D5aoNJmiqNK_sLCyJ071BFc-ldGZLoP/view",
+          "totalPages": 29
+        },
+        {
+          "id": "1EN3CrY0cJhnMwRhJ_ImuUInCl4l3ocR9",
+          "name": "Psychiatry-Depression.pdf",
+          "folder": "Chapter 3 Psychiatry",
+          "url": "https://drive.google.com/file/d/1EN3CrY0cJhnMwRhJ_ImuUInCl4l3ocR9/view",
+          "totalPages": 62
+        },
+        {
+          "id": "1efNNZjGzackO4TVWpBP_PTEEPbLiypCI",
+          "name": "Psychiatry-Insomnia.pdf",
+          "folder": "Chapter 3 Psychiatry",
+          "url": "https://drive.google.com/file/d/1efNNZjGzackO4TVWpBP_PTEEPbLiypCI/view",
+          "totalPages": 35
+        },
+        {
+          "id": "1EChLjCl65U_mkKkabh5YA-AZKHAqgLYT",
+          "name": "Psychiatry-Smoking cessation.pdf",
+          "folder": "Chapter 3 Psychiatry",
+          "url": "https://drive.google.com/file/d/1EChLjCl65U_mkKkabh5YA-AZKHAqgLYT/view",
+          "totalPages": 48
+        }
+      ]
+    },
+    {
+      "id": "1rdUaU-TYKRsJ-U0OIkWn9GMNveSrMzCi",
+      "name": "Chapter 4 Immunology",
+      "url": "https://drive.google.com/drive/folders/1rdUaU-TYKRsJ-U0OIkWn9GMNveSrMzCi",
+      "summaryTh": "สรุปนิยาม ADE/ADR/Side effect/Medication error, กลไกการแพ้ยา, การแพ้ยาข้ามกลุ่ม (Cross-reactivity: NSAIDs, Beta-lactams, Sulfonamides, Antiepileptics), โรคจมูกอักเสบภูมิแพ้ (ARIA), โรคพุ่มพวง (SLE & Drug-induced SLE) และวัคซีน (Active/Passive, Live vs Non-living)",
+      "topics": [
+        {
+          "group": "immunology",
+          "topic": "adr_hypersensitivity"
+        },
+        {
+          "group": "immunology",
+          "topic": "cross_reaction"
+        },
+        {
+          "group": "immunology",
+          "topic": "allergic_rhinitis"
+        },
+        {
+          "group": "immunology",
+          "topic": "sle"
+        },
+        {
+          "group": "immunology",
+          "topic": "vaccine"
+        }
+      ],
+      "files": [
+        {
+          "id": "12gAaKABsUFy7yU16VDO7-i63IZKtbckV",
+          "name": "Immunology-ADR and Drug hypersensitivity.pdf",
+          "folder": "Chapter 4 Immunology",
+          "url": "https://drive.google.com/file/d/12gAaKABsUFy7yU16VDO7-i63IZKtbckV/view",
+          "totalPages": 70
+        },
+        {
+          "id": "1KkpqGmH84u2j42xFddKNsVHBJTiX2Y1y",
+          "name": "Immunology-Allergic rhinitis.pdf",
+          "folder": "Chapter 4 Immunology",
+          "url": "https://drive.google.com/file/d/1KkpqGmH84u2j42xFddKNsVHBJTiX2Y1y/view",
+          "totalPages": 71
+        },
+        {
+          "id": "1V5gBK6Y41B-k9EvMWvELpwai1dGQhyt3",
+          "name": "Immunology-Cross reaction.pdf",
+          "folder": "Chapter 4 Immunology",
+          "url": "https://drive.google.com/file/d/1V5gBK6Y41B-k9EvMWvELpwai1dGQhyt3/view",
+          "totalPages": 38
+        },
+        {
+          "id": "1c3ZxUaPUKayZzwkv4lGkuhJo9wUxVz7W",
+          "name": "Immunology-SLE.pdf",
+          "folder": "Chapter 4 Immunology",
+          "url": "https://drive.google.com/file/d/1c3ZxUaPUKayZzwkv4lGkuhJo9wUxVz7W/view",
+          "totalPages": 34
+        },
+        {
+          "id": "1kK3-C2CBTwXmw7_dHZRFwOwddRSXQAW8",
+          "name": "Immunology-Vaccine.pdf",
+          "folder": "Chapter 4 Immunology",
+          "url": "https://drive.google.com/file/d/1kK3-C2CBTwXmw7_dHZRFwOwddRSXQAW8/view",
+          "totalPages": 80
+        }
+      ]
+    },
+    {
       "id": "1-65P5w1cvK7cfW-IvLV3yC8wYcOcumHD",
       "name": "Chapter 5 Renal",
       "url": "https://drive.google.com/drive/folders/1-65P5w1cvK7cfW-IvLV3yC8wYcOcumHD",
@@ -4166,6 +4481,195 @@ window.CC1_DATA = {
       ]
     },
     {
+      "id": "1Ldhm12Kem4EtimtjLHYIZwxYtHWGeKW7",
+      "name": "Chapter 6 GI",
+      "url": "https://drive.google.com/drive/folders/1Ldhm12Kem4EtimtjLHYIZwxYtHWGeKW7",
+      "summaryTh": "สรุปเปรียบเทียบยาลดกรด (Antacids), Dyspepsia (Rome IV PDS/EPS), GERD (อาหารและยาที่ลดความดันหูรูด LES vs ระคายเคืองหลอดอาหาร), แผลในกระเพาะอาหารและลำไส้เล็ก (GU vs DU), เลือดออกทางเดินอาหารส่วนต้น (UGIB & ตารางเลือก NSAIDs ตามความเสี่ยง GI/CV), คลื่นไส้อาเจียน, ท้องเสีย-ท้องผูก, ริดสีดวงทวาร, IBS, IBD (UC vs Crohn's) และโรคตับแข็ง/ตับจากแอลกอฮอล์",
+      "topics": [
+        {
+          "group": "gi",
+          "topic": "dyspepsia"
+        },
+        {
+          "group": "gi",
+          "topic": "gerd"
+        },
+        {
+          "group": "gi",
+          "topic": "pud"
+        },
+        {
+          "group": "gi",
+          "topic": "gi_drugs_antacids"
+        },
+        {
+          "group": "gi",
+          "topic": "ugib"
+        },
+        {
+          "group": "gi",
+          "topic": "nausea_vomiting"
+        },
+        {
+          "group": "gi",
+          "topic": "diarrhea"
+        },
+        {
+          "group": "gi",
+          "topic": "constipation"
+        },
+        {
+          "group": "gi",
+          "topic": "ibs"
+        },
+        {
+          "group": "gi",
+          "topic": "hemorrhoid"
+        },
+        {
+          "group": "gi",
+          "topic": "ibd"
+        },
+        {
+          "group": "gi",
+          "topic": "hepatic_disorders"
+        }
+      ],
+      "files": [
+        {
+          "id": "1Z6Toy8LzKMeSotIelnu8nmpqJ9vaXY8e",
+          "name": "GI-Diarrhea&Constipation.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1Z6Toy8LzKMeSotIelnu8nmpqJ9vaXY8e/view",
+          "totalPages": 56
+        },
+        {
+          "id": "1UVqepEPTX_lfDVTGX--2iyuivqRzjlU9",
+          "name": "GI-Drug used in Dyspepsia, GERD and PUD.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1UVqepEPTX_lfDVTGX--2iyuivqRzjlU9/view",
+          "totalPages": 31
+        },
+        {
+          "id": "1m4bQeQOBicOzi_pcEOGjPS9Hg--hHYbQ",
+          "name": "GI-Dyspepsia.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1m4bQeQOBicOzi_pcEOGjPS9Hg--hHYbQ/view",
+          "totalPages": 20
+        },
+        {
+          "id": "1KKiJgRO-EmKjsquZFdK_cZU_a6ZtXhon",
+          "name": "GI-GERD.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1KKiJgRO-EmKjsquZFdK_cZU_a6ZtXhon/view",
+          "totalPages": 22
+        },
+        {
+          "id": "1WfLCMHoHnyNvI1tBbl8HSYF3PKTIuft7",
+          "name": "GI-Hemorrhoid.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1WfLCMHoHnyNvI1tBbl8HSYF3PKTIuft7/view",
+          "totalPages": 19
+        },
+        {
+          "id": "1TuZitlFh75WA4S60yjaxeJ5n7zwHKhun",
+          "name": "GI-Hepatic disorders.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1TuZitlFh75WA4S60yjaxeJ5n7zwHKhun/view",
+          "totalPages": 110
+        },
+        {
+          "id": "1Kxc5dkioflE0foWZfcwjPkI5N4bWSkHf",
+          "name": "GI-IBD.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1Kxc5dkioflE0foWZfcwjPkI5N4bWSkHf/view",
+          "totalPages": 38
+        },
+        {
+          "id": "1MsOhnUbwJOoIXQ_vnFGKLT7B6nxzviyT",
+          "name": "GI-IBS.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1MsOhnUbwJOoIXQ_vnFGKLT7B6nxzviyT/view",
+          "totalPages": 25
+        },
+        {
+          "id": "1WIZ_JNfaudv2q-_7msmGK76uvZXlGmOX",
+          "name": "GI-Nausea and vomiting.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1WIZ_JNfaudv2q-_7msmGK76uvZXlGmOX/view",
+          "totalPages": 16
+        },
+        {
+          "id": "1ot1jcBenzPWV1sd_BdrYjcLEqODj4s3m",
+          "name": "GI-Peptic ulcer.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1ot1jcBenzPWV1sd_BdrYjcLEqODj4s3m/view",
+          "totalPages": 20
+        },
+        {
+          "id": "1i5iRc1jdzb_UAwJ3MqKKxAsvbH4A4gcN",
+          "name": "GI-UGIB.pdf",
+          "folder": "Chapter 6 GI",
+          "url": "https://drive.google.com/file/d/1i5iRc1jdzb_UAwJ3MqKKxAsvbH4A4gcN/view",
+          "totalPages": 24
+        }
+      ]
+    },
+    {
+      "id": "1bBRFV6lNVzk9dKTi9Zdn9l5Z1RHEljql",
+      "name": "Chapter 7 Bone&Joint",
+      "url": "https://drive.google.com/drive/folders/1bBRFV6lNVzk9dKTi9Zdn9l5Z1RHEljql",
+      "summaryTh": "สรุปโรคเกาต์ (วิถีกรดยูริก, สาเหตุสร้างมาก vs ขับน้อย, การรักษาระยะเฉียบพลันและ ULT), ข้อเข่าเสื่อม (OA), กระดูกพรุน (Osteoporosis BMD T-score, Bisphosphonates) และข้ออักเสบรูมาตอยด์ (RA ACR/EULAR & DMARDs)",
+      "topics": [
+        {
+          "group": "msk",
+          "topic": "gout"
+        },
+        {
+          "group": "msk",
+          "topic": "oa"
+        },
+        {
+          "group": "msk",
+          "topic": "ra"
+        },
+        {
+          "group": "msk",
+          "topic": "osteoporosis"
+        }
+      ],
+      "files": [
+        {
+          "id": "12EcR5kDjnp73ndNKbBmAVXRbw2Y8F8Pr",
+          "name": "Bone & Joint-Gout arthritis.pdf",
+          "folder": "Chapter 7 Bone&Joint",
+          "url": "https://drive.google.com/file/d/12EcR5kDjnp73ndNKbBmAVXRbw2Y8F8Pr/view",
+          "totalPages": 48
+        },
+        {
+          "id": "1fI1-oTdFI1n2sK7VQDsh3y8ojVussfY_",
+          "name": "Bone & Joint-Osteoarthritis.pdf",
+          "folder": "Chapter 7 Bone&Joint",
+          "url": "https://drive.google.com/file/d/1fI1-oTdFI1n2sK7VQDsh3y8ojVussfY_/view",
+          "totalPages": 48
+        },
+        {
+          "id": "1bQWQhnbJRkUMmZLmvZFoBbXFJwyPIFse",
+          "name": "Bone & Joint-Osteoporosis.pdf",
+          "folder": "Chapter 7 Bone&Joint",
+          "url": "https://drive.google.com/file/d/1bQWQhnbJRkUMmZLmvZFoBbXFJwyPIFse/view",
+          "totalPages": 66
+        },
+        {
+          "id": "1DwE7_8WK63QlaNNIxx6Y84kfvp345Ttk",
+          "name": "Bone & Joint-Rheumatoid arthritis.pdf",
+          "folder": "Chapter 7 Bone&Joint",
+          "url": "https://drive.google.com/file/d/1DwE7_8WK63QlaNNIxx6Y84kfvp345Ttk/view",
+          "totalPages": 49
+        }
+      ]
+    },
+    {
       "id": "10KtuvIouzgAlU_s6JwRZlD1iAdYesuCX",
       "name": "Chapter 8 Genitourinary",
       "url": "https://drive.google.com/drive/folders/10KtuvIouzgAlU_s6JwRZlD1iAdYesuCX",
@@ -4183,6 +4687,140 @@ window.CC1_DATA = {
           "folder": "Chapter 8 Genitourinary",
           "url": "https://drive.google.com/file/d/1qmPvqNUURRJXy_-VYgFd9zBEe94SKib0/view",
           "totalPages": 47
+        }
+      ]
+    },
+    {
+      "id": "1MEDSYRrvDkus9-Rbf51ypOR7se3EmbrC",
+      "name": "Chapter 9 Gynecology",
+      "url": "https://drive.google.com/drive/folders/1MEDSYRrvDkus9-Rbf51ypOR7se3EmbrC",
+      "summaryTh": "สรุปยาคุมกำเนิด (HPG axis, คุณสมบัติ Progestin 각รุ่น, การลืมกินยา), ปวดประจำเดือน (Primary vs Secondary dysmenorrhea) และฮอร์โมนทดแทนวัยหมดประจำเดือน (Perimenopause vs Menopause FSH cutoffs, E vs E+P)",
+      "topics": [
+        {
+          "group": "gyn_gu",
+          "topic": "contraception"
+        },
+        {
+          "group": "gyn_gu",
+          "topic": "dysmenorrhea"
+        },
+        {
+          "group": "gyn_gu",
+          "topic": "hormone_therapy"
+        }
+      ],
+      "files": [
+        {
+          "id": "1RJw8xHXd1C1icjI5-eTklKE2UF1Dz6Xm",
+          "name": "Gynecology-Contraception.pdf",
+          "folder": "Chapter 9 Gynecology",
+          "url": "https://drive.google.com/file/d/1RJw8xHXd1C1icjI5-eTklKE2UF1Dz6Xm/view",
+          "totalPages": 41
+        },
+        {
+          "id": "1-WEVqmP29Ygf2tsnsoyaErz95H9aOqIW",
+          "name": "Gynecology-Dysmenorrhea.pdf",
+          "folder": "Chapter 9 Gynecology",
+          "url": "https://drive.google.com/file/d/1-WEVqmP29Ygf2tsnsoyaErz95H9aOqIW/view",
+          "totalPages": 16
+        },
+        {
+          "id": "1FhBGsynLQtdRjQjmFLp-GvrrWBPR7bB4",
+          "name": "Gynecology-Hormone therapy.pdf",
+          "folder": "Chapter 9 Gynecology",
+          "url": "https://drive.google.com/file/d/1FhBGsynLQtdRjQjmFLp-GvrrWBPR7bB4/view",
+          "totalPages": 32
+        }
+      ]
+    },
+    {
+      "id": "1OUb_mJCih89CFpoXodH6zqPt-WkyNFUo",
+      "name": "Chapter 10 Neurology",
+      "url": "https://drive.google.com/drive/folders/1OUb_mJCih89CFpoXodH6zqPt-WkyNFUo",
+      "summaryTh": "สรุปโรคปวดศีรษะ (ไมเกรน, Tension, Cluster), การจัดการความปวด (Pain pathway 4 ขั้นตอน, WHO Analgesic Ladder), ปลายประสาทอักเสบ (Peripheral neuropathy), โรคลมชัก (Provoked vs Unprovoked seizure, ILAE), พาร์กินสัน (SNc & Lewy bodies), อัลไซเมอร์ และโรคติดสุรา (Standard drink 10 g, ถอนพิษสุรา & ยาเลิกสุรา)",
+      "topics": [
+        {
+          "group": "neuro_psych",
+          "topic": "headache"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "pain_management"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "peripheral_neuropathy"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "epilepsy"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "stroke"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "parkinson"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "alzheimer"
+        },
+        {
+          "group": "neuro_psych",
+          "topic": "alcohol_use_disorder"
+        }
+      ],
+      "files": [
+        {
+          "id": "1zJGGVdMH89EqrA6e56oMT6M6Y3NTj5aN",
+          "name": "Neurology-Alcohol used disorder.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1zJGGVdMH89EqrA6e56oMT6M6Y3NTj5aN/view",
+          "totalPages": 41
+        },
+        {
+          "id": "1dvkuKBh-0ycEFH2eWhlT41tTxGiZYaoR",
+          "name": "Neurology-Alzheimer's disease.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1dvkuKBh-0ycEFH2eWhlT41tTxGiZYaoR/view",
+          "totalPages": 45
+        },
+        {
+          "id": "1NNIXb0dGBc6shzgtPyd9rZWopmj_Pjb8",
+          "name": "Neurology-Epilepsy.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1NNIXb0dGBc6shzgtPyd9rZWopmj_Pjb8/view",
+          "totalPages": 73
+        },
+        {
+          "id": "10miEpIk4kwixtutOUIlSIFeqTs_L_vsr",
+          "name": "Neurology-Headache.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/10miEpIk4kwixtutOUIlSIFeqTs_L_vsr/view",
+          "totalPages": 78
+        },
+        {
+          "id": "1QhHoo0dZZZURXqCuvvm04i_tS9aFHFgY",
+          "name": "Neurology-Pain management.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1QhHoo0dZZZURXqCuvvm04i_tS9aFHFgY/view",
+          "totalPages": 66
+        },
+        {
+          "id": "1-HGDqJ0tV17pbSu8B9endpM42vdTfBdC",
+          "name": "Neurology-Parkinson's disease.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1-HGDqJ0tV17pbSu8B9endpM42vdTfBdC/view",
+          "totalPages": 64
+        },
+        {
+          "id": "1W2fXGTdCkQs6OejWGAY0XxXFB2MBvbom",
+          "name": "Neurology-Peripheral neuropathy.pdf",
+          "folder": "Chapter 10 Neurology",
+          "url": "https://drive.google.com/file/d/1W2fXGTdCkQs6OejWGAY0XxXFB2MBvbom/view",
+          "totalPages": 18
         }
       ]
     },
@@ -4269,6 +4907,359 @@ window.CC1_DATA = {
           "name": "Oncology-Principle of cancer.pdf",
           "folder": "Chapter 11 Oncology",
           "url": "https://drive.google.com/file/d/1rzDJyNosIV93Yeh8WFYvlsB-Ic25R770/view",
+          "totalPages": 16
+        }
+      ]
+    },
+    {
+      "id": "1p21jQ1kCQUxU7xgMeZqt7untDH0cRwm-",
+      "name": "Chapter 12 Endocrine",
+      "url": "https://drive.google.com/drive/folders/1p21jQ1kCQUxU7xgMeZqt7untDH0cRwm-",
+      "summaryTh": "สรุปโรคเบาหวาน (ตารางเทียบ Type 1 vs Type 2, เกณฑ์ ADA 2025/ไทย 2566, ยาลดน้ำตาล), ภาวะแทรกซ้อนเฉียบพลัน (Whipple's triad, อาการน้ำตาลต่ำ Autonomic vs Neuroglycopenic, DKA vs HHS), โรคอ้วน (Subcutaneous vs Visceral fat, รอบเอว ≥90/80 ซม.) และโรคไทรอยด์ (ขั้นตอนการสร้างฮอร์โมน, ปัจจัยที่มีผลต่อ TBG)",
+      "topics": [
+        {
+          "group": "endocrine",
+          "topic": "dm"
+        },
+        {
+          "group": "endocrine",
+          "topic": "dm_complications"
+        },
+        {
+          "group": "endocrine",
+          "topic": "thyroid"
+        },
+        {
+          "group": "endocrine",
+          "topic": "obesity"
+        }
+      ],
+      "files": [
+        {
+          "id": "1DeVyz5hdzkx15SHMRS2_vpdyBDAnNur1",
+          "name": "Endocrine-Diabetes mellitus with complication.pdf",
+          "folder": "Chapter 12 Endocrine",
+          "url": "https://drive.google.com/file/d/1DeVyz5hdzkx15SHMRS2_vpdyBDAnNur1/view",
+          "totalPages": 52
+        },
+        {
+          "id": "1C3npTt32RSILtk-LKst3v4g0Ik8HHA6C",
+          "name": "Endocrine-Diabetes mellitus without complication.pdf",
+          "folder": "Chapter 12 Endocrine",
+          "url": "https://drive.google.com/file/d/1C3npTt32RSILtk-LKst3v4g0Ik8HHA6C/view",
+          "totalPages": 113
+        },
+        {
+          "id": "1H3FhTSc7lNacxqK-UMldEdOZzbc-75xh",
+          "name": "Endocrine-Obesity.pdf",
+          "folder": "Chapter 12 Endocrine",
+          "url": "https://drive.google.com/file/d/1H3FhTSc7lNacxqK-UMldEdOZzbc-75xh/view",
+          "totalPages": 40
+        },
+        {
+          "id": "1l6D-6ktrjkZigb6w-OndM75yatC3s-u3",
+          "name": "Endocrine-Thyroid disorder.pdf",
+          "folder": "Chapter 12 Endocrine",
+          "url": "https://drive.google.com/file/d/1l6D-6ktrjkZigb6w-OndM75yatC3s-u3/view",
+          "totalPages": 54
+        }
+      ]
+    },
+    {
+      "id": "1MU0Xya8OtaFteMD0RjNXtCAa-CTBfrgD",
+      "name": "Chapter 13 Pulmonary",
+      "url": "https://drive.google.com/drive/folders/1MU0Xya8OtaFteMD0RjNXtCAa-CTBfrgD",
+      "summaryTh": "สรุปโรคหืด (GINA 2026), โรคปอดอุดกั้นเรื้อรัง (GOLD 2026 & ตารางเปรียบเทียบพยาธิสภาพ Asthma vs COPD) และโรคปอดที่เกิดจากยา (ACEI dry cough, NSAID/Beta-blocker bronchospasm, Amiodarone/Bleomycin fibrosis)",
+      "topics": [
+        {
+          "group": "pulmonary_gyn_eye",
+          "topic": "asthma"
+        },
+        {
+          "group": "pulmonary_gyn_eye",
+          "topic": "copd"
+        },
+        {
+          "group": "pulmonary_gyn_eye",
+          "topic": "drug_induced_pulmonary"
+        }
+      ],
+      "files": [
+        {
+          "id": "163NRySSa-xwKYXFxfX9EkXzwCz12I7tw",
+          "name": "2026 Pharmacotherapy in Asthma.pdf",
+          "folder": "Chapter 13 Pulmonary",
+          "url": "https://drive.google.com/file/d/163NRySSa-xwKYXFxfX9EkXzwCz12I7tw/view",
+          "totalPages": 66
+        },
+        {
+          "id": "1e9hPOG--s7sYrJYBeWH-uxe3MTSFnLdd",
+          "name": "2026 Pharmacotherapy in COPD.pdf",
+          "folder": "Chapter 13 Pulmonary",
+          "url": "https://drive.google.com/file/d/1e9hPOG--s7sYrJYBeWH-uxe3MTSFnLdd/view",
+          "totalPages": 50
+        },
+        {
+          "id": "1oO0LPyCLP-ccRDMSwu602IhIO0aw5hqK",
+          "name": "2026 Pulmonary-Drug induce pulmonary disorders.pdf",
+          "folder": "Chapter 13 Pulmonary",
+          "url": "https://drive.google.com/file/d/1oO0LPyCLP-ccRDMSwu602IhIO0aw5hqK/view",
+          "totalPages": 12
+        }
+      ]
+    },
+    {
+      "id": "1WSc5gds1vAJqSwmbaFTmYF7-HrK0M3xY",
+      "name": "Chapter 14 Hematology",
+      "url": "https://drive.google.com/drive/folders/1WSc5gds1vAJqSwmbaFTmYF7-HrK0M3xY",
+      "summaryTh": "สรุปภาวะโลหิตจาง (WHO Hb <13 ชาย / <12 หญิง, การแบ่งตาม MCV <80 / 80–100 / >100 fL, การคำนวณธาตุเหล็กอิสระ Elemental iron, Thalassemia, G6PD deficiency, B12 & Folate)",
+      "topics": [
+        {
+          "group": "hemato_immuno",
+          "topic": "anemia_nutritional"
+        },
+        {
+          "group": "hemato_immuno",
+          "topic": "thalassemia"
+        },
+        {
+          "group": "hemato_immuno",
+          "topic": "g6pd_hemolytic"
+        }
+      ],
+      "files": [
+        {
+          "id": "1qJnFm3pr_iop3SUhlBeLzYZfOPkzDGv8",
+          "name": "Hematology-Anemia.pdf",
+          "folder": "Chapter 14 Hematology",
+          "url": "https://drive.google.com/file/d/1qJnFm3pr_iop3SUhlBeLzYZfOPkzDGv8/view",
+          "totalPages": 70
+        }
+      ]
+    },
+    {
+      "id": "1OstLDb0m1H3zgmvX84YFv1giWD6mD10B",
+      "name": "Chapter 15 Dermatology",
+      "url": "https://drive.google.com/drive/folders/1OstLDb0m1H3zgmvX84YFv1giWD6mD10B",
+      "summaryTh": "สรุปโรคสิว (ความรุนแรง Mild/Moderate/Severe & ยาทา/ยากิน), ผื่นผิวหนังอักเสบ (Eczema ระยะ Acute/Subacute/Chronic, ICD vs ACD, Pompholyx), สะเก็ดเงิน (Psoriasis Auspitz's sign, Koebner, ยาที่กระตุ้น, BSA/PASI/DLQI), ลมพิษ (Urticaria), การติดเชื้อที่ผิวหนัง (Impetigo, Ecthyma, Erysipelas vs Cellulitis) และการดูแลบาดแผล (สีเนื้อแผล Black/Yellow/Red/Pink, TIME/NICE model, การเลือกวัสดุปิดแผล)",
+      "topics": [
+        {
+          "group": "derm",
+          "topic": "acne"
+        },
+        {
+          "group": "derm",
+          "topic": "eczema"
+        },
+        {
+          "group": "derm",
+          "topic": "psoriasis"
+        },
+        {
+          "group": "derm",
+          "topic": "urticaria"
+        },
+        {
+          "group": "derm",
+          "topic": "skin_infection"
+        },
+        {
+          "group": "derm",
+          "topic": "wound_dressing"
+        }
+      ],
+      "files": [
+        {
+          "id": "1xKZHimd3YyeAzUh--qOXhH4MAPlV2tbt",
+          "name": "Dermatology Psoriasis.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/1xKZHimd3YyeAzUh--qOXhH4MAPlV2tbt/view",
+          "totalPages": 34
+        },
+        {
+          "id": "1CLjsnBul6ttFGTrP_0-qKRIx3nIdJVr8",
+          "name": "Dermatology Skin infection.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/1CLjsnBul6ttFGTrP_0-qKRIx3nIdJVr8/view",
+          "totalPages": 66
+        },
+        {
+          "id": "10Gp5_xH4YXk8e62fFp0nx39IsOzbvJA-",
+          "name": "Dermatology Urticaria.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/10Gp5_xH4YXk8e62fFp0nx39IsOzbvJA-/view",
+          "totalPages": 15
+        },
+        {
+          "id": "1C8vuUy_m2_vid_VdtT0ngU-_qwkk6bva",
+          "name": "Dermatology Wound dressing.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/1C8vuUy_m2_vid_VdtT0ngU-_qwkk6bva/view",
+          "totalPages": 19
+        },
+        {
+          "id": "1aVV17JLr-k8yvELHJkWpWHV_yR8akfyW",
+          "name": "Dermatology-Acne.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/1aVV17JLr-k8yvELHJkWpWHV_yR8akfyW/view",
+          "totalPages": 39
+        },
+        {
+          "id": "1g7_KZPQ5llsuzLnVT7fyUrAzhIdXkEYn",
+          "name": "Dermatology-Eczema.pdf",
+          "folder": "Chapter 15 Dermatology",
+          "url": "https://drive.google.com/file/d/1g7_KZPQ5llsuzLnVT7fyUrAzhIdXkEYn/view",
+          "totalPages": 32
+        }
+      ]
+    },
+    {
+      "id": "1cf1l7qtcQ1Z5vdIYh61zYI-mgTzMA__H",
+      "name": "Chapter 16 EENT",
+      "url": "https://drive.google.com/drive/folders/1cf1l7qtcQ1Z5vdIYh61zYI-mgTzMA__H",
+      "summaryTh": "สรุปโรคทางตา (กุ้งยิง Hordeolum, หนังตาอักเสบ Blepharitis, ตารางแยกเยื่อบุตาอักเสบ Allergic vs Bacterial vs Viral, ต้อหิน, ตาแห้ง) และคอนแทคเลนส์ (RGP vs Soft silicone hydrogel)",
+      "topics": [
+        {
+          "group": "eent",
+          "topic": "eye_disorders"
+        },
+        {
+          "group": "eent",
+          "topic": "contact_lens"
+        }
+      ],
+      "files": [
+        {
+          "id": "1PxDPDoIERBimbUevZOCN8kaRckGqDfhl",
+          "name": "EENT-Contact lens.pdf",
+          "folder": "Chapter 16 EENT",
+          "url": "https://drive.google.com/file/d/1PxDPDoIERBimbUevZOCN8kaRckGqDfhl/view",
+          "totalPages": 7
+        },
+        {
+          "id": "1w31pTRJsEsCSxf2eF2KS0t5whVkX8SQ1",
+          "name": "EENT-Eye disorder.pdf",
+          "folder": "Chapter 16 EENT",
+          "url": "https://drive.google.com/file/d/1w31pTRJsEsCSxf2eF2KS0t5whVkX8SQ1/view",
+          "totalPages": 40
+        }
+      ]
+    },
+    {
+      "id": "19Se-FKH7rWvcr0JLruCiOD9ZU_Qef2Vn",
+      "name": "Herbal",
+      "url": "https://drive.google.com/drive/folders/19Se-FKH7rWvcr0JLruCiOD9ZU_Qef2Vn",
+      "summaryTh": "สรุปบัญชียาจากสมุนไพร (NLEM): 1) ยาแผนไทย/ยาประจำบ้าน (ยาหอม 5 ตำรับ, ยาขับลม/เบญจกูล, ยาถ่าย/ธรณีสันฑะฆาต, ยาประสะไพล, ยาแก้ไข้/ห้าราก, ยาแก้ไอ/ตรีผลา, ยากล้ามเนื้อและกระดูก) และ 2) ยาพัฒนาจากสมุนไพร (ขมิ้นชัน, ขิง, ฟ้าทะลายโจร, ทองพันชั่ง, พลู, พญายอ, บัวบก, เปลือกมังคุด, ว่านหางจระเข้, เมล็ดน้อยหน่า)",
+      "topics": [
+        {
+          "group": "qc_pk_herbal",
+          "topic": "herbal_medicine"
+        }
+      ],
+      "files": [
+        {
+          "id": "1E95rhzgD31OkwnrU--ttK9rfJlxm8v1Y",
+          "name": "Essential medicinal plant.pdf",
+          "folder": "Herbal",
+          "url": "https://drive.google.com/file/d/1E95rhzgD31OkwnrU--ttK9rfJlxm8v1Y/view",
+          "totalPages": 47
+        }
+      ]
+    },
+    {
+      "id": "1Nzq_X7B7CAwHQqFeJzoyInIf2djLzXba",
+      "name": "Medical chemistry",
+      "url": "https://drive.google.com/drive/folders/1Nzq_X7B7CAwHQqFeJzoyInIf2djLzXba",
+      "summaryTh": "สรุปเภสัชเคมีและโครงสร้างความสัมพันธ์ต่อฤทธิ์ยา (MedChem & SAR ครบทั้ง 8 บท: 1. พื้นฐาน Heterocycles/Salt/Isomers, 2. Antibacterials, 3. Antivirals, 4. Beta-2 agonists, 5. CNS drugs, 6. Histamine & Antihistamines, 7. NSAIDs & GI/CV matrix, 8. PPIs)",
+      "topics": [
+        {
+          "group": "medchem",
+          "topic": "medchem_intro"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_antibacterial"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_antiviral"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_beta2"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_cns"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_histamine"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_nsaids"
+        },
+        {
+          "group": "medchem",
+          "topic": "medchem_ppi"
+        }
+      ],
+      "files": [
+        {
+          "id": "1a9ytldrQoOTxJy9HqW-PnZlhHklCPXTp",
+          "name": "1 Medical Chemistry Introduction.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1a9ytldrQoOTxJy9HqW-PnZlhHklCPXTp/view",
+          "totalPages": 62
+        },
+        {
+          "id": "1s-ABqtSoSXyDgKnPI4E1kqobU473FBsn",
+          "name": "2 Medical chemistry of Antibacterial.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1s-ABqtSoSXyDgKnPI4E1kqobU473FBsn/view",
+          "totalPages": 54
+        },
+        {
+          "id": "1znIwLI_7VmXCV29M2LAPoOa7Ax9DC-tW",
+          "name": "3 Medical chemistry of Antiviral.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1znIwLI_7VmXCV29M2LAPoOa7Ax9DC-tW/view",
+          "totalPages": 19
+        },
+        {
+          "id": "1KWmLhEhzKmeasIwhEwJrPjL6DgKASnxT",
+          "name": "4 Medical chemistry of Beta-2 adrenergic.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1KWmLhEhzKmeasIwhEwJrPjL6DgKASnxT/view",
+          "totalPages": 16
+        },
+        {
+          "id": "1xpbqzsV6gsKeBSDoXpL13xbNO-7tKXBT",
+          "name": "5 Medical chemistry of CNS.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1xpbqzsV6gsKeBSDoXpL13xbNO-7tKXBT/view",
+          "totalPages": 11
+        },
+        {
+          "id": "1gBBVCwSw_8xNpbhjjYuk0SMKOsa--P38",
+          "name": "6 Medical chemistry of Histamine and Antihistamine.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1gBBVCwSw_8xNpbhjjYuk0SMKOsa--P38/view",
+          "totalPages": 24
+        },
+        {
+          "id": "1WIWBjBthJwvKcrrnM6UOx3PfioDwHjhG",
+          "name": "7 Medical chemistry of NSAIDs.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1WIWBjBthJwvKcrrnM6UOx3PfioDwHjhG/view",
+          "totalPages": 24
+        },
+        {
+          "id": "1xnmpm6AHPbntrYlbaHK6GjG9T1Wl01JR",
+          "name": "8 Medical chemistry of Proton pump inhibitor.pdf",
+          "folder": "Medical chemistry",
+          "url": "https://drive.google.com/file/d/1xnmpm6AHPbntrYlbaHK6GjG9T1Wl01JR/view",
           "totalPages": 16
         }
       ]
@@ -4427,23 +5418,23 @@ window.CC1_DATA = {
       ]
     },
     {
-      "id": "19Se-FKH7rWvcr0JLruCiOD9ZU_Qef2Vn",
-      "name": "Herbal",
-      "url": "https://drive.google.com/drive/folders/19Se-FKH7rWvcr0JLruCiOD9ZU_Qef2Vn",
-      "summaryTh": "สรุปบัญชียาจากสมุนไพร (NLEM): 1) ยาแผนไทย/ยาประจำบ้าน (ยาหอม 5 ตำรับ, ยาขับลม/เบญจกูล, ยาถ่าย/ธรณีสันฑะฆาต, ยาประสะไพล, ยาแก้ไข้/ห้าราก, ยาแก้ไอ/ตรีผลา, ยากล้ามเนื้อและกระดูก) และ 2) ยาพัฒนาจากสมุนไพร (ขมิ้นชัน, ขิง, ฟ้าทะลายโจร, ทองพันชั่ง, พลู, พญายอ, บัวบก, เปลือกมังคุด, ว่านหางจระเข้, เมล็ดน้อยหน่า)",
+      "id": "1ItxvfjRHnncsjqhJ7kRdTdsUn7ARXGht",
+      "name": "Pharmaceutical quality control",
+      "url": "https://drive.google.com/drive/folders/1ItxvfjRHnncsjqhJ7kRdTdsUn7ARXGht",
+      "summaryTh": "สรุปการควบคุมคุณภาพยาและเครื่องมือวิเคราะห์ทางเคมี (QC: Titration 4 ประเภท & ตัวอย่าง USP Assay ของ Aspirin [Back titration], Salicylic acid [Direct], Mg(OH)2 [Complexometric EDTA]; Refractometer, Polarimeter, TLC, HPLC Normal vs Reversed phase, GC, UV-Vis, FT-IR, 1H/13C-NMR, AAS, Mass Spec, XRD)",
       "topics": [
         {
           "group": "qc_pk_herbal",
-          "topic": "herbal_medicine"
+          "topic": "qc_analysis"
         }
       ],
       "files": [
         {
-          "id": "1E95rhzgD31OkwnrU--ttK9rfJlxm8v1Y",
-          "name": "Essential medicinal plant.pdf",
-          "folder": "Herbal",
-          "url": "https://drive.google.com/file/d/1E95rhzgD31OkwnrU--ttK9rfJlxm8v1Y/view",
-          "totalPages": 47
+          "id": "1GUH-v-biMmo5IDEWnDrxsTcz1OOuQ5r8",
+          "name": "Pharmaceutical Quality Control.pdf",
+          "folder": "Pharmaceutical quality control",
+          "url": "https://drive.google.com/file/d/1GUH-v-biMmo5IDEWnDrxsTcz1OOuQ5r8/view",
+          "totalPages": 43
         }
       ]
     },
@@ -4469,99 +5460,56 @@ window.CC1_DATA = {
       ]
     },
     {
-      "id": "1ItxvfjRHnncsjqhJ7kRdTdsUn7ARXGht",
-      "name": "Pharmaceutical quality control",
-      "url": "https://drive.google.com/drive/folders/1ItxvfjRHnncsjqhJ7kRdTdsUn7ARXGht",
-      "summaryTh": "สรุปการควบคุมคุณภาพยาและเครื่องมือวิเคราะห์ทางเคมี (QC: Titration 4 ประเภท & ตัวอย่าง USP Assay ของ Aspirin [Back titration], Salicylic acid [Direct], Mg(OH)2 [Complexometric EDTA]; Refractometer, Polarimeter, TLC, HPLC Normal vs Reversed phase, GC, UV-Vis, FT-IR, 1H/13C-NMR, AAS, Mass Spec, XRD)",
+      "id": "1nFBWUKufIYdsRIDh3U4jP7sq1pPuwhsG",
+      "name": "Social pharmacy",
+      "url": "https://drive.google.com/drive/folders/1nFBWUKufIYdsRIDh3U4jP7sq1pPuwhsG",
+      "summaryTh": "สรุปนิติเภสัชศาสตร์และกฎหมายยา (ลำดับศักดิ์กฎหมาย, วิธีนับวันบังคับใช้ 180 วัน, พ.ร.บ.ยา 2510), เภสัชเศรษฐศาสตร์ (CMA, CEA/ICER, CUA/QALY, CBA) และระบาดวิทยาคลินิก (Prevalence P=I×D, Incidence, RR, OR, NNT/NNH, Double-dummy)",
       "topics": [
         {
-          "group": "qc_pk_herbal",
-          "topic": "qc_analysis"
+          "group": "law_product_social",
+          "topic": "pharmacy_law"
+        },
+        {
+          "group": "law_product_social",
+          "topic": "pharmacy_jurisprudence"
+        },
+        {
+          "group": "law_product_social",
+          "topic": "pharmacoeconomics"
+        },
+        {
+          "group": "law_product_social",
+          "topic": "pharmacoepidemiology"
         }
       ],
       "files": [
         {
-          "id": "1GUH-v-biMmo5IDEWnDrxsTcz1OOuQ5r8",
-          "name": "Pharmaceutical Quality Control.pdf",
-          "folder": "Pharmaceutical quality control",
-          "url": "https://drive.google.com/file/d/1GUH-v-biMmo5IDEWnDrxsTcz1OOuQ5r8/view",
-          "totalPages": 43
-        }
-      ]
-    },
-    {
-      "id": "1KKm4IEdc5YoeRtKBF_ct-mGGbjd8V1wH",
-      "name": "Chapter 1 CVS",
-      "url": "https://drive.google.com/drive/folders/1KKm4IEdc5YoeRtKBF_ct-mGGbjd8V1wH",
-      "summaryTh": "สรุปความดันโลหิตสูง (Thai 2024/ESC 2024/ACC-AHA 2025 & Secondary HTN), ไขมันในเลือดสูง (องค์ประกอบ Lipoproteins, สูตร Friedewald, ยา/โรคที่เพิ่ม LDL & TG), หัวใจล้มเหลว (ปัจจัยกระตุ้น, NYHA I–IV, Stage A–D, GDMT 4 เสาหลัก), โรคหลอดเลือดหัวใจ (สมดุล O2, ปัจจัยเสี่ยง, Biomarkers), โรคหลอดเลือดสมอง และภาวะลิ่มเลือดอุดตันหลอดเลือดดำ (VTE OR risk factors, Wells score, D-dimer)",
-      "topics": [
-        {
-          "group": "cardio",
-          "topic": "htn"
+          "id": "1A5oAwVdYqZPCrHt7k8NzbV9nGqd-mAIc",
+          "name": "Law.pdf",
+          "folder": "Social pharmacy",
+          "url": "https://drive.google.com/file/d/1A5oAwVdYqZPCrHt7k8NzbV9nGqd-mAIc/view",
+          "totalPages": 92
         },
         {
-          "group": "cardio",
-          "topic": "dlp"
+          "id": "1tscJ2gfdzHXdlmtny4nwpqkbK4PrJ_17",
+          "name": "Pharmacoeconomic.pdf",
+          "folder": "Social pharmacy",
+          "url": "https://drive.google.com/file/d/1tscJ2gfdzHXdlmtny4nwpqkbK4PrJ_17/view",
+          "totalPages": 95
         },
         {
-          "group": "cardio",
-          "topic": "hf"
+          "id": "1cxCWWBgYs7zvPR7bBUV5U_zdg3IuJ9mp",
+          "name": "Pharmacoepidemiology.pdf",
+          "folder": "Social pharmacy",
+          "url": "https://drive.google.com/file/d/1cxCWWBgYs7zvPR7bBUV5U_zdg3IuJ9mp/view",
+          "totalPages": 76
         },
         {
-          "group": "cardio",
-          "topic": "cad"
-        },
-        {
-          "group": "cardio",
-          "topic": "vte"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "stroke"
-        }
-      ],
-      "files": [
-        {
-          "id": "1SvkTi6M9aYT202cnrNt5Br5L1gBjhjbw",
-          "name": "CVS-Coronary heart disease.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/1SvkTi6M9aYT202cnrNt5Br5L1gBjhjbw/view",
-          "totalPages": 75
-        },
-        {
-          "id": "1XWQF7VyO-4CUdk7NH_7wBgpvM2KTNb7c",
-          "name": "CVS-Dyslipidemia.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/1XWQF7VyO-4CUdk7NH_7wBgpvM2KTNb7c/view",
-          "totalPages": 75
-        },
-        {
-          "id": "18Zfkh9sh1pXdGOPXcs6L3cvn8bAcXqIb",
-          "name": "CVS-Heart failure.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/18Zfkh9sh1pXdGOPXcs6L3cvn8bAcXqIb/view",
-          "totalPages": 56
-        },
-        {
-          "id": "1YI7iii8b0z3k-yl_ngIhhmu6Tc9P0Gf1",
-          "name": "CVS-Hypertension.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/1YI7iii8b0z3k-yl_ngIhhmu6Tc9P0Gf1/view",
-          "totalPages": 74
-        },
-        {
-          "id": "1lWpOYU6yMs7GvctEctLQk45Z0VncpZYt",
-          "name": "CVS-Stroke.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/1lWpOYU6yMs7GvctEctLQk45Z0VncpZYt/view",
-          "totalPages": 50
-        },
-        {
-          "id": "1Xzoh2ibHtK21UneOBoAnzPu_hT6aRKjh",
-          "name": "CVS-VTE.pdf",
-          "folder": "Chapter 1 CVS",
-          "url": "https://drive.google.com/file/d/1Xzoh2ibHtK21UneOBoAnzPu_hT6aRKjh/view",
-          "totalPages": 35
+          "id": "19ZFGrW9jKHB0XKqVk2DzdxBQdy1kp4KY",
+          "name": "Pharmacy Jurisprudence.pdf",
+          "folder": "Social pharmacy",
+          "url": "https://drive.google.com/file/d/19ZFGrW9jKHB0XKqVk2DzdxBQdy1kp4KY/view",
+          "totalPages": 179
         }
       ]
     },
@@ -4662,954 +5610,6 @@ window.CC1_DATA = {
           "folder": "ตะลุยโจทย์",
           "url": "https://drive.google.com/file/d/1cPbpB8UIN3pTpKyaz7J8PXNdrnYIRIlG/view",
           "totalPages": 116
-        }
-      ]
-    },
-    {
-      "id": "1Ldhm12Kem4EtimtjLHYIZwxYtHWGeKW7",
-      "name": "Chapter 6 GI",
-      "url": "https://drive.google.com/drive/folders/1Ldhm12Kem4EtimtjLHYIZwxYtHWGeKW7",
-      "summaryTh": "สรุปเปรียบเทียบยาลดกรด (Antacids), Dyspepsia (Rome IV PDS/EPS), GERD (อาหารและยาที่ลดความดันหูรูด LES vs ระคายเคืองหลอดอาหาร), แผลในกระเพาะอาหารและลำไส้เล็ก (GU vs DU), เลือดออกทางเดินอาหารส่วนต้น (UGIB & ตารางเลือก NSAIDs ตามความเสี่ยง GI/CV), คลื่นไส้อาเจียน, ท้องเสีย-ท้องผูก, ริดสีดวงทวาร, IBS, IBD (UC vs Crohn's) และโรคตับแข็ง/ตับจากแอลกอฮอล์",
-      "topics": [
-        {
-          "group": "gi",
-          "topic": "dyspepsia"
-        },
-        {
-          "group": "gi",
-          "topic": "gerd"
-        },
-        {
-          "group": "gi",
-          "topic": "pud"
-        },
-        {
-          "group": "gi",
-          "topic": "gi_drugs_antacids"
-        },
-        {
-          "group": "gi",
-          "topic": "ugib"
-        },
-        {
-          "group": "gi",
-          "topic": "nausea_vomiting"
-        },
-        {
-          "group": "gi",
-          "topic": "diarrhea"
-        },
-        {
-          "group": "gi",
-          "topic": "constipation"
-        },
-        {
-          "group": "gi",
-          "topic": "ibs"
-        },
-        {
-          "group": "gi",
-          "topic": "hemorrhoid"
-        },
-        {
-          "group": "gi",
-          "topic": "ibd"
-        },
-        {
-          "group": "gi",
-          "topic": "hepatic_disorders"
-        }
-      ],
-      "files": [
-        {
-          "id": "1Z6Toy8LzKMeSotIelnu8nmpqJ9vaXY8e",
-          "name": "GI-Diarrhea&Constipation.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1Z6Toy8LzKMeSotIelnu8nmpqJ9vaXY8e/view",
-          "totalPages": 56
-        },
-        {
-          "id": "1UVqepEPTX_lfDVTGX--2iyuivqRzjlU9",
-          "name": "GI-Drug used in Dyspepsia, GERD and PUD.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1UVqepEPTX_lfDVTGX--2iyuivqRzjlU9/view",
-          "totalPages": 31
-        },
-        {
-          "id": "1m4bQeQOBicOzi_pcEOGjPS9Hg--hHYbQ",
-          "name": "GI-Dyspepsia.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1m4bQeQOBicOzi_pcEOGjPS9Hg--hHYbQ/view",
-          "totalPages": 20
-        },
-        {
-          "id": "1KKiJgRO-EmKjsquZFdK_cZU_a6ZtXhon",
-          "name": "GI-GERD.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1KKiJgRO-EmKjsquZFdK_cZU_a6ZtXhon/view",
-          "totalPages": 22
-        },
-        {
-          "id": "1WfLCMHoHnyNvI1tBbl8HSYF3PKTIuft7",
-          "name": "GI-Hemorrhoid.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1WfLCMHoHnyNvI1tBbl8HSYF3PKTIuft7/view",
-          "totalPages": 19
-        },
-        {
-          "id": "1TuZitlFh75WA4S60yjaxeJ5n7zwHKhun",
-          "name": "GI-Hepatic disorders.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1TuZitlFh75WA4S60yjaxeJ5n7zwHKhun/view",
-          "totalPages": 110
-        },
-        {
-          "id": "1Kxc5dkioflE0foWZfcwjPkI5N4bWSkHf",
-          "name": "GI-IBD.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1Kxc5dkioflE0foWZfcwjPkI5N4bWSkHf/view",
-          "totalPages": 38
-        },
-        {
-          "id": "1MsOhnUbwJOoIXQ_vnFGKLT7B6nxzviyT",
-          "name": "GI-IBS.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1MsOhnUbwJOoIXQ_vnFGKLT7B6nxzviyT/view",
-          "totalPages": 25
-        },
-        {
-          "id": "1WIZ_JNfaudv2q-_7msmGK76uvZXlGmOX",
-          "name": "GI-Nausea and vomiting.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1WIZ_JNfaudv2q-_7msmGK76uvZXlGmOX/view",
-          "totalPages": 16
-        },
-        {
-          "id": "1ot1jcBenzPWV1sd_BdrYjcLEqODj4s3m",
-          "name": "GI-Peptic ulcer.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1ot1jcBenzPWV1sd_BdrYjcLEqODj4s3m/view",
-          "totalPages": 20
-        },
-        {
-          "id": "1i5iRc1jdzb_UAwJ3MqKKxAsvbH4A4gcN",
-          "name": "GI-UGIB.pdf",
-          "folder": "Chapter 6 GI",
-          "url": "https://drive.google.com/file/d/1i5iRc1jdzb_UAwJ3MqKKxAsvbH4A4gcN/view",
-          "totalPages": 24
-        }
-      ]
-    },
-    {
-      "id": "1MEDSYRrvDkus9-Rbf51ypOR7se3EmbrC",
-      "name": "Chapter 9 Gynecology",
-      "url": "https://drive.google.com/drive/folders/1MEDSYRrvDkus9-Rbf51ypOR7se3EmbrC",
-      "summaryTh": "สรุปยาคุมกำเนิด (HPG axis, คุณสมบัติ Progestin 각รุ่น, การลืมกินยา), ปวดประจำเดือน (Primary vs Secondary dysmenorrhea) และฮอร์โมนทดแทนวัยหมดประจำเดือน (Perimenopause vs Menopause FSH cutoffs, E vs E+P)",
-      "topics": [
-        {
-          "group": "gyn_gu",
-          "topic": "contraception"
-        },
-        {
-          "group": "gyn_gu",
-          "topic": "dysmenorrhea"
-        },
-        {
-          "group": "gyn_gu",
-          "topic": "hormone_therapy"
-        }
-      ],
-      "files": [
-        {
-          "id": "1RJw8xHXd1C1icjI5-eTklKE2UF1Dz6Xm",
-          "name": "Gynecology-Contraception.pdf",
-          "folder": "Chapter 9 Gynecology",
-          "url": "https://drive.google.com/file/d/1RJw8xHXd1C1icjI5-eTklKE2UF1Dz6Xm/view",
-          "totalPages": 41
-        },
-        {
-          "id": "1-WEVqmP29Ygf2tsnsoyaErz95H9aOqIW",
-          "name": "Gynecology-Dysmenorrhea.pdf",
-          "folder": "Chapter 9 Gynecology",
-          "url": "https://drive.google.com/file/d/1-WEVqmP29Ygf2tsnsoyaErz95H9aOqIW/view",
-          "totalPages": 16
-        },
-        {
-          "id": "1FhBGsynLQtdRjQjmFLp-GvrrWBPR7bB4",
-          "name": "Gynecology-Hormone therapy.pdf",
-          "folder": "Chapter 9 Gynecology",
-          "url": "https://drive.google.com/file/d/1FhBGsynLQtdRjQjmFLp-GvrrWBPR7bB4/view",
-          "totalPages": 32
-        }
-      ]
-    },
-    {
-      "id": "1MU0Xya8OtaFteMD0RjNXtCAa-CTBfrgD",
-      "name": "Chapter 13 Pulmonary",
-      "url": "https://drive.google.com/drive/folders/1MU0Xya8OtaFteMD0RjNXtCAa-CTBfrgD",
-      "summaryTh": "สรุปโรคหืด (GINA 2026), โรคปอดอุดกั้นเรื้อรัง (GOLD 2026 & ตารางเปรียบเทียบพยาธิสภาพ Asthma vs COPD) และโรคปอดที่เกิดจากยา (ACEI dry cough, NSAID/Beta-blocker bronchospasm, Amiodarone/Bleomycin fibrosis)",
-      "topics": [
-        {
-          "group": "pulmonary_gyn_eye",
-          "topic": "asthma"
-        },
-        {
-          "group": "pulmonary_gyn_eye",
-          "topic": "copd"
-        },
-        {
-          "group": "pulmonary_gyn_eye",
-          "topic": "drug_induced_pulmonary"
-        }
-      ],
-      "files": [
-        {
-          "id": "163NRySSa-xwKYXFxfX9EkXzwCz12I7tw",
-          "name": "2026 Pharmacotherapy in Asthma.pdf",
-          "folder": "Chapter 13 Pulmonary",
-          "url": "https://drive.google.com/file/d/163NRySSa-xwKYXFxfX9EkXzwCz12I7tw/view",
-          "totalPages": 66
-        },
-        {
-          "id": "1e9hPOG--s7sYrJYBeWH-uxe3MTSFnLdd",
-          "name": "2026 Pharmacotherapy in COPD.pdf",
-          "folder": "Chapter 13 Pulmonary",
-          "url": "https://drive.google.com/file/d/1e9hPOG--s7sYrJYBeWH-uxe3MTSFnLdd/view",
-          "totalPages": 50
-        },
-        {
-          "id": "1oO0LPyCLP-ccRDMSwu602IhIO0aw5hqK",
-          "name": "2026 Pulmonary-Drug induce pulmonary disorders.pdf",
-          "folder": "Chapter 13 Pulmonary",
-          "url": "https://drive.google.com/file/d/1oO0LPyCLP-ccRDMSwu602IhIO0aw5hqK/view",
-          "totalPages": 12
-        }
-      ]
-    },
-    {
-      "id": "1Nzq_X7B7CAwHQqFeJzoyInIf2djLzXba",
-      "name": "Medical chemistry",
-      "url": "https://drive.google.com/drive/folders/1Nzq_X7B7CAwHQqFeJzoyInIf2djLzXba",
-      "summaryTh": "สรุปเภสัชเคมีและโครงสร้างความสัมพันธ์ต่อฤทธิ์ยา (MedChem & SAR ครบทั้ง 8 บท: 1. พื้นฐาน Heterocycles/Salt/Isomers, 2. Antibacterials, 3. Antivirals, 4. Beta-2 agonists, 5. CNS drugs, 6. Histamine & Antihistamines, 7. NSAIDs & GI/CV matrix, 8. PPIs)",
-      "topics": [
-        {
-          "group": "medchem",
-          "topic": "medchem_intro"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_antibacterial"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_antiviral"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_beta2"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_cns"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_histamine"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_nsaids"
-        },
-        {
-          "group": "medchem",
-          "topic": "medchem_ppi"
-        }
-      ],
-      "files": [
-        {
-          "id": "1a9ytldrQoOTxJy9HqW-PnZlhHklCPXTp",
-          "name": "1 Medical Chemistry Introduction.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1a9ytldrQoOTxJy9HqW-PnZlhHklCPXTp/view",
-          "totalPages": 62
-        },
-        {
-          "id": "1s-ABqtSoSXyDgKnPI4E1kqobU473FBsn",
-          "name": "2 Medical chemistry of Antibacterial.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1s-ABqtSoSXyDgKnPI4E1kqobU473FBsn/view",
-          "totalPages": 54
-        },
-        {
-          "id": "1znIwLI_7VmXCV29M2LAPoOa7Ax9DC-tW",
-          "name": "3 Medical chemistry of Antiviral.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1znIwLI_7VmXCV29M2LAPoOa7Ax9DC-tW/view",
-          "totalPages": 19
-        },
-        {
-          "id": "1KWmLhEhzKmeasIwhEwJrPjL6DgKASnxT",
-          "name": "4 Medical chemistry of Beta-2 adrenergic.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1KWmLhEhzKmeasIwhEwJrPjL6DgKASnxT/view",
-          "totalPages": 16
-        },
-        {
-          "id": "1xpbqzsV6gsKeBSDoXpL13xbNO-7tKXBT",
-          "name": "5 Medical chemistry of CNS.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1xpbqzsV6gsKeBSDoXpL13xbNO-7tKXBT/view",
-          "totalPages": 11
-        },
-        {
-          "id": "1gBBVCwSw_8xNpbhjjYuk0SMKOsa--P38",
-          "name": "6 Medical chemistry of Histamine and Antihistamine.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1gBBVCwSw_8xNpbhjjYuk0SMKOsa--P38/view",
-          "totalPages": 24
-        },
-        {
-          "id": "1WIWBjBthJwvKcrrnM6UOx3PfioDwHjhG",
-          "name": "7 Medical chemistry of NSAIDs.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1WIWBjBthJwvKcrrnM6UOx3PfioDwHjhG/view",
-          "totalPages": 24
-        },
-        {
-          "id": "1xnmpm6AHPbntrYlbaHK6GjG9T1Wl01JR",
-          "name": "8 Medical chemistry of Proton pump inhibitor.pdf",
-          "folder": "Medical chemistry",
-          "url": "https://drive.google.com/file/d/1xnmpm6AHPbntrYlbaHK6GjG9T1Wl01JR/view",
-          "totalPages": 16
-        }
-      ]
-    },
-    {
-      "id": "1OUb_mJCih89CFpoXodH6zqPt-WkyNFUo",
-      "name": "Chapter 10 Neurology",
-      "url": "https://drive.google.com/drive/folders/1OUb_mJCih89CFpoXodH6zqPt-WkyNFUo",
-      "summaryTh": "สรุปโรคปวดศีรษะ (ไมเกรน, Tension, Cluster), การจัดการความปวด (Pain pathway 4 ขั้นตอน, WHO Analgesic Ladder), ปลายประสาทอักเสบ (Peripheral neuropathy), โรคลมชัก (Provoked vs Unprovoked seizure, ILAE), พาร์กินสัน (SNc & Lewy bodies), อัลไซเมอร์ และโรคติดสุรา (Standard drink 10 g, ถอนพิษสุรา & ยาเลิกสุรา)",
-      "topics": [
-        {
-          "group": "neuro_psych",
-          "topic": "headache"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "pain_management"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "peripheral_neuropathy"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "epilepsy"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "stroke"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "parkinson"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "alzheimer"
-        },
-        {
-          "group": "neuro_psych",
-          "topic": "alcohol_use_disorder"
-        }
-      ],
-      "files": [
-        {
-          "id": "1zJGGVdMH89EqrA6e56oMT6M6Y3NTj5aN",
-          "name": "Neurology-Alcohol used disorder.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1zJGGVdMH89EqrA6e56oMT6M6Y3NTj5aN/view",
-          "totalPages": 41
-        },
-        {
-          "id": "1dvkuKBh-0ycEFH2eWhlT41tTxGiZYaoR",
-          "name": "Neurology-Alzheimer's disease.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1dvkuKBh-0ycEFH2eWhlT41tTxGiZYaoR/view",
-          "totalPages": 45
-        },
-        {
-          "id": "1NNIXb0dGBc6shzgtPyd9rZWopmj_Pjb8",
-          "name": "Neurology-Epilepsy.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1NNIXb0dGBc6shzgtPyd9rZWopmj_Pjb8/view",
-          "totalPages": 73
-        },
-        {
-          "id": "10miEpIk4kwixtutOUIlSIFeqTs_L_vsr",
-          "name": "Neurology-Headache.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/10miEpIk4kwixtutOUIlSIFeqTs_L_vsr/view",
-          "totalPages": 78
-        },
-        {
-          "id": "1QhHoo0dZZZURXqCuvvm04i_tS9aFHFgY",
-          "name": "Neurology-Pain management.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1QhHoo0dZZZURXqCuvvm04i_tS9aFHFgY/view",
-          "totalPages": 66
-        },
-        {
-          "id": "1-HGDqJ0tV17pbSu8B9endpM42vdTfBdC",
-          "name": "Neurology-Parkinson's disease.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1-HGDqJ0tV17pbSu8B9endpM42vdTfBdC/view",
-          "totalPages": 64
-        },
-        {
-          "id": "1W2fXGTdCkQs6OejWGAY0XxXFB2MBvbom",
-          "name": "Neurology-Peripheral neuropathy.pdf",
-          "folder": "Chapter 10 Neurology",
-          "url": "https://drive.google.com/file/d/1W2fXGTdCkQs6OejWGAY0XxXFB2MBvbom/view",
-          "totalPages": 18
-        }
-      ]
-    },
-    {
-      "id": "1OstLDb0m1H3zgmvX84YFv1giWD6mD10B",
-      "name": "Chapter 15 Dermatology",
-      "url": "https://drive.google.com/drive/folders/1OstLDb0m1H3zgmvX84YFv1giWD6mD10B",
-      "summaryTh": "สรุปโรคสิว (ความรุนแรง Mild/Moderate/Severe & ยาทา/ยากิน), ผื่นผิวหนังอักเสบ (Eczema ระยะ Acute/Subacute/Chronic, ICD vs ACD, Pompholyx), สะเก็ดเงิน (Psoriasis Auspitz's sign, Koebner, ยาที่กระตุ้น, BSA/PASI/DLQI), ลมพิษ (Urticaria), การติดเชื้อที่ผิวหนัง (Impetigo, Ecthyma, Erysipelas vs Cellulitis) และการดูแลบาดแผล (สีเนื้อแผล Black/Yellow/Red/Pink, TIME/NICE model, การเลือกวัสดุปิดแผล)",
-      "topics": [
-        {
-          "group": "derm",
-          "topic": "acne"
-        },
-        {
-          "group": "derm",
-          "topic": "eczema"
-        },
-        {
-          "group": "derm",
-          "topic": "psoriasis"
-        },
-        {
-          "group": "derm",
-          "topic": "urticaria"
-        },
-        {
-          "group": "derm",
-          "topic": "skin_infection"
-        },
-        {
-          "group": "derm",
-          "topic": "wound_dressing"
-        }
-      ],
-      "files": [
-        {
-          "id": "1xKZHimd3YyeAzUh--qOXhH4MAPlV2tbt",
-          "name": "Dermatology Psoriasis.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/1xKZHimd3YyeAzUh--qOXhH4MAPlV2tbt/view",
-          "totalPages": 34
-        },
-        {
-          "id": "1CLjsnBul6ttFGTrP_0-qKRIx3nIdJVr8",
-          "name": "Dermatology Skin infection.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/1CLjsnBul6ttFGTrP_0-qKRIx3nIdJVr8/view",
-          "totalPages": 66
-        },
-        {
-          "id": "10Gp5_xH4YXk8e62fFp0nx39IsOzbvJA-",
-          "name": "Dermatology Urticaria.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/10Gp5_xH4YXk8e62fFp0nx39IsOzbvJA-/view",
-          "totalPages": 15
-        },
-        {
-          "id": "1C8vuUy_m2_vid_VdtT0ngU-_qwkk6bva",
-          "name": "Dermatology Wound dressing.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/1C8vuUy_m2_vid_VdtT0ngU-_qwkk6bva/view",
-          "totalPages": 19
-        },
-        {
-          "id": "1aVV17JLr-k8yvELHJkWpWHV_yR8akfyW",
-          "name": "Dermatology-Acne.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/1aVV17JLr-k8yvELHJkWpWHV_yR8akfyW/view",
-          "totalPages": 39
-        },
-        {
-          "id": "1g7_KZPQ5llsuzLnVT7fyUrAzhIdXkEYn",
-          "name": "Dermatology-Eczema.pdf",
-          "folder": "Chapter 15 Dermatology",
-          "url": "https://drive.google.com/file/d/1g7_KZPQ5llsuzLnVT7fyUrAzhIdXkEYn/view",
-          "totalPages": 32
-        }
-      ]
-    },
-    {
-      "id": "1T9FAWXT8bYQ__V32ZyFRaewawUnMc7bR",
-      "name": "Chapter 3 Psychiatry",
-      "url": "https://drive.google.com/drive/folders/1T9FAWXT8bYQ__V32ZyFRaewawUnMc7bR",
-      "summaryTh": "สรุปโรควิตกกังวล (GAD, Panic), โรคอารมณ์สองขั้ว (Bipolar CANMAT & การติดตามระดับยา Lithium), โรคซึมเศร้า (MDD 2Q/9Q, ยาที่ทำให้ซึมเศร้า), โรคนอนไม่หลับ (วงจรการนอน NREM/REM, สารสื่อประสาท, 3P model) และการเลิกบุหรี่ (กลไก α4β2, อาการถอนนิโคติน, NRT/Varenicline/Bupropion/Cytisine)",
-      "topics": [
-        {
-          "group": "psychiatry",
-          "topic": "anxiety"
-        },
-        {
-          "group": "psychiatry",
-          "topic": "bipolar"
-        },
-        {
-          "group": "psychiatry",
-          "topic": "depression"
-        },
-        {
-          "group": "psychiatry",
-          "topic": "insomnia"
-        },
-        {
-          "group": "psychiatry",
-          "topic": "smoking_cessation"
-        }
-      ],
-      "files": [
-        {
-          "id": "1-Mqs0SRcpIvqnM2uVmxCqmxaeKvtXz0n",
-          "name": "Psychiatry-Anxiety.pdf",
-          "folder": "Chapter 3 Psychiatry",
-          "url": "https://drive.google.com/file/d/1-Mqs0SRcpIvqnM2uVmxCqmxaeKvtXz0n/view",
-          "totalPages": 27
-        },
-        {
-          "id": "17D5aoNJmiqNK_sLCyJ071BFc-ldGZLoP",
-          "name": "Psychiatry-Bipolar disorder.pdf",
-          "folder": "Chapter 3 Psychiatry",
-          "url": "https://drive.google.com/file/d/17D5aoNJmiqNK_sLCyJ071BFc-ldGZLoP/view",
-          "totalPages": 29
-        },
-        {
-          "id": "1EN3CrY0cJhnMwRhJ_ImuUInCl4l3ocR9",
-          "name": "Psychiatry-Depression.pdf",
-          "folder": "Chapter 3 Psychiatry",
-          "url": "https://drive.google.com/file/d/1EN3CrY0cJhnMwRhJ_ImuUInCl4l3ocR9/view",
-          "totalPages": 62
-        },
-        {
-          "id": "1efNNZjGzackO4TVWpBP_PTEEPbLiypCI",
-          "name": "Psychiatry-Insomnia.pdf",
-          "folder": "Chapter 3 Psychiatry",
-          "url": "https://drive.google.com/file/d/1efNNZjGzackO4TVWpBP_PTEEPbLiypCI/view",
-          "totalPages": 35
-        },
-        {
-          "id": "1EChLjCl65U_mkKkabh5YA-AZKHAqgLYT",
-          "name": "Psychiatry-Smoking cessation.pdf",
-          "folder": "Chapter 3 Psychiatry",
-          "url": "https://drive.google.com/file/d/1EChLjCl65U_mkKkabh5YA-AZKHAqgLYT/view",
-          "totalPages": 48
-        }
-      ]
-    },
-    {
-      "id": "1WSc5gds1vAJqSwmbaFTmYF7-HrK0M3xY",
-      "name": "Chapter 14 Hematology",
-      "url": "https://drive.google.com/drive/folders/1WSc5gds1vAJqSwmbaFTmYF7-HrK0M3xY",
-      "summaryTh": "สรุปภาวะโลหิตจาง (WHO Hb <13 ชาย / <12 หญิง, การแบ่งตาม MCV <80 / 80–100 / >100 fL, การคำนวณธาตุเหล็กอิสระ Elemental iron, Thalassemia, G6PD deficiency, B12 & Folate)",
-      "topics": [
-        {
-          "group": "hemato_immuno",
-          "topic": "anemia_nutritional"
-        },
-        {
-          "group": "hemato_immuno",
-          "topic": "thalassemia"
-        },
-        {
-          "group": "hemato_immuno",
-          "topic": "g6pd_hemolytic"
-        }
-      ],
-      "files": [
-        {
-          "id": "1qJnFm3pr_iop3SUhlBeLzYZfOPkzDGv8",
-          "name": "Hematology-Anemia.pdf",
-          "folder": "Chapter 14 Hematology",
-          "url": "https://drive.google.com/file/d/1qJnFm3pr_iop3SUhlBeLzYZfOPkzDGv8/view",
-          "totalPages": 70
-        }
-      ]
-    },
-    {
-      "id": "1bBRFV6lNVzk9dKTi9Zdn9l5Z1RHEljql",
-      "name": "Chapter 7 Bone&Joint",
-      "url": "https://drive.google.com/drive/folders/1bBRFV6lNVzk9dKTi9Zdn9l5Z1RHEljql",
-      "summaryTh": "สรุปโรคเกาต์ (วิถีกรดยูริก, สาเหตุสร้างมาก vs ขับน้อย, การรักษาระยะเฉียบพลันและ ULT), ข้อเข่าเสื่อม (OA), กระดูกพรุน (Osteoporosis BMD T-score, Bisphosphonates) และข้ออักเสบรูมาตอยด์ (RA ACR/EULAR & DMARDs)",
-      "topics": [
-        {
-          "group": "msk",
-          "topic": "gout"
-        },
-        {
-          "group": "msk",
-          "topic": "oa"
-        },
-        {
-          "group": "msk",
-          "topic": "ra"
-        },
-        {
-          "group": "msk",
-          "topic": "osteoporosis"
-        }
-      ],
-      "files": [
-        {
-          "id": "12EcR5kDjnp73ndNKbBmAVXRbw2Y8F8Pr",
-          "name": "Bone & Joint-Gout arthritis.pdf",
-          "folder": "Chapter 7 Bone&Joint",
-          "url": "https://drive.google.com/file/d/12EcR5kDjnp73ndNKbBmAVXRbw2Y8F8Pr/view",
-          "totalPages": 48
-        },
-        {
-          "id": "1fI1-oTdFI1n2sK7VQDsh3y8ojVussfY_",
-          "name": "Bone & Joint-Osteoarthritis.pdf",
-          "folder": "Chapter 7 Bone&Joint",
-          "url": "https://drive.google.com/file/d/1fI1-oTdFI1n2sK7VQDsh3y8ojVussfY_/view",
-          "totalPages": 48
-        },
-        {
-          "id": "1bQWQhnbJRkUMmZLmvZFoBbXFJwyPIFse",
-          "name": "Bone & Joint-Osteoporosis.pdf",
-          "folder": "Chapter 7 Bone&Joint",
-          "url": "https://drive.google.com/file/d/1bQWQhnbJRkUMmZLmvZFoBbXFJwyPIFse/view",
-          "totalPages": 66
-        },
-        {
-          "id": "1DwE7_8WK63QlaNNIxx6Y84kfvp345Ttk",
-          "name": "Bone & Joint-Rheumatoid arthritis.pdf",
-          "folder": "Chapter 7 Bone&Joint",
-          "url": "https://drive.google.com/file/d/1DwE7_8WK63QlaNNIxx6Y84kfvp345Ttk/view",
-          "totalPages": 49
-        }
-      ]
-    },
-    {
-      "id": "1bgn7tlfCQKveCTiHvi6CS7Clm57JgMGU",
-      "name": "Chapter 2 Infection",
-      "url": "https://drive.google.com/drive/folders/1bgn7tlfCQKveCTiHvi6CS7Clm57JgMGU",
-      "summaryTh": "สรุปการติดเชื้อทางเดินหายใจส่วนบน (เปรียบเทียบหวัด vs ไข้หวัดใหญ่, คออักเสบ, ไซนัส, หูชั้นกลาง), ปอดอักเสบ (CAP, HAP, VAP), ทางเดินปัสสาวะอักเสบ (Thai 2568), โรคติดต่อทางเพศสัมพันธ์ (Thai 2567), ช่องคลอดอักเสบ (BV, เชื้อรา, พยาธิ), โรคพยาธิ (ตัวกลม ตัวแบน ตัวตืด), HIV, เชื้อฉวยโอกาส (OIs แยกตาม CD4) และวัณโรค (TB & การ Re-challenge ยาเมื่อเกิดผื่น)",
-      "topics": [
-        {
-          "group": "infectious",
-          "topic": "uri"
-        },
-        {
-          "group": "infectious",
-          "topic": "pneumonia"
-        },
-        {
-          "group": "infectious",
-          "topic": "uti"
-        },
-        {
-          "group": "infectious",
-          "topic": "stds"
-        },
-        {
-          "group": "infectious",
-          "topic": "vaginitis"
-        },
-        {
-          "group": "infectious",
-          "topic": "helminths"
-        },
-        {
-          "group": "infectious",
-          "topic": "hiv"
-        },
-        {
-          "group": "infectious",
-          "topic": "hiv_ois"
-        },
-        {
-          "group": "infectious",
-          "topic": "tb"
-        }
-      ],
-      "files": [
-        {
-          "id": "1Ju_DV6c7MS6P4lQ2ffARgarGLxtUVR7f",
-          "name": "Infection Helminthic Infection.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1Ju_DV6c7MS6P4lQ2ffARgarGLxtUVR7f/view",
-          "totalPages": 40
-        },
-        {
-          "id": "1QtM0-T6lSk4XiLmRKSmgD9Zr49HlCM46",
-          "name": "Infection HIV.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1QtM0-T6lSk4XiLmRKSmgD9Zr49HlCM46/view",
-          "totalPages": 88
-        },
-        {
-          "id": "1p49RTHS3PKEKjMIERCh6TwP_5B1Upkh3",
-          "name": "Infection OIs.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1p49RTHS3PKEKjMIERCh6TwP_5B1Upkh3/view",
-          "totalPages": 64
-        },
-        {
-          "id": "1UfT7beSWGHGQX3XRXwjuCaG5CTEymQZD",
-          "name": "Infection Pneumonia.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1UfT7beSWGHGQX3XRXwjuCaG5CTEymQZD/view",
-          "totalPages": 32
-        },
-        {
-          "id": "1xAM1B1mq-oKbxqhWuEBzmc5v-KgOlLRv",
-          "name": "Infection TB.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1xAM1B1mq-oKbxqhWuEBzmc5v-KgOlLRv/view",
-          "totalPages": 73
-        },
-        {
-          "id": "1w3O8zlcnTxPpbIL7-ZPsnuHd6ccT0Lid",
-          "name": "Infection Upper respiratory tract infection.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1w3O8zlcnTxPpbIL7-ZPsnuHd6ccT0Lid/view",
-          "totalPages": 70
-        },
-        {
-          "id": "1l0f_Dxlnhv707NztVlczyzrWoz1Oqa4_",
-          "name": "Infection Vaginitis.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1l0f_Dxlnhv707NztVlczyzrWoz1Oqa4_/view",
-          "totalPages": 30
-        },
-        {
-          "id": "1LnH-TBJzPr3lk4IRkY386gSm8-1fjNx5",
-          "name": "Infection-STDs.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1LnH-TBJzPr3lk4IRkY386gSm8-1fjNx5/view",
-          "totalPages": 81
-        },
-        {
-          "id": "1Afzs5zJ7Va7diCrLl6_waHViXX9-w3mj",
-          "name": "Infection-UTIs.pdf",
-          "folder": "Chapter 2 Infection",
-          "url": "https://drive.google.com/file/d/1Afzs5zJ7Va7diCrLl6_waHViXX9-w3mj/view",
-          "totalPages": 29
-        }
-      ]
-    },
-    {
-      "id": "1cf1l7qtcQ1Z5vdIYh61zYI-mgTzMA__H",
-      "name": "Chapter 16 EENT",
-      "url": "https://drive.google.com/drive/folders/1cf1l7qtcQ1Z5vdIYh61zYI-mgTzMA__H",
-      "summaryTh": "สรุปโรคทางตา (กุ้งยิง Hordeolum, หนังตาอักเสบ Blepharitis, ตารางแยกเยื่อบุตาอักเสบ Allergic vs Bacterial vs Viral, ต้อหิน, ตาแห้ง) และคอนแทคเลนส์ (RGP vs Soft silicone hydrogel)",
-      "topics": [
-        {
-          "group": "eent",
-          "topic": "eye_disorders"
-        },
-        {
-          "group": "eent",
-          "topic": "contact_lens"
-        }
-      ],
-      "files": [
-        {
-          "id": "1PxDPDoIERBimbUevZOCN8kaRckGqDfhl",
-          "name": "EENT-Contact lens.pdf",
-          "folder": "Chapter 16 EENT",
-          "url": "https://drive.google.com/file/d/1PxDPDoIERBimbUevZOCN8kaRckGqDfhl/view",
-          "totalPages": 7
-        },
-        {
-          "id": "1w31pTRJsEsCSxf2eF2KS0t5whVkX8SQ1",
-          "name": "EENT-Eye disorder.pdf",
-          "folder": "Chapter 16 EENT",
-          "url": "https://drive.google.com/file/d/1w31pTRJsEsCSxf2eF2KS0t5whVkX8SQ1/view",
-          "totalPages": 40
-        }
-      ]
-    },
-    {
-      "id": "1nFBWUKufIYdsRIDh3U4jP7sq1pPuwhsG",
-      "name": "Social pharmacy",
-      "url": "https://drive.google.com/drive/folders/1nFBWUKufIYdsRIDh3U4jP7sq1pPuwhsG",
-      "summaryTh": "สรุปนิติเภสัชศาสตร์และกฎหมายยา (ลำดับศักดิ์กฎหมาย, วิธีนับวันบังคับใช้ 180 วัน, พ.ร.บ.ยา 2510), เภสัชเศรษฐศาสตร์ (CMA, CEA/ICER, CUA/QALY, CBA) และระบาดวิทยาคลินิก (Prevalence P=I×D, Incidence, RR, OR, NNT/NNH, Double-dummy)",
-      "topics": [
-        {
-          "group": "law_product_social",
-          "topic": "pharmacy_law"
-        },
-        {
-          "group": "law_product_social",
-          "topic": "pharmacy_jurisprudence"
-        },
-        {
-          "group": "law_product_social",
-          "topic": "pharmacoeconomics"
-        },
-        {
-          "group": "law_product_social",
-          "topic": "pharmacoepidemiology"
-        }
-      ],
-      "files": [
-        {
-          "id": "1A5oAwVdYqZPCrHt7k8NzbV9nGqd-mAIc",
-          "name": "Law.pdf",
-          "folder": "Social pharmacy",
-          "url": "https://drive.google.com/file/d/1A5oAwVdYqZPCrHt7k8NzbV9nGqd-mAIc/view",
-          "totalPages": 92
-        },
-        {
-          "id": "1tscJ2gfdzHXdlmtny4nwpqkbK4PrJ_17",
-          "name": "Pharmacoeconomic.pdf",
-          "folder": "Social pharmacy",
-          "url": "https://drive.google.com/file/d/1tscJ2gfdzHXdlmtny4nwpqkbK4PrJ_17/view",
-          "totalPages": 95
-        },
-        {
-          "id": "1cxCWWBgYs7zvPR7bBUV5U_zdg3IuJ9mp",
-          "name": "Pharmacoepidemiology.pdf",
-          "folder": "Social pharmacy",
-          "url": "https://drive.google.com/file/d/1cxCWWBgYs7zvPR7bBUV5U_zdg3IuJ9mp/view",
-          "totalPages": 76
-        },
-        {
-          "id": "19ZFGrW9jKHB0XKqVk2DzdxBQdy1kp4KY",
-          "name": "Pharmacy Jurisprudence.pdf",
-          "folder": "Social pharmacy",
-          "url": "https://drive.google.com/file/d/19ZFGrW9jKHB0XKqVk2DzdxBQdy1kp4KY/view",
-          "totalPages": 179
-        }
-      ]
-    },
-    {
-      "id": "1p21jQ1kCQUxU7xgMeZqt7untDH0cRwm-",
-      "name": "Chapter 12 Endocrine",
-      "url": "https://drive.google.com/drive/folders/1p21jQ1kCQUxU7xgMeZqt7untDH0cRwm-",
-      "summaryTh": "สรุปโรคเบาหวาน (ตารางเทียบ Type 1 vs Type 2, เกณฑ์ ADA 2025/ไทย 2566, ยาลดน้ำตาล), ภาวะแทรกซ้อนเฉียบพลัน (Whipple's triad, อาการน้ำตาลต่ำ Autonomic vs Neuroglycopenic, DKA vs HHS), โรคอ้วน (Subcutaneous vs Visceral fat, รอบเอว ≥90/80 ซม.) และโรคไทรอยด์ (ขั้นตอนการสร้างฮอร์โมน, ปัจจัยที่มีผลต่อ TBG)",
-      "topics": [
-        {
-          "group": "endocrine",
-          "topic": "dm"
-        },
-        {
-          "group": "endocrine",
-          "topic": "dm_complications"
-        },
-        {
-          "group": "endocrine",
-          "topic": "thyroid"
-        },
-        {
-          "group": "endocrine",
-          "topic": "obesity"
-        }
-      ],
-      "files": [
-        {
-          "id": "1DeVyz5hdzkx15SHMRS2_vpdyBDAnNur1",
-          "name": "Endocrine-Diabetes mellitus with complication.pdf",
-          "folder": "Chapter 12 Endocrine",
-          "url": "https://drive.google.com/file/d/1DeVyz5hdzkx15SHMRS2_vpdyBDAnNur1/view",
-          "totalPages": 52
-        },
-        {
-          "id": "1C3npTt32RSILtk-LKst3v4g0Ik8HHA6C",
-          "name": "Endocrine-Diabetes mellitus without complication.pdf",
-          "folder": "Chapter 12 Endocrine",
-          "url": "https://drive.google.com/file/d/1C3npTt32RSILtk-LKst3v4g0Ik8HHA6C/view",
-          "totalPages": 113
-        },
-        {
-          "id": "1H3FhTSc7lNacxqK-UMldEdOZzbc-75xh",
-          "name": "Endocrine-Obesity.pdf",
-          "folder": "Chapter 12 Endocrine",
-          "url": "https://drive.google.com/file/d/1H3FhTSc7lNacxqK-UMldEdOZzbc-75xh/view",
-          "totalPages": 40
-        },
-        {
-          "id": "1l6D-6ktrjkZigb6w-OndM75yatC3s-u3",
-          "name": "Endocrine-Thyroid disorder.pdf",
-          "folder": "Chapter 12 Endocrine",
-          "url": "https://drive.google.com/file/d/1l6D-6ktrjkZigb6w-OndM75yatC3s-u3/view",
-          "totalPages": 54
-        }
-      ]
-    },
-    {
-      "id": "1rdUaU-TYKRsJ-U0OIkWn9GMNveSrMzCi",
-      "name": "Chapter 4 Immunology",
-      "url": "https://drive.google.com/drive/folders/1rdUaU-TYKRsJ-U0OIkWn9GMNveSrMzCi",
-      "summaryTh": "สรุปนิยาม ADE/ADR/Side effect/Medication error, กลไกการแพ้ยา, การแพ้ยาข้ามกลุ่ม (Cross-reactivity: NSAIDs, Beta-lactams, Sulfonamides, Antiepileptics), โรคจมูกอักเสบภูมิแพ้ (ARIA), โรคพุ่มพวง (SLE & Drug-induced SLE) และวัคซีน (Active/Passive, Live vs Non-living)",
-      "topics": [
-        {
-          "group": "immunology",
-          "topic": "adr_hypersensitivity"
-        },
-        {
-          "group": "immunology",
-          "topic": "cross_reaction"
-        },
-        {
-          "group": "immunology",
-          "topic": "allergic_rhinitis"
-        },
-        {
-          "group": "immunology",
-          "topic": "sle"
-        },
-        {
-          "group": "immunology",
-          "topic": "vaccine"
-        }
-      ],
-      "files": [
-        {
-          "id": "12gAaKABsUFy7yU16VDO7-i63IZKtbckV",
-          "name": "Immunology-ADR and Drug hypersensitivity.pdf",
-          "folder": "Chapter 4 Immunology",
-          "url": "https://drive.google.com/file/d/12gAaKABsUFy7yU16VDO7-i63IZKtbckV/view",
-          "totalPages": 70
-        },
-        {
-          "id": "1KkpqGmH84u2j42xFddKNsVHBJTiX2Y1y",
-          "name": "Immunology-Allergic rhinitis.pdf",
-          "folder": "Chapter 4 Immunology",
-          "url": "https://drive.google.com/file/d/1KkpqGmH84u2j42xFddKNsVHBJTiX2Y1y/view",
-          "totalPages": 71
-        },
-        {
-          "id": "1V5gBK6Y41B-k9EvMWvELpwai1dGQhyt3",
-          "name": "Immunology-Cross reaction.pdf",
-          "folder": "Chapter 4 Immunology",
-          "url": "https://drive.google.com/file/d/1V5gBK6Y41B-k9EvMWvELpwai1dGQhyt3/view",
-          "totalPages": 38
-        },
-        {
-          "id": "1c3ZxUaPUKayZzwkv4lGkuhJo9wUxVz7W",
-          "name": "Immunology-SLE.pdf",
-          "folder": "Chapter 4 Immunology",
-          "url": "https://drive.google.com/file/d/1c3ZxUaPUKayZzwkv4lGkuhJo9wUxVz7W/view",
-          "totalPages": 34
-        },
-        {
-          "id": "1kK3-C2CBTwXmw7_dHZRFwOwddRSXQAW8",
-          "name": "Immunology-Vaccine.pdf",
-          "folder": "Chapter 4 Immunology",
-          "url": "https://drive.google.com/file/d/1kK3-C2CBTwXmw7_dHZRFwOwddRSXQAW8/view",
-          "totalPages": 80
         }
       ]
     }
