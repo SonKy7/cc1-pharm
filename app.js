@@ -110,22 +110,83 @@ const App = {
     return tmp.textContent || tmp.innerText || '';
   },
 
+  renderVideoWidget(videos) {
+    if (!videos || !videos.length) return '';
+    const activeVid = videos[0];
+    return `
+      <div class="card no-print" style="margin-bottom: 1.15rem; background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 1.15rem; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🎬</span>
+            <div>
+              <div style="font-weight: 700; font-size: 1.08rem; color: #38bdf8;">
+                คลิปเสียงและวิดีโอบรรยายสดประจำบท (${videos.length} คลิป)
+              </div>
+              <div style="font-size: 0.84rem; color: #94a3b8;">
+                กด Play เพื่อฟังเสียงอาจารย์บรรยายสดไปพร้อมกับอ่านสรุปเนื้อหาด้านล่าง
+              </div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.8rem; padding: 0.25rem 0.55rem;">
+            📺 รองรับ Picture-in-Picture (ย่อจอลอยขณะอ่านได้)
+          </span>
+        </div>
+
+        ${videos.length > 1 ? `
+          <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem;">
+            ${videos.map((v, i) => `
+              <button type="button" class="btn video-tab-btn ${i === 0 ? 'active' : ''}" data-vid="${v.id}" data-vtitle="${this.escapeHtml(v.title)}" style="padding: 0.35rem 0.75rem; font-size: 0.84rem; border-radius: 6px; background: ${i === 0 ? '#0284c7' : '#1e293b'}; color: #ffffff; border: 1px solid ${i === 0 ? '#38bdf8' : '#334155'}; cursor: pointer;">
+                ▶️ ตอนที่ ${i + 1}: ${this.escapeHtml(v.title.replace(/^Chapter\s*\d+\s*-\s*/i, ''))}
+              </button>
+            `).join('')}
+          </div>
+        ` : ''}
+
+        <div id="topicVideoPlayerContainer" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; border: 1px solid #334155;">
+          <iframe id="topicVideoIframe" src="https://www.youtube-nocookie.com/embed/${activeVid.id}" title="${this.escapeHtml(activeVid.title)}" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div id="topicVideoTitle" style="font-size: 0.86rem; color: #cbd5e1; margin-top: 0.55rem; text-align: center; font-weight: 500;">
+          📹 กำลังเล่น: ${this.escapeHtml(activeVid.title)}
+        </div>
+      </div>
+    `;
+  },
+
   renderDriveFilesWidget(driveFiles, isCompact = false) {
     if (!driveFiles || !driveFiles.length) return '';
     return `
       <div class="card" style="margin-top: 1rem; margin-bottom: ${isCompact ? '0.5rem' : '1rem'}; background: var(--bg-primary); border: 1px solid var(--primary);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
-          <div style="font-weight: 700; font-size: 1.02rem; color: var(--primary);">
-            📂 เอกสารชีทเรียนอ้างอิงจาก Google Drive ของบทนี้ (${driveFiles.length} ไฟล์ PDF — แปลไทยและสรุปเนื้อหาสำคัญรวมไว้ในตารางด้านบนเรียบร้อยแล้ว)
+          <div style="font-weight: 700; font-size: 1.05rem; color: var(--primary); display: flex; align-items: center; gap: 0.4rem;">
+            <span>📂</span>
+            <span>เอกสารสไลด์ต้นฉบับประจำบท (${driveFiles.length} ไฟล์ PDF — รวมเนื้อหา 100% ครบทุกหน้าไว้ในเว็บแล้ว):</span>
           </div>
           <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ดูคลังชีททั้ง 23 โฟลเดอร์ →</a>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
           ${driveFiles.map(df => `
-            <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.3rem 0.7rem;">
-              📄 เปิด PDF ต้นฉบับ: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
-            </a>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <div style="font-weight: 600; font-size: 0.95rem; color: var(--text-primary);">
+                  📄 <b>${this.escapeHtml(df.name)}</b> <span class="badge" style="font-size: 0.75rem; background: var(--bg-secondary);">${df.totalPages || 0} หน้า</span>
+                </div>
+                <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary no-print" style="font-size: 0.8rem; padding: 0.25rem 0.55rem;">
+                  เปิด PDF บน Google Drive ↗
+                </a>
+              </div>
+              
+              ${df.rawText ? `
+                <details style="margin-top: 0.4rem; background: var(--bg-secondary); border-radius: 6px; border: 1px solid var(--border-color); overflow: hidden;">
+                  <summary style="cursor: pointer; padding: 0.5rem 0.75rem; font-weight: 600; font-size: 0.88rem; color: var(--primary); outline: none; user-select: none;">
+                    🔍 คลิกเพื่อเปิดอ่านเนื้อหาถอดความจากสไลด์ทีละหน้าแบบ 100% (${df.totalPages || 0} หน้า — อ่านในเว็บได้ทันที ไม่ต้องเปิดไฟล์)
+                  </summary>
+                  <div style="padding: 0.85rem; max-height: 500px; overflow-y: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; line-height: 1.65; white-space: pre-wrap; background: var(--bg-primary); border-top: 1px solid var(--border-color); color: var(--text-primary);">
+${this.escapeHtml(df.rawText)}
+                  </div>
+                </details>
+              ` : ''}
+            </div>
           `).join('')}
         </div>
       </div>
@@ -422,6 +483,9 @@ const App = {
         ` : ''}
       </div>
 
+      <!-- Embedded Video/Audio Lecture Player -->
+      ${this.renderVideoWidget(currentTopic.videos)}
+
       <!-- Detailed Sections -->
       ${currentTopic.sections.map((s, idx) => `
         <section class="card" style="margin-bottom: 1rem;">
@@ -482,6 +546,25 @@ const App = {
     `;
 
     const attachArticleEvents = () => {
+      document.querySelectorAll('.video-tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const vid = btn.getAttribute('data-vid');
+          const vtitle = btn.getAttribute('data-vtitle');
+          const iframe = document.getElementById('topicVideoIframe');
+          const titleEl = document.getElementById('topicVideoTitle');
+          if (iframe && vid) {
+            iframe.src = `https://www.youtube-nocookie.com/embed/${vid}`;
+            if (titleEl) titleEl.textContent = `📹 กำลังเล่น: ${vtitle}`;
+            document.querySelectorAll('.video-tab-btn').forEach(b => {
+              b.style.background = '#1e293b';
+              b.style.borderColor = '#334155';
+            });
+            btn.style.background = '#0284c7';
+            btn.style.borderColor = '#38bdf8';
+          }
+        });
+      });
       document.getElementById('toggleReadBtn')?.addEventListener('click', () => this.toggleRead(currentTopic.id));
       document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
         this.toggleRead(currentTopic.id);
