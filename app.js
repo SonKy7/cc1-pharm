@@ -110,6 +110,54 @@ const App = {
     return tmp.textContent || tmp.innerText || '';
   },
 
+
+  renderQuickSummary(rawHtml) {
+    if (!rawHtml) return '';
+    try {
+      let html = rawHtml;
+
+      // 1. Transform subgroup headers
+      html = html.replace(/<div\s+style="[^"]*border-left:[^"]*"[^>]*>\s*<b>([^<]+)<\/b>\s*<\/div>/gi, (m, text) => {
+        return `<div class="rx-subgroup-banner"><b>${text}</b></div>`;
+      });
+
+      // 2. Wrap drug blocks into .drug-card if not already wrapped
+      if (!html.includes('class="drug-card"')) {
+        const drugPattern = /<p>\s*<b>(\d+\.|•|-|[ก-ฮ]\.)\s*([^<]+)<\/b>:?\s*<\/p>\s*<ul>([\s\S]*?)<\/ul>/gi;
+        html = html.replace(drugPattern, (match, num, title, listContent) => {
+          const fullTitle = `${num} ${title}`.trim().replace(/:$/, '');
+          return `
+            <div class="drug-card">
+              <div class="drug-card-header">
+                <span class="drug-title">${fullTitle}</span>
+              </div>
+              <ul>
+                ${listContent}
+              </ul>
+            </div>
+          `;
+        });
+      }
+
+      // 3. Highlight 1st-line badges (bright emerald green)
+      html = html.replace(/[\[\(]\s*(?:1st-line|First-line)[^\]\)]*[\]\)]/gi, (match) => {
+        const clean = match.replace(/^[\[\(]\s*/, '').replace(/\s*[\]\)]$/, '').replace(/^[—\-:\s]+/, '');
+        return `<span class="badge-1st-line">✓ ${clean}</span>`;
+      });
+
+      // 4. Highlight 2nd-line badges (slate gray)
+      html = html.replace(/[\[\(]\s*(?:2nd-line|Second-line)[^\]\)]*[\]\)]/gi, (match) => {
+        const clean = match.replace(/^[\[\(]\s*/, '').replace(/\s*[\]\)]$/, '').replace(/^[—\-:\s]+/, '');
+        return `<span class="badge-2nd-line">${clean}</span>`;
+      });
+
+      return html;
+    } catch (e) {
+      console.error('Error in renderQuickSummary:', e);
+      return rawHtml;
+    }
+  },
+
   renderVideoWidget(videos) {
     if (this.state.quickMode) return '';
     if (!videos || !videos.length) return '';
@@ -508,7 +556,7 @@ ${this.escapeHtml(df.rawText)}
         currentTopic.quickSummaryHtml ? `
           <section class="card" style="margin-bottom: 1rem; border-top: 4px solid var(--accent); padding: 1.5rem 1.75rem;">
             <div style="line-height: 1.8; font-size: 1.05rem;">
-              ${currentTopic.quickSummaryHtml}
+              ${this.renderQuickSummary(currentTopic.quickSummaryHtml)}
             </div>
           </section>
         ` : `
