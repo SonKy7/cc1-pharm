@@ -386,10 +386,135 @@ const App = {
     const isRead = !!this.state.readTopics[currentTopic.id];
     const isBookmarked = !!this.state.bookmarkedTopics[currentTopic.id];
 
+    const existingLayout = c.querySelector('.summary-layout');
+    const existingSidebar = document.getElementById('summarySidebar');
+    const existingArticle = c.querySelector('.topic-content');
+
+    const renderArticleHtml = () => `
+      <div class="card" style="margin-bottom: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+          <div>
+            <span class="badge badge-blue" style="font-size: 0.85rem;">${currentTopic.icon} ${currentTopic.groupName}</span>
+            <h1 style="font-size: 1.85rem; font-weight: 700; margin: 0.35rem 0 0.15rem 0;">
+              ${currentTopic.titleTh || currentTopic.title}
+            </h1>
+            <div style="color: var(--text-secondary); font-size: 1.05rem; font-weight: 500;">${currentTopic.title}</div>
+          </div>
+          <div class="no-print" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button id="toggleBookmarkBtn" class="btn btn-secondary" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
+              ${isBookmarked ? '⭐ ปักหมุดแล้ว' : '☆ ปักหมุดทบทวน'}
+            </button>
+            <button id="toggleReadBtn" class="btn ${isRead ? 'btn-primary' : 'btn-outline'}" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
+              ${isRead ? '✅ อ่านจบแล้ว' : '☑️ ทำเครื่องหมายว่าอ่านจบ'}
+            </button>
+          </div>
+        </div>
+
+        ${currentTopic.highYield && currentTopic.highYield.length > 0 ? `
+          <div class="tip" style="margin-top: 1.1rem; font-size: 1rem;">
+            <div style="font-weight: 700; font-size: 1.08rem; margin-bottom: 0.4rem; color: var(--primary);">
+              ⚡ สรุปจุดเน้น High-Yield ที่ออกสอบ PLE-CC1 บ่อยที่สุด:
+            </div>
+            <ul style="padding-left: 1.3rem;">
+              ${currentTopic.highYield.map(y => `<li style="margin-bottom: 0.35rem;">${y}</li>`).join('')}
+            </ul>
+          </div>
+        ` : ''}
+      </div>
+
+      <!-- Detailed Sections -->
+      ${currentTopic.sections.map((s, idx) => `
+        <section class="card" style="margin-bottom: 1rem;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
+            ${idx + 1}. ${s.heading}
+          </h2>
+          <div style="line-height: 1.75; font-size: 1.05rem;">
+            ${s.html}
+          </div>
+        </section>
+      `).join('')}
+
+      <!-- Attached Google Drive PDFs & Full Extracted Slides -->
+      ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
+
+      ${currentTopic.refs && currentTopic.refs.length > 0 ? `
+        <div class="card" style="background: var(--bg-primary); font-size: 0.9rem; color: var(--text-secondary);">
+          <b>📚 แนวทางเวชปฏิบัติและเอกสารอ้างอิง:</b>
+          <ul style="margin-top: 0.3rem; padding-left: 1.3rem;">
+            ${currentTopic.refs.map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
+
+      <!-- Partner CC2 OSPE Banner -->
+      <div class="card no-print" style="background: rgba(139, 92, 246, 0.08); border: 1px dashed rgba(139, 92, 246, 0.35); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+        <div>
+          <div style="font-weight: 700; color: #7c3aed; font-size: 1rem;">🧪 เตรียมต่อการสอบปฏิบัติการ PLE-CC2?</div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            เมื่ออ่านทฤษฎี CC1 เข้าใจแล้ว สามารถไปฝึกจำลองสถานี OSPE ซักประวัติและจ่ายยาต่อได้ที่ <b>CC2 OSPE Lab · ห้องฝึก OSPE เภสัช</b>
+          </div>
+        </div>
+        <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.45rem 0.9rem; font-weight: 600; white-space: nowrap;">
+          เข้าห้องฝึก CC2 OSPE Lab ↗
+        </a>
+      </div>
+
+      <!-- Prev / Next Topic Footer Navigation -->
+      <div class="card no-print" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div>
+          ${prevTopic ? `
+            <a href="#/summary?topic=${prevTopic.id}" class="btn btn-secondary">
+              ⬅️ ก่อนหน้า: ${prevTopic.titleTh || prevTopic.title}
+            </a>
+          ` : `<span></span>`}
+        </div>
+        <button id="bottomMarkReadBtn" class="btn ${isRead ? 'btn-secondary' : 'btn-primary'}">
+          ${isRead ? '✅ อ่านจบหัวข้อนี้แล้ว' : '✅ บันทึกว่าอ่านจบหัวข้อนี้'}
+        </button>
+        <div>
+          ${nextTopic ? `
+            <a href="#/summary?topic=${nextTopic.id}" class="btn btn-primary">
+              ถัดไป: ${nextTopic.titleTh || nextTopic.title} ➡️
+            </a>
+          ` : `<a href="#/" class="btn btn-primary">🏠 กลับหน้าสารบัญ</a>`}
+        </div>
+      </div>
+    `;
+
+    const attachArticleEvents = () => {
+      document.getElementById('toggleReadBtn')?.addEventListener('click', () => this.toggleRead(currentTopic.id));
+      document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
+        this.toggleRead(currentTopic.id);
+        if (!isRead && nextTopic) {
+          window.location.hash = `#/summary?topic=${nextTopic.id}`;
+        }
+      });
+      document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
+    };
+
+    if (existingLayout && existingSidebar && existingArticle) {
+      // In-place update: sidebar preserves its exact scroll position, main article updates and jumps smoothly to top
+      const prevScrollTop = existingSidebar.scrollTop;
+      existingArticle.innerHTML = renderArticleHtml();
+      attachArticleEvents();
+
+      existingSidebar.querySelectorAll('.sidebar-topic-link').forEach(a => {
+        const isTarget = a.getAttribute('href') === `#/summary?topic=${currentTopic.id}`;
+        a.style.background = isTarget ? 'var(--primary-light)' : 'transparent';
+        a.style.color = isTarget ? 'var(--primary)' : 'var(--text-primary)';
+        a.style.fontWeight = isTarget ? '700' : '400';
+        a.style.borderLeft = isTarget ? '3px solid var(--primary)' : '3px solid transparent';
+      });
+
+      existingSidebar.scrollTop = prevScrollTop;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     c.innerHTML = `
       <div class="summary-layout">
         <!-- Sidebar Navigation grouped by Official Blueprint -->
-        <aside class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; position: sticky; top: 4.8rem; padding: 0.9rem;">
+        <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; position: sticky; top: 4.8rem; padding: 0.9rem;">
           <div style="margin-bottom: 0.6rem;">
             <input type="search" id="sidebarFilterInput" placeholder="🔎 กรองหัวข้อ..." style="width: 100%; padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: var(--font-sans); font-size: 0.95rem; background: var(--bg-primary); color: var(--text-primary);">
           </div>
@@ -434,99 +559,18 @@ const App = {
 
         <!-- Main Study Article -->
         <article class="topic-content">
-          <div class="card" style="margin-bottom: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-              <div>
-                <span class="badge badge-blue" style="font-size: 0.85rem;">${currentTopic.icon} ${currentTopic.groupName}</span>
-                <h1 style="font-size: 1.85rem; font-weight: 700; margin: 0.35rem 0 0.15rem 0;">
-                  ${currentTopic.titleTh || currentTopic.title}
-                </h1>
-                <div style="color: var(--text-secondary); font-size: 1.05rem; font-weight: 500;">${currentTopic.title}</div>
-              </div>
-              <div class="no-print" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button id="toggleBookmarkBtn" class="btn btn-secondary" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
-                  ${isBookmarked ? '⭐ ปักหมุดแล้ว' : '☆ ปักหมุดทบทวน'}
-                </button>
-                <button id="toggleReadBtn" class="btn ${isRead ? 'btn-primary' : 'btn-outline'}" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
-                  ${isRead ? '✅ อ่านจบแล้ว' : '☑️ ทำเครื่องหมายว่าอ่านจบ'}
-                </button>
-              </div>
-            </div>
-
-            ${currentTopic.highYield && currentTopic.highYield.length > 0 ? `
-              <div class="tip" style="margin-top: 1.1rem; font-size: 1rem;">
-                <div style="font-weight: 700; font-size: 1.08rem; margin-bottom: 0.4rem; color: var(--primary);">
-                  ⚡ สรุปจุดเน้น High-Yield ที่ออกสอบ PLE-CC1 บ่อยที่สุด:
-                </div>
-                <ul style="padding-left: 1.3rem;">
-                  ${currentTopic.highYield.map(y => `<li style="margin-bottom: 0.35rem;">${y}</li>`).join('')}
-                </ul>
-              </div>
-            ` : ''}
-          </div>
-
-          <!-- Detailed Sections -->
-          ${currentTopic.sections.map((s, idx) => `
-            <section class="card" style="margin-bottom: 1rem;">
-              <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
-                ${idx + 1}. ${s.heading}
-              </h2>
-              <div style="line-height: 1.75; font-size: 1.05rem;">
-                ${s.html}
-              </div>
-            </section>
-          `).join('')}
-
-          <!-- Attached Google Drive PDFs & Full Extracted Slides -->
-          ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
-
-          ${currentTopic.refs && currentTopic.refs.length > 0 ? `
-            <div class="card" style="background: var(--bg-primary); font-size: 0.9rem; color: var(--text-secondary);">
-              <b>📚 แนวทางเวชปฏิบัติและเอกสารอ้างอิง:</b>
-              <ul style="margin-top: 0.3rem; padding-left: 1.3rem;">
-                ${currentTopic.refs.map(r => `<li>${r}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
-
-          <!-- Partner CC2 OSPE Banner -->
-          <div class="card no-print" style="background: rgba(139, 92, 246, 0.08); border: 1px dashed rgba(139, 92, 246, 0.35); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
-            <div>
-              <div style="font-weight: 700; color: #7c3aed; font-size: 1rem;">🧪 เตรียมต่อการสอบปฏิบัติการ PLE-CC2?</div>
-              <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
-                เมื่ออ่านทฤษฎี CC1 เข้าใจแล้ว สามารถไปฝึกจำลองสถานี OSPE ซักประวัติและจ่ายยาต่อได้ที่ <b>CC2 OSPE Lab · ห้องฝึก OSPE เภสัช</b>
-              </div>
-            </div>
-            <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.45rem 0.9rem; font-weight: 600; white-space: nowrap;">
-              เข้าห้องฝึก CC2 OSPE Lab ↗
-            </a>
-          </div>
-
-          <!-- Prev / Next Topic Footer Navigation -->
-          <div class="card no-print" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
-            <div>
-              ${prevTopic ? `
-                <a href="#/summary?topic=${prevTopic.id}" class="btn btn-secondary">
-                  ⬅️ ก่อนหน้า: ${prevTopic.titleTh || prevTopic.title}
-                </a>
-              ` : `<span></span>`}
-            </div>
-            <button id="bottomMarkReadBtn" class="btn ${isRead ? 'btn-secondary' : 'btn-primary'}">
-              ${isRead ? '✅ อ่านจบหัวข้อนี้แล้ว' : '✅ บันทึกว่าอ่านจบหัวข้อนี้'}
-            </button>
-            <div>
-              ${nextTopic ? `
-                <a href="#/summary?topic=${nextTopic.id}" class="btn btn-primary">
-                  ถัดไป: ${nextTopic.titleTh || nextTopic.title} ➡️
-                </a>
-              ` : `<a href="#/" class="btn btn-primary">🏠 กลับหน้าสารบัญ</a>`}
-            </div>
-          </div>
+          ${renderArticleHtml()}
         </article>
       </div>
     `;
 
+    attachArticleEvents();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const activeLink = document.querySelector(`.sidebar-topic-link[href="#/summary?topic=${currentTopic.id}"]`);
+    if (activeLink) {
+      activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
 
     document.getElementById('toggleReadBtn')?.addEventListener('click', () => this.toggleRead(currentTopic.id));
     document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
