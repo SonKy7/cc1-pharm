@@ -111,6 +111,7 @@ const App = {
   },
 
   renderVideoWidget(videos) {
+    if (this.state.quickMode) return '';
     if (!videos || !videos.length) return '';
     const activeVid = videos[0];
     return `
@@ -503,21 +504,40 @@ ${this.escapeHtml(df.rawText)}
       ${this.renderVideoWidget(currentTopic.videos)}
 
       <!-- Detailed Sections / Quick Mode Filter -->
-      ${currentTopic.sections.filter(s => {
-        if (!this.state.quickMode) return true;
-        // In quick mode, prioritize Quick Rx Matrix & Summary
-        const h = s.heading || '';
-        return h.includes('Quick Rx') || h.includes('ตารางยา') || h.includes('สรุปย่อ') || h.includes('สรุปคำสอนสด');
-      }).map((s, idx) => `
-        <section class="card" style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
-            ${idx + 1}. ${s.heading}
-          </h2>
-          <div style="line-height: 1.75; font-size: 1.05rem;">
-            ${s.html}
-          </div>
-        </section>
-      `).join('')}
+      ${this.state.quickMode ? (
+        currentTopic.quickSummaryHtml ? `
+          <section class="card" style="margin-bottom: 1rem; border-top: 4px solid var(--accent); padding: 1.5rem 1.75rem;">
+            <div style="line-height: 1.8; font-size: 1.05rem;">
+              ${currentTopic.quickSummaryHtml}
+            </div>
+          </section>
+        ` : `
+          <section class="card" style="margin-bottom: 1rem; padding: 1.5rem;">
+            <div class="callout callout-info" style="margin-bottom: 1rem;">
+              <b>⚡ สรุปย่อ CC1:</b> กำลังเตรียมเนื้อหาสรุปย่อแม่บทสำหรับหัวข้อนี้ (ดูเนื้อหาเต็มได้ที่แถบ สรุปเนื้อหาเต็ม)
+            </div>
+            ${currentTopic.sections.filter(s => {
+              const h = s.heading || '';
+              return !h.includes('สรุปคำสอนสด') && (h.includes('Quick Rx') || h.includes('ตารางยา') || h.includes('สรุปย่อ') || h.includes('จุดเน้น'));
+            }).map(s => `
+              <div style="line-height: 1.75; font-size: 1.05rem; margin-bottom: 1.25rem;">
+                ${s.html}
+              </div>
+            `).join('')}
+          </section>
+        `
+      ) : (
+        currentTopic.sections.filter(s => !s.heading.includes('สรุปคำสอนสด') && !s.heading.includes('Quick Rx')).map((s, idx) => `
+          <section class="card" style="margin-bottom: 1rem;">
+            <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
+              ${idx + 1}. ${s.heading}
+            </h2>
+            <div style="line-height: 1.75; font-size: 1.05rem;">
+              ${s.html}
+            </div>
+          </section>
+        `).join('')
+      )}
 
       <!-- Attached Google Drive PDFs & Full Extracted Slides -->
       ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
