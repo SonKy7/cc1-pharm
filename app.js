@@ -698,7 +698,7 @@ ${this.escapeHtml(df.rawText)}
     c.innerHTML = `
       <div class="summary-layout">
         <!-- Sidebar Navigation grouped by Official Blueprint -->
-        <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; position: sticky; top: 4.8rem; padding: 0.9rem;">
+        <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 4.8rem; padding: 0.9rem;">
           <div style="margin-bottom: 0.6rem;">
             <input type="search" id="sidebarFilterInput" placeholder="🔎 กรองหัวข้อ..." style="width: 100%; padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: var(--font-sans); font-size: 0.95rem; background: var(--bg-primary); color: var(--text-primary);">
           </div>

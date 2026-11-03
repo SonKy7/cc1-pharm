@@ -1198,3 +1198,14 @@ tbody tr:hover {
   margin-bottom: 0.45rem;
   line-height: 1.7;
 }
+
+
+#summarySidebar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+#summarySidebar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
