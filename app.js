@@ -112,39 +112,17 @@ const App = {
     return `
       <div class="card" style="margin-top: 1rem; margin-bottom: ${isCompact ? '0.5rem' : '1rem'}; background: var(--bg-primary); border: 1px solid var(--primary);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
-          <div style="font-weight: 700; font-size: 1.08rem; color: var(--primary);">
-            📂 ชีทต้นฉบับจาก Google Drive ของบทนี้ (${driveFiles.length} ไฟล์ PDF — คลิกเปิดไฟล์จริง หรือกดกางอ่านสไลด์ข้างล่างได้เลย)
+          <div style="font-weight: 700; font-size: 1.02rem; color: var(--primary);">
+            📂 เอกสารชีทเรียนอ้างอิงจาก Google Drive ของบทนี้ (${driveFiles.length} ไฟล์ PDF — แปลไทยและสรุปเนื้อหาสำคัญรวมไว้ในตารางด้านบนเรียบร้อยแล้ว)
           </div>
-          <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ไปคลังชีททั้ง 23 โฟลเดอร์ →</a>
+          <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ดูคลังชีททั้ง 23 โฟลเดอร์ →</a>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
           ${driveFiles.map(df => `
             <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.3rem 0.7rem;">
-              📄 เปิด PDF: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
+              📄 เปิด PDF ต้นฉบับ: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
             </a>
-          `).join('')}
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-          ${driveFiles.map(df => `
-            <details style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-surface); padding: 0.55rem 0.8rem;">
-              <summary style="cursor: pointer; font-weight: 700; font-size: 0.98rem; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
-                <span>📑 อ่านเนื้อหาสไลด์ในชีท: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-secondary);">(${df.folder} • ${df.totalPages} หน้า • ${df.blocks ? df.blocks.length : 0} หัวข้อย่อย)</small></span>
-                <span style="font-size: 0.82rem; color: var(--primary); white-space: nowrap;">คลิกเพื่อกางอ่านสไลด์ ▼</span>
-              </summary>
-              <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.55rem; max-height: 520px; overflow-y: auto;">
-                ${(df.blocks && df.blocks.length > 0) ? df.blocks.map(b => `
-                  <div style="padding: 0.5rem 0.7rem; border-radius: var(--radius-sm); background: var(--bg-primary); border-left: 3px solid var(--primary);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
-                      <strong style="color: var(--primary); font-size: 0.96rem;">${this.escapeHtml(b.title)}</strong>
-                      <span class="badge" style="font-size: 0.75rem;">${this.escapeHtml(b.pages)}</span>
-                    </div>
-                    <div style="white-space: pre-line; font-size: 0.95rem; line-height: 1.6; color: var(--text-primary);">${this.escapeHtml(b.text)}</div>
-                  </div>
-                `).join('') : `<div style="color: var(--text-muted); font-size: 0.9rem;">ไฟล์นี้เป็นสไลด์รูปภาพ/โจทย์ สามารถคลิกปุ่ม "📄 เปิด PDF" ด้านบนเพื่อดูไฟล์จริงใน Google Drive ได้เลยครับ</div>`}
-              </div>
-            </details>
           `).join('')}
         </div>
       </div>
@@ -597,6 +575,9 @@ const App = {
     const folders = this.data.driveFolders || [];
     const totalFiles = folders.reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
     const totalPages = folders.reduce((acc, f) => acc + (f.files || []).reduce((s, x) => s + (x.totalPages || 0), 0), 0);
+    const allTopics = this.getAllTopics();
+    const topicById = {};
+    allTopics.forEach(t => { topicById[t.id] = t; });
 
     c.innerHTML = `
       <div class="card" style="background: linear-gradient(135deg, var(--primary-light), var(--bg-surface)); border-color: var(--primary); margin-bottom: 1.25rem;">
@@ -604,55 +585,59 @@ const App = {
           <div>
             <span class="badge badge-blue">Google Drive Sync • Pharma Plus Institute</span>
             <h1 style="font-size: 1.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.3rem;">
-              📂 คลังชีท Google Drive ทั้งหมด ${folders.length} โฟลเดอร์ (${totalFiles} ไฟล์ PDF • ${totalPages.toLocaleString()} หน้า)
+              📂 สารบัญชีทเรียน Google Drive ทั้งหมด ${folders.length} โฟลเดอร์ (${totalFiles} ไฟล์ PDF • ${totalPages.toLocaleString()} หน้า)
             </h1>
             <p style="color: var(--text-secondary);">
-              รวมไฟล์ชีทสรุปและไฟล์ตะลุยโจทย์จากลิงก์ Google Drive ทั้งหมด สามารถกดเปิดไฟล์ PDF ต้นฉบับใน Drive หรือกางอ่านเนื้อหาสไลด์ทุกหน้าได้จากที่นี่โดยตรง
+              เนื้อหาทั้งหมดจากชีทเรียนถูก<b>แปลเป็นภาษาไทยและสรุปจัดหมวดหมู่ลงในตารางแต่ละบทเรียบร้อยแล้ว</b> สามารถกดปุ่ม <b>"📖 อ่านสรุปภาษาไทยของหมวดนี้"</b> หรือกดเปิดไฟล์ PDF ต้นฉบับใน Google Drive ได้ทันที
             </p>
           </div>
         </div>
         <div style="margin-top: 1rem;">
-          <input type="search" id="driveSearchInput" class="search-input" placeholder="🔎 ค้นหาชื่อไฟล์ PDF หรือเนื้อหาภายในสไลด์ทั้ง 119 ไฟล์..." autocomplete="off">
+          <input type="search" id="driveSearchInput" class="search-input" placeholder="🔎 ค้นหาชื่อโฟลเดอร์ ชื่อไฟล์ PDF หรือหัวข้อที่สรุปไว้..." autocomplete="off">
         </div>
       </div>
 
       <div id="driveFoldersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
-        ${folders.map((folder, fIdx) => `
-          <div class="card drive-folder-card" data-folder-name="${this.escapeHtml(folder.name.toLowerCase())}" style="margin-bottom: 0;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
-              <h2 style="font-size: 1.35rem; font-weight: 700; color: var(--primary);">
-                📁 ${fIdx + 1}. ${this.escapeHtml(folder.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${folder.files.length} ไฟล์)</small>
-              </h2>
-              <a href="${folder.url}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.85rem;">
-                เปิดโฟลเดอร์นี้ใน Google Drive ↗
-              </a>
+        ${folders.map((folder, fIdx) => {
+          const linkedTopics = (folder.topics || []).map(x => topicById[x.topic]).filter(Boolean);
+          return `
+            <div class="card drive-folder-card" data-search="${this.escapeHtml((folder.name + ' ' + (folder.summaryTh || '') + ' ' + folder.files.map(x => x.name).join(' ')).toLowerCase())}" style="margin-bottom: 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.65rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
+                <h2 style="font-size: 1.35rem; font-weight: 700; color: var(--primary);">
+                  📁 ${fIdx + 1}. ${this.escapeHtml(folder.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${folder.files.length} ไฟล์ PDF)</small>
+                </h2>
+                <a href="${folder.url}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.85rem;">
+                  เปิดโฟลเดอร์ใน Google Drive ↗
+                </a>
+              </div>
+
+              ${folder.summaryTh ? `
+                <div class="tip" style="margin-bottom: 0.75rem; font-size: 0.98rem;">
+                  <b>🇹🇭 ขอบเขตเนื้อหาที่แปลไทยและสรุปเพิ่มเข้าในบทเรียนแล้ว:</b> ${this.escapeHtml(folder.summaryTh)}
+                </div>
+              ` : ''}
+
+              ${linkedTopics.length > 0 ? `
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem;">
+                  <span style="font-weight: 700; font-size: 0.92rem; color: var(--primary);">📖 อ่านสรุปภาษาไทยของหมวดนี้:</span>
+                  ${linkedTopics.map(t => `
+                    <a href="#/summary?topic=${t.id}" class="btn btn-primary" style="padding: 0.3rem 0.75rem; font-size: 0.88rem;">
+                      ${t.icon || '📘'} ${this.escapeHtml(t.titleTh || t.title)} →
+                    </a>
+                  `).join('')}
+                </div>
+              ` : ''}
+
+              <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+                ${folder.files.map(df => `
+                  <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.86rem;">
+                    📄 ${this.escapeHtml(df.name)} <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
+                  </a>
+                `).join('')}
+              </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.55rem;">
-              ${folder.files.map(df => `
-                <details class="drive-file-item" data-search="${this.escapeHtml((df.name + ' ' + folder.name + ' ' + (df.blocks || []).map(b => b.title + ' ' + b.text).join(' ')).toLowerCase())}" style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-primary); padding: 0.6rem 0.85rem;">
-                  <summary style="cursor: pointer; font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-                    <span>📄 ${this.escapeHtml(df.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${df.totalPages || 0} หน้า • ${(df.blocks || []).length} หัวข้อสไลด์)</small></span>
-                    <span style="display: flex; gap: 0.5rem; align-items: center;">
-                      <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.2rem 0.65rem; font-size: 0.82rem;" onclick="event.stopPropagation();">เปิด PDF ต้นฉบับ ↗</a>
-                      <span style="font-size: 0.82rem; color: var(--primary);">อ่านสไลด์ ▼</span>
-                    </span>
-                  </summary>
-                  <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; max-height: 500px; overflow-y: auto;">
-                    ${(df.blocks && df.blocks.length > 0) ? df.blocks.map(b => `
-                      <div style="padding: 0.5rem 0.75rem; background: var(--bg-surface); border-radius: var(--radius-sm); border-left: 3px solid var(--primary);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
-                          <strong style="color: var(--primary);">${this.escapeHtml(b.title)}</strong>
-                          <span class="badge" style="font-size: 0.75rem;">${this.escapeHtml(b.pages)}</span>
-                        </div>
-                        <div style="white-space: pre-line; font-size: 0.95rem; line-height: 1.6;">${this.escapeHtml(b.text)}</div>
-                      </div>
-                    `).join('') : `<div style="color: var(--text-muted);">ไฟล์นี้เป็นสไลด์ภาพ/ข้อสอบ กดปุ่ม "เปิด PDF ต้นฉบับ ↗" เพื่อเปิดดูไฟล์เต็มใน Google Drive ได้เลยครับ</div>`}
-                  </div>
-                </details>
-              `).join('')}
-            </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     `;
 
@@ -660,13 +645,8 @@ const App = {
     searchInput?.addEventListener('input', () => {
       const q = searchInput.value.trim().toLowerCase();
       document.querySelectorAll('.drive-folder-card').forEach(card => {
-        let visibleFiles = 0;
-        card.querySelectorAll('.drive-file-item').forEach(item => {
-          const match = !q || (item.dataset.search || '').includes(q);
-          item.style.display = match ? 'block' : 'none';
-          if (match) visibleFiles++;
-        });
-        card.style.display = visibleFiles > 0 ? 'block' : 'none';
+        const match = !q || (card.dataset.search || '').includes(q);
+        card.style.display = match ? 'block' : 'none';
       });
     });
   },
