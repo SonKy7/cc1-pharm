@@ -1,7 +1,7 @@
-// PLE-CC1 Knowledge Hub — Pure Study & High-Yield Summary Web App (ประกาศ ศสภ. ที่ 5/2566)
+// PLE-CC1 Knowledge Hub — Study Summary Web App + Integrated 23-Folder Google Drive Sheet Library
 
 const App = {
-  data: window.CC1_DATA || { groups: [], questions: [], cases: {} },
+  data: window.CC1_DATA || { groups: [], driveFolders: [] },
   state: {
     route: 'home',
     readTopics: {},
@@ -79,8 +79,8 @@ const App = {
 
   getAllTopics() {
     const list = [];
-    this.data.groups.forEach((g, gIdx) => {
-      g.topics.forEach(t => {
+    (this.data.groups || []).forEach((g, gIdx) => {
+      (g.topics || []).forEach(t => {
         list.push({
           ...t,
           groupId: g.group,
@@ -91,6 +91,64 @@ const App = {
       });
     });
     return list;
+  },
+
+  escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  },
+
+  stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html || '';
+    return tmp.textContent || tmp.innerText || '';
+  },
+
+  renderDriveFilesWidget(driveFiles, isCompact = false) {
+    if (!driveFiles || !driveFiles.length) return '';
+    return `
+      <div class="card" style="margin-top: 1rem; margin-bottom: ${isCompact ? '0.5rem' : '1rem'}; background: var(--bg-primary); border: 1px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
+          <div style="font-weight: 700; font-size: 1.08rem; color: var(--primary);">
+            📂 ชีทต้นฉบับจาก Google Drive ของบทนี้ (${driveFiles.length} ไฟล์ PDF — คลิกเปิดไฟล์จริง หรือกดกางอ่านสไลด์ข้างล่างได้เลย)
+          </div>
+          <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ไปคลังชีททั้ง 23 โฟลเดอร์ →</a>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem;">
+          ${driveFiles.map(df => `
+            <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.3rem 0.7rem;">
+              📄 เปิด PDF: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-muted);">(${df.totalPages || 0} หน้า)</small> ↗
+            </a>
+          `).join('')}
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          ${driveFiles.map(df => `
+            <details style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-surface); padding: 0.55rem 0.8rem;">
+              <summary style="cursor: pointer; font-weight: 700; font-size: 0.98rem; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+                <span>📑 อ่านเนื้อหาสไลด์ในชีท: <b>${this.escapeHtml(df.name)}</b> <small style="color: var(--text-secondary);">(${df.folder} • ${df.totalPages} หน้า • ${df.blocks ? df.blocks.length : 0} หัวข้อย่อย)</small></span>
+                <span style="font-size: 0.82rem; color: var(--primary); white-space: nowrap;">คลิกเพื่อกางอ่านสไลด์ ▼</span>
+              </summary>
+              <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.55rem; max-height: 520px; overflow-y: auto;">
+                ${(df.blocks && df.blocks.length > 0) ? df.blocks.map(b => `
+                  <div style="padding: 0.5rem 0.7rem; border-radius: var(--radius-sm); background: var(--bg-primary); border-left: 3px solid var(--primary);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
+                      <strong style="color: var(--primary); font-size: 0.96rem;">${this.escapeHtml(b.title)}</strong>
+                      <span class="badge" style="font-size: 0.75rem;">${this.escapeHtml(b.pages)}</span>
+                    </div>
+                    <div style="white-space: pre-line; font-size: 0.95rem; line-height: 1.6; color: var(--text-primary);">${this.escapeHtml(b.text)}</div>
+                  </div>
+                `).join('') : `<div style="color: var(--text-muted); font-size: 0.9rem;">ไฟล์นี้เป็นสไลด์รูปภาพ/โจทย์ สามารถคลิกปุ่ม "📄 เปิด PDF" ด้านบนเพื่อดูไฟล์จริงใน Google Drive ได้เลยครับ</div>`}
+              </div>
+            </details>
+          `).join('')}
+        </div>
+      </div>
+    `;
   },
 
   handleRoute() {
@@ -108,6 +166,10 @@ const App = {
       this.highlightNav('summary');
       const params = new URLSearchParams(query);
       this.renderSummary(container, params.get('topic'));
+    } else if (path.startsWith('/drive')) {
+      this.highlightNav('drive');
+      const params = new URLSearchParams(query);
+      this.renderDriveLibrary(container, params.get('folder'));
     } else if (path.startsWith('/cheatsheet')) {
       this.highlightNav('cheatsheet');
       this.renderCheatSheet(container);
@@ -122,29 +184,25 @@ const App = {
     if (target) target.classList.add('active');
   },
 
-  stripHtml(html) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html || '';
-    return tmp.textContent || tmp.innerText || '';
-  },
-
-  // ================= VIEW: HOME (BLUEPRINT DIRECTORY & SEARCH) =================
+  // ================= VIEW: HOME (BLUEPRINT DIRECTORY & INLINE FULL SUMMARY) =================
   renderHome(c) {
     const allTopics = this.getAllTopics();
     const readCount = allTopics.filter(t => this.state.readTopics[t.id]).length;
     const bookmarkedList = allTopics.filter(t => this.state.bookmarkedTopics[t.id]);
     const percentRead = allTopics.length ? Math.round((readCount / allTopics.length) * 100) : 0;
+    const totalDriveFolders = (this.data.driveFolders || []).length;
+    const totalDriveFiles = (this.data.driveFolders || []).reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
 
     c.innerHTML = `
       <div class="card" style="background: linear-gradient(135deg, var(--primary-light), var(--bg-surface)); border-color: var(--primary); padding: 1.75rem; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-          <div style="max-width: 720px;">
-            <span class="badge badge-blue" style="font-size: 0.85rem; margin-bottom: 0.5rem;">อ้างอิงประกาศศูนย์สอบความรู้ฯ (ศสภ.) ที่ 5/2566</span>
+          <div style="max-width: 740px;">
+            <span class="badge badge-blue" style="font-size: 0.85rem; margin-bottom: 0.5rem;">ประกาศ ศสภ. ที่ 5/2566 + บูรณาการชีท Google Drive ครบทั้ง ${totalDriveFolders} โฟลเดอร์ (${totalDriveFiles} ไฟล์ PDF)</span>
             <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem;">
               📘 สรุปเนื้อหาสอบใบประกอบวิชาชีพเภสัชกรรม (PLE-CC1 & CC2)
             </h1>
             <p style="color: var(--text-secondary); font-size: 1.05rem;">
-              ครอบคลุมครบทุกกลุ่มโรคย่อยในภาคผนวก 1 + บูรณาการความรู้ด้านผลิตภัณฑ์ (เทคโนโลยีเภสัชกรรม เภสัชเคมี การควบคุมคุณภาพ สมุนไพรในบัญชียาหลักฯ) และกฎหมายเภสัชกรรม (สัดส่วน <b>ผู้ป่วย 50% : ผลิตภัณฑ์ 40% : สังคมและกฎหมาย 10%</b>)
+              รวมสรุปตารางเปรียบเทียบแนวทางเวชปฏิบัติ ยาสำคัญ เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร เภสัชเศรษฐศาสตร์ กฎหมายวิชาชีพ และ<b>เนื้อหาสไลด์ต้นฉบับจาก Google Drive ทั้ง ${totalDriveFolders} โฟลเดอร์ (${totalDriveFiles} ไฟล์ PDF รวม 6,104 หน้า)</b>
             </p>
           </div>
           <div style="background: var(--bg-surface); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); min-width: 220px; text-align: center;">
@@ -155,7 +213,7 @@ const App = {
         </div>
 
         <div style="margin-top: 1.25rem; position: relative;">
-          <input type="search" id="globalSearchInput" class="search-input" placeholder="🔍 ค้นหาโรค, ชื่อยา, กลไก, ยีนแพ้ยา (HLA), ADR, กฎหมาย, สูตรคำนวณ (เช่น allopurinol, GINA, ข.ย.11, HLB, warfarin)..." autocomplete="off">
+          <input type="search" id="globalSearchInput" class="search-input" placeholder="🔍 ค้นหาได้ทั้งสรุปและในชีท Drive 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
         </div>
         <div id="searchResultsBox" style="margin-top: 0.75rem;"></div>
       </div>
@@ -174,9 +232,10 @@ const App = {
       ` : ''}
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-        <h2 style="font-size: 1.45rem;">🗂️ สารบัญเนื้อหาครบตามเกณฑ์ประกาศ ศสภ. ที่ 5/2566</h2>
-        <div style="display: flex; gap: 0.6rem;">
-          <a href="#/cheatsheet" class="btn btn-outline" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">⚡ ดูรวมจุดเน้น High-Yield ทั้งหมด</a>
+        <h2 style="font-size: 1.45rem;">🗂️ สารบัญเนื้อหาครบตามเกณฑ์ ศสภ. + ชีท Drive</h2>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <a href="#/drive" class="btn btn-outline" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">📂 เปิดคลังชีท Drive (${totalDriveFolders} โฟลเดอร์ / ${totalDriveFiles} ไฟล์)</a>
+          <a href="#/cheatsheet" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">⚡ ดูรวมจุดเน้น High-Yield</a>
           <a href="#/summary?topic=${allTopics[0]?.id || ''}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">📖 เริ่มอ่านเรียงตามบท</a>
         </div>
       </div>
@@ -198,6 +257,7 @@ const App = {
                   ${g.topics.map(t => {
                     const isRead = !!this.state.readTopics[t.id];
                     const isBookmarked = !!this.state.bookmarkedTopics[t.id];
+                    const pdfCount = (t.driveFiles || []).length;
                     return `
                       <a href="#/summary?topic=${t.id}" style="
                         text-decoration: none;
@@ -216,7 +276,9 @@ const App = {
                           <div style="font-weight: 600; font-size: 0.98rem;">
                             ${isRead ? '✅ ' : '📄 '}${t.titleTh || t.title}
                           </div>
-                          <div style="font-size: 0.82rem; color: var(--text-secondary);">${t.title}</div>
+                          <div style="font-size: 0.82rem; color: var(--text-secondary);">
+                            ${t.title} ${pdfCount ? `<span class="badge badge-blue" style="font-size: 0.72rem; margin-left: 0.25rem;">📂 ${pdfCount} PDF</span>` : ''}
+                          </div>
                         </div>
                         <span style="font-size: 0.85rem; color: var(--primary); white-space: nowrap;">
                           ${isBookmarked ? '⭐ ' : ''}อ่านสรุป →
@@ -234,7 +296,7 @@ const App = {
       <!-- Full Inline Expandable Content directly on Home Page -->
       <div style="margin-top: 2.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
-          <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">📖 เนื้อหาสรุปฉบับเต็ม (กางอ่านได้ทันทีในหน้าเดียว หรือคลิกแต่ละบท)</h2>
+          <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">📖 เนื้อหาสรุปฉบับเต็ม + สไลด์ชีท Drive (กางอ่านได้ทันทีในหน้าเดียว)</h2>
           <div style="display: flex; gap: 0.5rem;">
             <button id="expandAllBtn" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;">📂 กางเนื้อหาทุกบททั้งหมด</button>
             <button id="collapseAllBtn" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;">📁 ย่อเก็บทั้งหมด</button>
@@ -250,7 +312,11 @@ const App = {
               ${g.topics.map((t, tIdx) => `
                 <details class="card home-topic-details" ${gIdx === 0 && tIdx === 0 ? 'open' : ''} style="margin-bottom: 0;">
                   <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; list-style: none;">
-                    <span>📌 ${t.titleTh || t.title} <small style="font-weight: 500; color: var(--text-secondary);">(${t.title})</small></span>
+                    <span>
+                      📌 ${t.titleTh || t.title}
+                      <small style="font-weight: 500; color: var(--text-secondary);">(${t.title})</small>
+                      ${(t.driveFiles && t.driveFiles.length) ? `<span class="badge badge-blue" style="font-size: 0.78rem; margin-left: 0.35rem;">📂 ชีท Drive ${t.driveFiles.length} ไฟล์</span>` : ''}
+                    </span>
                     <span style="display: flex; gap: 0.5rem; align-items: center;">
                       <a href="#/summary?topic=${t.id}" class="btn btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.85rem;" onclick="event.stopPropagation();">เปิดหน้าเต็ม ↗</a>
                     </span>
@@ -270,6 +336,7 @@ const App = {
                         <div style="line-height: 1.7; font-size: 1.02rem;">${s.html}</div>
                       </div>
                     `).join('')}
+                    ${this.renderDriveFilesWidget(t.driveFiles, true)}
                   </div>
                 </details>
               `).join('')}
@@ -286,7 +353,7 @@ const App = {
       document.querySelectorAll('.home-topic-details').forEach(d => { d.open = false; });
     });
 
-    // Bind live search
+    // Bind live search (searches both structured topics AND all extracted Drive PDFs)
     const searchInput = document.getElementById('globalSearchInput');
     const resultsBox = document.getElementById('searchResultsBox');
     searchInput?.addEventListener('input', () => {
@@ -304,7 +371,7 @@ const App = {
         }
         const hyHits = (t.highYield || []).filter(hy => hy.toLowerCase().includes(q));
         if (hyHits.length > 0) {
-          hitWhere.push(`High-Yield (${hyHits[0].slice(0, 90)}...)`);
+          hitWhere.push(`High-Yield: "${hyHits[0].slice(0, 90)}..."`);
         }
         (t.sections || []).forEach(s => {
           const plain = (s.heading + ' ' + this.stripHtml(s.html)).toLowerCase();
@@ -314,21 +381,34 @@ const App = {
             hitWhere.push(`${s.heading}: "...${snippet}..."`);
           }
         });
+        (t.driveFiles || []).forEach(df => {
+          if (df.name.toLowerCase().includes(q)) {
+            hitWhere.push(`ไฟล์ชีท Drive: ${df.name}`);
+          }
+          (df.blocks || []).forEach(b => {
+            const bplain = (b.title + ' ' + b.text).toLowerCase();
+            const idx = bplain.indexOf(q);
+            if (idx !== -1 && hitWhere.length < 4) {
+              const snippet = bplain.slice(Math.max(0, idx - 25), Math.min(bplain.length, idx + 75)).replace(/\n/g, ' ');
+              hitWhere.push(`📄 [${df.name} ${b.pages}]: "...${snippet}..."`);
+            }
+          });
+        });
 
         if (hitWhere.length > 0) {
-          matches.push({ topic: t, hits: hitWhere.slice(0, 3) });
+          matches.push({ topic: t, hits: hitWhere.slice(0, 4) });
         }
       });
 
       if (matches.length === 0) {
-        resultsBox.innerHTML = `<div class="card" style="margin-bottom:0; padding: 0.8rem;">ไม่พบคำว่า "<b>${q}</b>" ในคลังเนื้อหา</div>`;
+        resultsBox.innerHTML = `<div class="card" style="margin-bottom:0; padding: 0.8rem;">ไม่พบคำว่า "<b>${this.escapeHtml(q)}</b>" ในคลังเนื้อหา</div>`;
         return;
       }
 
       resultsBox.innerHTML = `
-        <div class="card" style="margin-bottom: 0; max-height: 420px; overflow-y: auto; border: 2px solid var(--primary);">
+        <div class="card" style="margin-bottom: 0; max-height: 440px; overflow-y: auto; border: 2px solid var(--primary);">
           <div style="font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem;">
-            พบ ${matches.length} หัวข้อที่เกี่ยวข้องกับ "${searchInput.value.trim()}":
+            พบ ${matches.length} หัวข้อที่เกี่ยวข้องกับ "${this.escapeHtml(searchInput.value.trim())}":
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             ${matches.map(m => `
@@ -337,7 +417,7 @@ const App = {
                   ${m.topic.icon} ${m.topic.titleTh} (${m.topic.title}) — <span style="font-weight: 500; color: var(--text-secondary);">${m.topic.groupName}</span>
                 </div>
                 <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">
-                  ${m.hits.map(h => `<div>• ${h}</div>`).join('')}
+                  ${m.hits.map(h => `<div>• ${this.escapeHtml(h)}</div>`).join('')}
                 </div>
               </a>
             `).join('')}
@@ -454,6 +534,9 @@ const App = {
             </section>
           `).join('')}
 
+          <!-- Attached Google Drive PDFs & Full Extracted Slides -->
+          ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
+
           ${currentTopic.refs && currentTopic.refs.length > 0 ? `
             <div class="card" style="background: var(--bg-primary); font-size: 0.9rem; color: var(--text-secondary);">
               <b>📚 แนวทางเวชปฏิบัติและเอกสารอ้างอิง:</b>
@@ -509,9 +592,87 @@ const App = {
     });
   },
 
+  // ================= VIEW: 23-FOLDER GOOGLE DRIVE LIBRARY =================
+  renderDriveLibrary(c, activeFolderId) {
+    const folders = this.data.driveFolders || [];
+    const totalFiles = folders.reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
+    const totalPages = folders.reduce((acc, f) => acc + (f.files || []).reduce((s, x) => s + (x.totalPages || 0), 0), 0);
+
+    c.innerHTML = `
+      <div class="card" style="background: linear-gradient(135deg, var(--primary-light), var(--bg-surface)); border-color: var(--primary); margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="badge badge-blue">Google Drive Sync • Pharma Plus Institute</span>
+            <h1 style="font-size: 1.85rem; font-weight: 700; color: var(--text-primary); margin-top: 0.3rem;">
+              📂 คลังชีท Google Drive ทั้งหมด ${folders.length} โฟลเดอร์ (${totalFiles} ไฟล์ PDF • ${totalPages.toLocaleString()} หน้า)
+            </h1>
+            <p style="color: var(--text-secondary);">
+              รวมไฟล์ชีทสรุปและไฟล์ตะลุยโจทย์จากลิงก์ Google Drive ทั้งหมด สามารถกดเปิดไฟล์ PDF ต้นฉบับใน Drive หรือกางอ่านเนื้อหาสไลด์ทุกหน้าได้จากที่นี่โดยตรง
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem;">
+          <input type="search" id="driveSearchInput" class="search-input" placeholder="🔎 ค้นหาชื่อไฟล์ PDF หรือเนื้อหาภายในสไลด์ทั้ง 119 ไฟล์..." autocomplete="off">
+        </div>
+      </div>
+
+      <div id="driveFoldersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+        ${folders.map((folder, fIdx) => `
+          <div class="card drive-folder-card" data-folder-name="${this.escapeHtml(folder.name.toLowerCase())}" style="margin-bottom: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
+              <h2 style="font-size: 1.35rem; font-weight: 700; color: var(--primary);">
+                📁 ${fIdx + 1}. ${this.escapeHtml(folder.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${folder.files.length} ไฟล์)</small>
+              </h2>
+              <a href="${folder.url}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.85rem;">
+                เปิดโฟลเดอร์นี้ใน Google Drive ↗
+              </a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+              ${folder.files.map(df => `
+                <details class="drive-file-item" data-search="${this.escapeHtml((df.name + ' ' + folder.name + ' ' + (df.blocks || []).map(b => b.title + ' ' + b.text).join(' ')).toLowerCase())}" style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-primary); padding: 0.6rem 0.85rem;">
+                  <summary style="cursor: pointer; font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                    <span>📄 ${this.escapeHtml(df.name)} <small style="font-weight: 500; color: var(--text-secondary);">(${df.totalPages || 0} หน้า • ${(df.blocks || []).length} หัวข้อสไลด์)</small></span>
+                    <span style="display: flex; gap: 0.5rem; align-items: center;">
+                      <a href="${df.url}" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 0.2rem 0.65rem; font-size: 0.82rem;" onclick="event.stopPropagation();">เปิด PDF ต้นฉบับ ↗</a>
+                      <span style="font-size: 0.82rem; color: var(--primary);">อ่านสไลด์ ▼</span>
+                    </span>
+                  </summary>
+                  <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; max-height: 500px; overflow-y: auto;">
+                    ${(df.blocks && df.blocks.length > 0) ? df.blocks.map(b => `
+                      <div style="padding: 0.5rem 0.75rem; background: var(--bg-surface); border-radius: var(--radius-sm); border-left: 3px solid var(--primary);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
+                          <strong style="color: var(--primary);">${this.escapeHtml(b.title)}</strong>
+                          <span class="badge" style="font-size: 0.75rem;">${this.escapeHtml(b.pages)}</span>
+                        </div>
+                        <div style="white-space: pre-line; font-size: 0.95rem; line-height: 1.6;">${this.escapeHtml(b.text)}</div>
+                      </div>
+                    `).join('') : `<div style="color: var(--text-muted);">ไฟล์นี้เป็นสไลด์ภาพ/ข้อสอบ กดปุ่ม "เปิด PDF ต้นฉบับ ↗" เพื่อเปิดดูไฟล์เต็มใน Google Drive ได้เลยครับ</div>`}
+                  </div>
+                </details>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    const searchInput = document.getElementById('driveSearchInput');
+    searchInput?.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll('.drive-folder-card').forEach(card => {
+        let visibleFiles = 0;
+        card.querySelectorAll('.drive-file-item').forEach(item => {
+          const match = !q || (item.dataset.search || '').includes(q);
+          item.style.display = match ? 'block' : 'none';
+          if (match) visibleFiles++;
+        });
+        card.style.display = visibleFiles > 0 ? 'block' : 'none';
+      });
+    });
+  },
+
   // ================= VIEW: ALL HIGH-YIELD CHEAT SHEET =================
   renderCheatSheet(c) {
-    const allTopics = this.getAllTopics();
     c.innerHTML = `
       <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
         <div>
@@ -519,7 +680,7 @@ const App = {
             ⚡ สรุปรวมจุดเน้น High-Yield ก่อนเข้าห้องสอบ (ครบทุกบท)
           </h1>
           <p style="color: var(--text-secondary);">
-            รวบรวมเฉพาะประเด็นสำคัญที่ออกสอบบ่อยที่สุดของทุกกลุ่มโรค ผลิตภัณฑ์ และกฎหมาย สำหรับกวาดตาทบทวนเร็ว ๆ
+            รวบรวมเฉพาะประเด็นสำคัญที่ออกสอบบ่อยที่สุดของทุกกลุ่มโรค ผลิตภัณฑ์ เภสัชเคมี และกฎหมาย สำหรับกวาดตาทบทวนเร็ว ๆ
           </p>
         </div>
         <button class="btn btn-outline no-print" onclick="window.print()">🖨️ พิมพ์สรุป High-Yield ทั้งหมด</button>
@@ -535,7 +696,7 @@ const App = {
               <div style="padding: 0.75rem 1rem; background: var(--bg-primary); border-radius: var(--radius-sm); border-left: 4px solid var(--primary);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
                   <h3 style="font-size: 1.15rem; font-weight: 700;">${t.titleTh || t.title} (${t.title})</h3>
-                  <a href="#/summary?topic=${t.id}" class="btn btn-secondary no-print" style="padding: 0.25rem 0.65rem; font-size: 0.85rem;">อ่านตารางเต็ม →</a>
+                  <a href="#/summary?topic=${t.id}" class="btn btn-secondary no-print" style="padding: 0.25rem 0.65rem; font-size: 0.85rem;">อ่านตารางเต็ม + ชีท Drive →</a>
                 </div>
                 <ul style="padding-left: 1.3rem;">
                   ${(t.highYield || []).map(hy => `<li style="margin-bottom: 0.3rem;">${hy}</li>`).join('')}
