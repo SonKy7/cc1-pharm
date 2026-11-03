@@ -14,6 +14,22 @@ const App = {
     this.setupTheme();
     this.setupFontSize();
     window.addEventListener('hashchange', () => this.handleRoute());
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        const searchInput = document.getElementById('globalSearchInput');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        } else {
+          window.location.hash = '#/';
+          setTimeout(() => {
+            const s = document.getElementById('globalSearchInput');
+            if (s) { s.focus(); s.select(); }
+          }, 150);
+        }
+      }
+    });
     this.handleRoute();
   },
 
@@ -172,46 +188,73 @@ const App = {
     const totalDriveFiles = (this.data.driveFolders || []).reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
 
     c.innerHTML = `
-      <div class="card" style="background: linear-gradient(135deg, var(--primary-light), var(--bg-surface)); border-color: var(--primary); padding: 1.75rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-          <div style="max-width: 740px;">
-            <span class="badge badge-blue" style="font-size: 0.85rem; margin-bottom: 0.5rem;">ประกาศ ศสภ. ที่ 5/2566 + บูรณาการชีท Google Drive ครบทั้ง ${totalDriveFolders} โฟลเดอร์ (${totalDriveFiles} ไฟล์ PDF)</span>
-            <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem;">
-              📘 สรุปเนื้อหาสอบใบประกอบวิชาชีพเภสัชกรรม (PLE-CC1 & CC2)
-            </h1>
-            <p style="color: var(--text-secondary); font-size: 1.05rem;">
-              รวมสรุปตารางเปรียบเทียบแนวทางเวชปฏิบัติ ยาสำคัญ เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร เภสัชเศรษฐศาสตร์ กฎหมายวิชาชีพ และ<b>เนื้อหาสไลด์ต้นฉบับจาก Google Drive ทั้ง ${totalDriveFolders} โฟลเดอร์ (${totalDriveFiles} ไฟล์ PDF รวม 6,104 หน้า)</b>
-            </p>
+      <div class="hero-banner">
+        <div class="hero-pill">
+          <span class="ping-dot"></span>
+          <span>เกณฑ์ ศสภ. ที่ 5/2566 · 23 โฟลเดอร์ Drive (${totalDriveFiles} ไฟล์ PDF / 6,104 หน้าสไลด์)</span>
+        </div>
+        <h1 class="hero-title">
+          📘 PLE-CC1 <span class="gradient-text">Knowledge Hub</span>
+        </h1>
+        <p class="hero-subtitle">
+          คลังสรุปเนื้อหาเข้มข้นเพื่อสอบใบประกอบวิชาชีพเภสัชกรรม ครบทั้ง 16 กลุ่มโรค เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร และกฎหมายวิชาชีพ แยกอ่าน 1 สไลด์/1 โรค = 1 บทเดี่ยวชัดเจน
+        </p>
+
+        <!-- Metric Pods -->
+        <div class="metric-grid">
+          <div class="metric-pod">
+            <div class="metric-label">หมวดวิชาหลัก</div>
+            <div class="metric-val">19 <span class="metric-sub">หมวด</span></div>
           </div>
-          <div style="background: var(--bg-surface); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); min-width: 220px; text-align: center;">
-            <div style="font-size: 0.85rem; color: var(--text-muted);">ความคืบหน้าการอ่านของคุณ</div>
-            <div style="font-size: 1.9rem; font-weight: 700; color: var(--primary);">${readCount} / ${allTopics.length}</div>
-            <div style="font-size: 0.85rem; color: var(--success); font-weight: 600;">อ่านจบแล้ว ${percentRead}%</div>
+          <div class="metric-pod">
+            <div class="metric-label">บทสรุปรายโรค/สไลด์</div>
+            <div class="metric-val">109 <span class="metric-sub">บทเดี่ยว</span></div>
+          </div>
+          <div class="metric-pod">
+            <div class="metric-label">สไลด์ PDF ต้นฉบับ</div>
+            <div class="metric-val">${totalDriveFiles} <span class="metric-sub">ไฟล์ (6,104 หน้า)</span></div>
+          </div>
+          <div class="metric-pod" style="border-color: var(--primary);">
+            <div class="metric-label">ความคืบหน้าการอ่าน</div>
+            <div class="metric-val" style="color: var(--primary);">${percentRead}% <span class="metric-sub">(${readCount}/${allTopics.length})</span></div>
           </div>
         </div>
 
-        <div style="margin-top: 1.25rem; position: relative;">
-          <input type="search" id="globalSearchInput" class="search-input" placeholder="🔍 ค้นหาได้ทั้งสรุปและในชีท Drive 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
+        <!-- Spotlight Search Bar -->
+        <div class="search-wrapper">
+          <span class="search-icon-fixed">🔍</span>
+          <input type="search" id="globalSearchInput" class="search-input" placeholder="ค้นหาได้ทั้งสรุปและสไลด์ PDF 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
+          <span class="search-kbd">⌘K / Ctrl+K</span>
         </div>
         <div id="searchResultsBox" style="margin-top: 0.75rem;"></div>
 
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.15rem; align-items: center; padding-top: 0.75rem; border-top: 1px dashed var(--border-color);">
-          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">🔗 เครือข่ายเตรียมสอบสภาเภสัช:</span>
-          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 4px rgba(124, 58, 237, 0.25);">
+        <!-- Quick Action & Companion App Pills -->
+        <div class="action-pills-bar">
+          <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);">🔗 เครือข่ายเตรียมสอบ:</span>
+          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn btn-purple" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
             🧪 CC2 OSPE Lab · ห้องฝึก OSPE เภสัช ↗
           </a>
-          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="btn btn-outline" style="background: var(--bg-surface); text-decoration: none; font-size: 0.88rem; padding: 0.4rem 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
             🎯 เว็บฝึกทำข้อสอบ PLE-CC1 ↗
+          </a>
+          <a href="#/drive" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+            📂 คลังชีท Drive (${totalDriveFolders} โฟลเดอร์)
+          </a>
+          <a href="#/cheatsheet" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+            ⚡ รวมจุดเน้น High-Yield
           </a>
         </div>
       </div>
 
       ${bookmarkedList.length > 0 ? `
         <div class="card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--warning);">
-          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem;">⭐ หัวข้อที่คุณปักหมุดไว้ทบทวนด่วน (${bookmarkedList.length})</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;">⭐ หัวข้อที่คุณปักหมุดไว้ทบทวนด่วน (${bookmarkedList.length})</h3>
+            <span class="badge" style="background: var(--warning-bg); color: var(--warning); border-color: var(--warning-border);">ทบทวนซ้ำ</span>
+          </div>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
             ${bookmarkedList.map(t => `
-              <a href="#/summary?topic=${t.id}" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.35rem 0.8rem;">
+              <a href="#/summary?topic=${t.id}" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.4rem 0.85rem;">
                 ${t.icon} ${t.titleTh || t.title}
               </a>
             `).join('')}
@@ -219,58 +262,57 @@ const App = {
         </div>
       ` : ''}
 
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-        <h2 style="font-size: 1.45rem;">🗂️ สารบัญเนื้อหาครบตามเกณฑ์ ศสภ. + ชีท Drive</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+        <div>
+          <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em;">🗂️ สารบัญเนื้อหา 19 หมวดวิชา</h2>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">แยกอ่านทีละสไลด์เดี่ยว ครอบคลุม 109 บทเต็มโครงสร้าง ศสภ.</p>
+        </div>
         <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-          <a href="#/drive" class="btn btn-outline" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">📂 เปิดคลังชีท Drive (${totalDriveFolders} โฟลเดอร์ / ${totalDriveFiles} ไฟล์)</a>
-          <a href="#/cheatsheet" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">⚡ ดูรวมจุดเน้น High-Yield</a>
-          <a href="#/summary?topic=${allTopics[0]?.id || ''}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.45rem 0.9rem;">📖 เริ่มอ่านเรียงตามบท</a>
+          <a href="#/summary?topic=${allTopics[0]?.id || ''}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+            📖 เริ่มอ่านเรียงตามบท
+          </a>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
+      <div class="chapter-grid">
         ${this.data.groups.map((g, idx) => {
           const doneInGroup = g.topics.filter(t => this.state.readTopics[t.id]).length;
+          const isComplete = doneInGroup === g.topics.length && g.topics.length > 0;
           return `
-            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+            <div class="chapter-card">
               <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 1.5rem;">${g.icon || '📌'}</span>
-                    <h3 style="font-size: 1.15rem; font-weight: 700;">หมวด ${idx + 1}: ${g.groupName}</h3>
+                <div class="chapter-header">
+                  <div class="chapter-title-group">
+                    <span class="chapter-icon">${g.icon || '📌'}</span>
+                    <div>
+                      <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">หมวด ${idx + 1}</div>
+                      <h3 class="chapter-title">${g.groupName}</h3>
+                    </div>
                   </div>
-                  <span class="badge ${doneInGroup === g.topics.length ? 'conf-high' : ''}">${doneInGroup}/${g.topics.length} อ่านแล้ว</span>
+                  <span class="badge ${isComplete ? 'conf-high' : ''}">
+                    ${doneInGroup}/${g.topics.length} บท
+                  </span>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.6rem;">
+                <div class="topic-list-group">
                   ${g.topics.map(t => {
                     const isRead = !!this.state.readTopics[t.id];
                     const isBookmarked = !!this.state.bookmarkedTopics[t.id];
                     const pdfCount = (t.driveFiles || []).length;
                     return `
-                      <a href="#/summary?topic=${t.id}" style="
-                        text-decoration: none;
-                        color: var(--text-primary);
-                        padding: 0.5rem 0.7rem;
-                        border-radius: var(--radius-sm);
-                        border: 1px solid var(--border-color);
-                        background: ${isRead ? 'var(--success-bg)' : 'var(--bg-primary)'};
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        gap: 0.5rem;
-                        transition: all 0.15s;
-                      ">
+                      <a href="#/summary?topic=${t.id}" class="topic-row-link ${isRead ? 'is-read' : ''}">
                         <div>
-                          <div style="font-weight: 600; font-size: 0.98rem;">
-                            ${isRead ? '✅ ' : '📄 '}${t.titleTh || t.title}
+                          <div class="topic-row-title">
+                            <span>${isRead ? '✅' : '📄'}</span>
+                            <span>${t.titleTh || t.title}</span>
                           </div>
-                          <div style="font-size: 0.82rem; color: var(--text-secondary);">
-                            ${t.title} ${pdfCount ? `<span class="badge badge-blue" style="font-size: 0.72rem; margin-left: 0.25rem;">📂 ${pdfCount} PDF</span>` : ''}
+                          <div class="topic-row-sub">
+                            ${t.title} ${pdfCount ? `<span class="badge badge-blue" style="font-size: 0.72rem; padding: 0.1rem 0.45rem; margin-left: 0.25rem;">📂 ${pdfCount} PDF</span>` : ''}
                           </div>
                         </div>
-                        <span style="font-size: 0.85rem; color: var(--primary); white-space: nowrap;">
-                          ${isBookmarked ? '⭐ ' : ''}อ่านสรุป →
-                        </span>
+                        <div style="display: flex; align-items: center; gap: 0.4rem;">
+                          ${isBookmarked ? '<span>⭐</span>' : ''}
+                          <span class="topic-arrow">→</span>
+                        </div>
                       </a>
                     `;
                   }).join('')}
