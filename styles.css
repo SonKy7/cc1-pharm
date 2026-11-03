@@ -420,6 +420,21 @@ th {
   opacity: 0.9;
 }
 
+.nav-cc2 {
+  background: rgba(139, 92, 246, 0.12) !important;
+  color: #7c3aed !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  font-weight: 600 !important;
+}
+[data-theme="dark"] .nav-cc2 {
+  background: rgba(167, 139, 250, 0.18) !important;
+  color: #c4b5fd !important;
+  border: 1px solid rgba(167, 139, 250, 0.45) !important;
+}
+.nav-cc2:hover {
+  opacity: 0.88;
+}
+
 .search-input {
   width: 100%;
   padding: 0.85rem 1.2rem;

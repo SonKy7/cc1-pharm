@@ -194,6 +194,16 @@ const App = {
           <input type="search" id="globalSearchInput" class="search-input" placeholder="🔍 ค้นหาได้ทั้งสรุปและในชีท Drive 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
         </div>
         <div id="searchResultsBox" style="margin-top: 0.75rem;"></div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.15rem; align-items: center; padding-top: 0.75rem; border-top: 1px dashed var(--border-color);">
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">🔗 เครือข่ายเตรียมสอบสภาเภสัช:</span>
+          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 4px rgba(124, 58, 237, 0.25);">
+            🧪 CC2 OSPE Lab · ห้องฝึก OSPE เภสัช ↗
+          </a>
+          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="btn btn-outline" style="background: var(--bg-surface); text-decoration: none; font-size: 0.88rem; padding: 0.4rem 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+            🎯 เว็บฝึกทำข้อสอบ PLE-CC1 ↗
+          </a>
+        </div>
       </div>
 
       ${bookmarkedList.length > 0 ? `
@@ -523,6 +533,19 @@ const App = {
               </ul>
             </div>
           ` : ''}
+
+          <!-- Partner CC2 OSPE Banner -->
+          <div class="card no-print" style="background: rgba(139, 92, 246, 0.08); border: 1px dashed rgba(139, 92, 246, 0.35); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+            <div>
+              <div style="font-weight: 700; color: #7c3aed; font-size: 1rem;">🧪 เตรียมต่อการสอบปฏิบัติการ PLE-CC2?</div>
+              <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                เมื่ออ่านทฤษฎี CC1 เข้าใจแล้ว สามารถไปฝึกจำลองสถานี OSPE ซักประวัติและจ่ายยาต่อได้ที่ <b>CC2 OSPE Lab · ห้องฝึก OSPE เภสัช</b>
+              </div>
+            </div>
+            <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.45rem 0.9rem; font-weight: 600; white-space: nowrap;">
+              เข้าห้องฝึก CC2 OSPE Lab ↗
+            </a>
+          </div>
 
           <!-- Prev / Next Topic Footer Navigation -->
           <div class="card no-print" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
