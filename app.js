@@ -257,7 +257,9 @@ ${this.escapeHtml(df.rawText)}
       this.highlightNav('quick-rx');
       const params = new URLSearchParams(query);
       this.state.quickMode = true;
-      this.renderSummary(container, params.get('topic') || 'ibs');
+      const allTopics = this.getAllTopics();
+      const defaultTopic = this.state.currentTopicId || (allTopics[0] ? allTopics[0].id : 'htn');
+      this.renderSummary(container, params.get('topic') || defaultTopic);
     } else if (path.startsWith('/summary')) {
       this.state.quickMode = false;
       this.highlightNav('summary');
@@ -497,6 +499,7 @@ ${this.escapeHtml(df.rawText)}
       return;
     }
 
+    this.state.currentTopicId = currentTopic.id;
     const prevTopic = currentIndex > 0 ? allTopics[currentIndex - 1] : null;
     const nextTopic = currentIndex < allTopics.length - 1 ? allTopics[currentIndex + 1] : null;
     const isRead = !!this.state.readTopics[currentTopic.id];
@@ -504,7 +507,7 @@ ${this.escapeHtml(df.rawText)}
 
     const existingLayout = c.querySelector('.summary-layout');
     const existingSidebar = document.getElementById('summarySidebar');
-    const existingArticle = c.querySelector('.topic-content');
+    const getArticleElement = () => c.querySelector('.topic-content');
 
     const renderArticleHtml = () => `
       <div class="card" style="margin-bottom: 1rem;">
@@ -616,7 +619,7 @@ ${this.escapeHtml(df.rawText)}
       <div class="card no-print" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
         <div>
           ${prevTopic ? `
-            <a href="#/summary?topic=${prevTopic.id}" class="btn btn-secondary">
+            <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${prevTopic.id}" class="btn btn-secondary">
               ⬅️ ก่อนหน้า: ${prevTopic.titleTh || prevTopic.title}
             </a>
           ` : `<span></span>`}
@@ -626,7 +629,7 @@ ${this.escapeHtml(df.rawText)}
         </button>
         <div>
           ${nextTopic ? `
-            <a href="#/summary?topic=${nextTopic.id}" class="btn btn-primary">
+            <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${nextTopic.id}" class="btn btn-primary">
               ถัดไป: ${nextTopic.titleTh || nextTopic.title} ➡️
             </a>
           ` : `<a href="#/" class="btn btn-primary">🏠 กลับหน้าสารบัญ</a>`}
@@ -658,28 +661,41 @@ ${this.escapeHtml(df.rawText)}
       document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
         this.toggleRead(currentTopic.id);
         if (!isRead && nextTopic) {
-          window.location.hash = `#/summary?topic=${nextTopic.id}`;
+          window.location.hash = `#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${nextTopic.id}`;
         }
       });
       document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
       document.getElementById('viewMasterModeBtn')?.addEventListener('click', () => {
         this.state.quickMode = false;
-        existingArticle.innerHTML = renderArticleHtml();
-        attachArticleEvents();
+        const artEl = getArticleElement();
+        if (artEl) {
+          artEl.innerHTML = renderArticleHtml();
+          attachArticleEvents();
+        } else {
+          this.renderSummary(c, currentTopic.id);
+        }
+        try { history.replaceState(null, '', `#/summary?topic=${currentTopic.id}`); } catch(e) {}
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       document.getElementById('viewQuickRxModeBtn')?.addEventListener('click', () => {
         this.state.quickMode = true;
-        existingArticle.innerHTML = renderArticleHtml();
-        attachArticleEvents();
+        const artEl = getArticleElement();
+        if (artEl) {
+          artEl.innerHTML = renderArticleHtml();
+          attachArticleEvents();
+        } else {
+          this.renderSummary(c, currentTopic.id);
+        }
+        try { history.replaceState(null, '', `#/quick-rx?topic=${currentTopic.id}`); } catch(e) {}
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     };
 
-    if (existingLayout && existingSidebar && existingArticle) {
+    const currentArtEl = getArticleElement();
+    if (existingLayout && existingSidebar && currentArtEl) {
       // In-place update: sidebar preserves its exact scroll position, main article updates and jumps smoothly to top
       const prevScrollTop = existingSidebar.scrollTop;
-      existingArticle.innerHTML = renderArticleHtml();
+      currentArtEl.innerHTML = renderArticleHtml();
       attachArticleEvents();
 
       existingSidebar.querySelectorAll('.sidebar-topic-link').forEach(a => {
@@ -705,16 +721,18 @@ ${this.escapeHtml(df.rawText)}
           <div id="sidebarTopicList" style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${this.data.groups.map((g, gIdx) => `
               <div class="sidebar-group">
-                <div class="sidebar-group-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0 0.3rem;">
-                  ${g.icon} ${gIdx + 1}. ${g.groupName}
-                </div>
+                <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${g.topics[0] ? g.topics[0].id : ''}" style="text-decoration: none; display: block;" title="ไปยังบทแรกของหมวดนี้">
+                  <div class="sidebar-group-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0.2rem 0.3rem; border-radius: 4px; cursor: pointer; transition: all 0.15s ease;">
+                    ${g.icon} ${gIdx + 1}. ${g.groupName}
+                  </div>
+                </a>
                 <div class="sidebar-group-topics" style="display: flex; flex-direction: column; gap: 0.2rem;">
                   ${g.topics.map(t => {
                     const active = t.id === currentTopic.id;
                     const read = !!this.state.readTopics[t.id];
                     const bmk = !!this.state.bookmarkedTopics[t.id];
                     return `
-                      <a href="#/summary?topic=${t.id}" class="sidebar-topic-link" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="
+                      <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="
                         text-decoration: none;
                         padding: 0.4rem 0.65rem;
                         border-radius: var(--radius-sm);
@@ -760,7 +778,7 @@ ${this.escapeHtml(df.rawText)}
     document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
       this.toggleRead(currentTopic.id);
       if (!isRead && nextTopic) {
-        window.location.hash = `#/summary?topic=${nextTopic.id}`;
+        window.location.hash = `#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${nextTopic.id}`;
       }
     });
     document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
