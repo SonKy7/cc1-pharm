@@ -204,7 +204,13 @@ ${this.escapeHtml(df.rawText)}
     if (path === '/' || path === '') {
       this.highlightNav('home');
       this.renderHome(container);
+    } else if (path.startsWith('/quick-rx')) {
+      this.highlightNav('quick-rx');
+      const params = new URLSearchParams(query);
+      this.state.quickMode = true;
+      this.renderSummary(container, params.get('topic') || 'ibs');
     } else if (path.startsWith('/summary')) {
+      this.state.quickMode = false;
       this.highlightNav('summary');
       const params = new URLSearchParams(query);
       this.renderSummary(container, params.get('topic'));
@@ -483,11 +489,26 @@ ${this.escapeHtml(df.rawText)}
         ` : ''}
       </div>
 
+      <!-- View Mode Switcher -->
+      <div class="no-print" style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
+        <button id="viewMasterModeBtn" class="btn ${!this.state.quickMode ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.92rem; padding: 0.45rem 0.95rem; font-weight: 600;">
+          📖 สรุปเนื้อหาเต็ม (Master Lecture)
+        </button>
+        <button id="viewQuickRxModeBtn" class="btn ${this.state.quickMode ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.92rem; padding: 0.45rem 0.95rem; font-weight: 600;">
+          ⚡ สรุปย่อเน้นสอบ + ตารางยา (Quick Rx Matrix)
+        </button>
+      </div>
+
       <!-- Embedded Video/Audio Lecture Player -->
       ${this.renderVideoWidget(currentTopic.videos)}
 
-      <!-- Detailed Sections -->
-      ${currentTopic.sections.map((s, idx) => `
+      <!-- Detailed Sections / Quick Mode Filter -->
+      ${currentTopic.sections.filter(s => {
+        if (!this.state.quickMode) return true;
+        // In quick mode, prioritize Quick Rx Matrix & Summary
+        const h = s.heading || '';
+        return h.includes('Quick Rx') || h.includes('ตารางยา') || h.includes('สรุปย่อ') || h.includes('สรุปคำสอนสด');
+      }).map((s, idx) => `
         <section class="card" style="margin-bottom: 1rem;">
           <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
             ${idx + 1}. ${s.heading}
@@ -573,6 +594,18 @@ ${this.escapeHtml(df.rawText)}
         }
       });
       document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
+      document.getElementById('viewMasterModeBtn')?.addEventListener('click', () => {
+        this.state.quickMode = false;
+        existingArticle.innerHTML = renderArticleHtml();
+        attachArticleEvents();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      document.getElementById('viewQuickRxModeBtn')?.addEventListener('click', () => {
+        this.state.quickMode = true;
+        existingArticle.innerHTML = renderArticleHtml();
+        attachArticleEvents();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     };
 
     if (existingLayout && existingSidebar && existingArticle) {
