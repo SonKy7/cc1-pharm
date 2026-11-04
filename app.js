@@ -713,7 +713,7 @@ ${this.escapeHtml(df.rawText)}
         currentTopic.sections.filter(s => !s.heading.includes('สรุปคำสอนสด') && !s.heading.includes('Quick Rx')).map((s, idx) => `
           <section class="card" style="margin-bottom: 1rem;">
             <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
-              ${idx + 1}. ${s.heading}
+              ${/^\d+\./.test((s.heading || '').trim()) ? s.heading : `${idx + 1}. ${s.heading}`}
             </h2>
             <div style="line-height: 1.75; font-size: 1.05rem;">
               ${s.html}
