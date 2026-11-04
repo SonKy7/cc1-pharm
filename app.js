@@ -267,49 +267,6 @@ const App = {
     }
   },
 
-  renderVideoWidget(videos) {
-    if (this.state.quickMode) return '';
-    if (!videos || !videos.length) return '';
-    const activeVid = videos[0];
-    return `
-      <div class="card no-print" style="margin-bottom: 1.15rem; background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 1.15rem; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🎬</span>
-            <div>
-              <div style="font-weight: 700; font-size: 1.08rem; color: #38bdf8;">
-                คลิปเสียงและวิดีโอบรรยายสดประจำบท (${videos.length} คลิป)
-              </div>
-              <div style="font-size: 0.84rem; color: #94a3b8;">
-                กด Play เพื่อฟังเสียงอาจารย์บรรยายสดไปพร้อมกับอ่านสรุปเนื้อหาด้านล่าง
-              </div>
-            </div>
-          </div>
-          <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.8rem; padding: 0.25rem 0.55rem;">
-            📺 รองรับ Picture-in-Picture (ย่อจอลอยขณะอ่านได้)
-          </span>
-        </div>
-
-        ${videos.length > 1 ? `
-          <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem;">
-            ${videos.map((v, i) => `
-              <button type="button" class="btn video-tab-btn ${i === 0 ? 'active' : ''}" data-vid="${v.id}" data-vtitle="${this.escapeHtml(v.title)}" style="padding: 0.35rem 0.75rem; font-size: 0.84rem; border-radius: 6px; background: ${i === 0 ? '#0284c7' : '#1e293b'}; color: #ffffff; border: 1px solid ${i === 0 ? '#38bdf8' : '#334155'}; cursor: pointer;">
-                ▶️ ตอนที่ ${i + 1}: ${this.escapeHtml(v.title.replace(/^Chapter\s*\d+\s*-\s*/i, ''))}
-              </button>
-            `).join('')}
-          </div>
-        ` : ''}
-
-        <div id="topicVideoPlayerContainer" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; border: 1px solid #334155;">
-          <iframe id="topicVideoIframe" src="https://www.youtube-nocookie.com/embed/${activeVid.id}" title="${this.escapeHtml(activeVid.title)}" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div id="topicVideoTitle" style="font-size: 0.86rem; color: #cbd5e1; margin-top: 0.55rem; text-align: center; font-weight: 500;">
-          📹 กำลังเล่น: ${this.escapeHtml(activeVid.title)}
-        </div>
-      </div>
-    `;
-  },
-
   renderDriveFilesWidget(driveFiles, isCompact = false) {
     if (!driveFiles || !driveFiles.length) return '';
     const isUnlocked = sessionStorage.getItem('cc1.drive_unlocked') === 'true';
@@ -374,49 +331,6 @@ ${this.escapeHtml(df.rawText)}
               ` : ''}
             </div>
           `).join('')}
-        </div>
-      </div>
-    `;
-  },
-
-  renderVideoWidget(videos) {
-    if (this.state.quickMode) return '';
-    if (!videos || !videos.length) return '';
-    const activeVid = videos[0];
-    return `
-      <div class="card no-print" style="margin-bottom: 1.15rem; background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 1.15rem; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 1.35rem;">🎬</span>
-            <div>
-              <div style="font-weight: 700; font-size: 1.08rem; color: #38bdf8;">
-                คลิปเสียงและวิดีโอบรรยายสดประจำบท (${videos.length} คลิป)
-              </div>
-              <div style="font-size: 0.84rem; color: #94a3b8;">
-                กด Play เพื่อฟังเสียงอาจารย์บรรยายสดไปพร้อมกับอ่านสรุปเนื้อหาด้านล่าง
-              </div>
-            </div>
-          </div>
-          <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.8rem; padding: 0.25rem 0.55rem;">
-            📺 รองรับ Picture-in-Picture (ย่อจอลอยขณะอ่านได้)
-          </span>
-        </div>
-
-        ${videos.length > 1 ? `
-          <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem;">
-            ${videos.map((v, i) => `
-              <button type="button" class="btn video-tab-btn ${i === 0 ? 'active' : ''}" data-vid="${v.id}" data-vtitle="${this.escapeHtml(v.title)}" style="padding: 0.35rem 0.75rem; font-size: 0.84rem; border-radius: 6px; background: ${i === 0 ? '#0284c7' : '#1e293b'}; color: #ffffff; border: 1px solid ${i === 0 ? '#38bdf8' : '#334155'}; cursor: pointer;">
-                ▶️ ตอนที่ ${i + 1}: ${this.escapeHtml(v.title.replace(/^Chapter\s*\d+\s*-\s*/i, ''))}
-              </button>
-            `).join('')}
-          </div>
-        ` : ''}
-
-        <div id="topicVideoPlayerContainer" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; border: 1px solid #334155;">
-          <iframe id="topicVideoIframe" src="https://www.youtube-nocookie.com/embed/${activeVid.id}" title="${this.escapeHtml(activeVid.title)}" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div id="topicVideoTitle" style="font-size: 0.86rem; color: #cbd5e1; margin-top: 0.55rem; text-align: center; font-weight: 500;">
-          📹 กำลังเล่น: ${this.escapeHtml(activeVid.title)}
         </div>
       </div>
     `;
@@ -742,9 +656,6 @@ ${this.escapeHtml(df.rawText)}
         </button>
       </div>
 
-      <!-- Embedded Video/Audio Lecture Player -->
-      ${this.renderVideoWidget(currentTopic.videos)}
-
       <!-- Detailed Sections / Quick Mode Filter -->
       ${this.state.quickMode ? (
         currentTopic.quickSummaryHtml ? `
@@ -829,25 +740,6 @@ ${this.escapeHtml(df.rawText)}
     `;
 
     const attachArticleEvents = () => {
-      document.querySelectorAll('.video-tab-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const vid = btn.getAttribute('data-vid');
-          const vtitle = btn.getAttribute('data-vtitle');
-          const iframe = document.getElementById('topicVideoIframe');
-          const titleEl = document.getElementById('topicVideoTitle');
-          if (iframe && vid) {
-            iframe.src = `https://www.youtube-nocookie.com/embed/${vid}`;
-            if (titleEl) titleEl.textContent = `📹 กำลังเล่น: ${vtitle}`;
-            document.querySelectorAll('.video-tab-btn').forEach(b => {
-              b.style.background = '#1e293b';
-              b.style.borderColor = '#334155';
-            });
-            btn.style.background = '#0284c7';
-            btn.style.borderColor = '#38bdf8';
-          }
-        });
-      });
       document.getElementById('toggleReadBtn')?.addEventListener('click', () => this.toggleRead(currentTopic.id));
       // Mobile drawer toggle & close
       const mobileToggle = document.getElementById('mobileSidebarToggleBtn');
