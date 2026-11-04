@@ -1425,8 +1425,11 @@ tbody tr:hover {
 
 .floating-menu-btn {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  top: 0.65rem;
+  left: 0.75rem;
+  bottom: auto;
+  right: auto;
+  display: none;
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -1488,15 +1491,17 @@ tbody tr:hover {
 .slide-nav-drawer {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0; /* Docked to LEFT */
+  right: auto;
   bottom: 0;
   width: 330px;
   max-width: 88vw;
   background: var(--bg-surface-solid);
-  border-left: 1px solid var(--border-color);
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+  border-right: 1.5px solid var(--border-color); /* Border on right side */
+  border-left: none;
+  box-shadow: 8px 0 36px rgba(0, 0, 0, 0.35); /* Shadow extends to the right */
   z-index: 10000;
-  transform: translateX(100%);
+  transform: translateX(-100%); /* Slide out from LEFT */
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
@@ -1561,4 +1566,47 @@ tbody tr:hover {
   .mobile-menu-btn {
     display: flex !important;
   }
+}
+
+
+/* Top-Left Hamburger Button */
+.topbar-hamburger-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: var(--radius-sm) !important;
+  background: var(--bg-elevated) !important;
+  border: 1.5px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  cursor: pointer !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+.topbar-hamburger-btn:hover {
+  background: var(--primary-light) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+  transform: scale(1.05);
+}
+.topbar-hamburger-btn:active {
+  transform: scale(0.94);
+}
+.topbar-hamburger-btn .hamburger-icon {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 20px !important;
+  height: 14px !important;
+}
+.topbar-hamburger-btn .hamburger-icon span {
+  display: block !important;
+  height: 2.2px !important;
+  width: 100% !important;
+  background: currentColor !important;
+  border-radius: 2px !important;
+  transition: all 0.2s !important;
 }
