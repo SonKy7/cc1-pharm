@@ -834,7 +834,7 @@ ${this.escapeHtml(df.rawText)}
         <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 4.8rem; padding: 0.9rem;">
           <!-- Mobile Close Bar -->
           <div class="mobile-sidebar-close-row no-print" style="margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-color);">
-            <span style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">📖 สารบัญ 19 หมวด 109 เรื่อง</span>
+            <span style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">📖 สารบัญ ${this.data.groups.length} หมวด ${this.getAllTopics().length} เรื่อง</span>
             <button id="mobileSidebarCloseBtn" type="button" class="btn btn-secondary" style="padding: 0.25rem 0.65rem; font-size: 0.85rem; font-weight: 600;">✕ ปิด</button>
           </div>
           <div style="margin-bottom: 0.6rem;">
@@ -845,7 +845,7 @@ ${this.escapeHtml(df.rawText)}
               <div class="sidebar-group">
                 <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${g.topics[0] ? g.topics[0].id : ''}" style="text-decoration: none; display: block;" title="ไปยังบทแรกของหมวดนี้">
                   <div class="sidebar-group-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0.2rem 0.3rem; border-radius: 4px; cursor: pointer; transition: all 0.15s ease;">
-                    ${g.icon} ${gIdx + 1}. ${g.groupName}
+                    ${g.icon} ${g.groupName}
                   </div>
                 </a>
                 <div class="sidebar-group-topics" style="display: flex; flex-direction: column; gap: 0.2rem;">
@@ -1076,7 +1076,7 @@ ${this.escapeHtml(df.rawText)}
       ${this.data.groups.map((g, gIdx) => `
         <div class="card" style="margin-bottom: 1.25rem;">
           <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--primary); border-bottom: 2px solid var(--border-color); padding-bottom: 0.4rem;">
-            ${g.icon} หมวดที่ ${gIdx + 1}: ${g.groupName}
+            ${g.icon} ${g.groupName}
           </h2>
           <div style="display: flex; flex-direction: column; gap: 1rem;">
             ${g.topics.map(t => `
