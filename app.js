@@ -65,7 +65,7 @@ const App = {
       <!-- 3. Quick Topic Selector (109 Topics) -->
       <div>
         <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-          📑 สลับหัวข้อบทเรียน (109 เรื่อง):
+          📑 สลับหัวข้อบทเรียน (${this.getAllTopics().length} บท):
         </div>
         <input type="search" id="drawerTopicSearch" placeholder="🔎 ค้นหาหัวข้อบทเรียน..." style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); font-size: 0.9rem; background: var(--bg-primary); color: var(--text-primary); margin-bottom: 0.6rem; outline: none;">
         <div id="drawerTopicList" style="display: flex; flex-direction: column; gap: 0.65rem; max-height: 280px; overflow-y: auto; padding-right: 0.2rem;">
@@ -489,7 +489,7 @@ ${this.escapeHtml(df.rawText)}
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
         <div>
           <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em;">🗂️ สารบัญเนื้อหา ${this.data.groups.length} หมวดวิชา</h2>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">แยกอ่านทีละสไลด์เดี่ยว ครอบคลุม 109 บทเต็มโครงสร้าง ศสภ.</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">แยกอ่านทีละสไลด์เดี่ยว ครอบคลุม  บทเต็มโครงสร้าง ศสภ.</p>
         </div>
         <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
           <a href="#/summary?topic=${this.getFirstLectureTopic().id}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
@@ -888,7 +888,7 @@ ${this.escapeHtml(df.rawText)}
             </div>
             <div class="sidebar-search-container">
               <span class="sidebar-search-icon">🔍</span>
-              <input type="search" id="sidebarFilterInput" class="sidebar-search-input" placeholder="ค้นหา / กรองหัวข้อ (109 บท)..." autocomplete="off">
+              <input type="search" id="sidebarFilterInput" class="sidebar-search-input" placeholder="ค้นหา / กรองหัวข้อ (${allTopics.length} บท)..." autocomplete="off">
               <button id="sidebarSearchClearBtn" type="button" class="sidebar-search-clear" title="ล้างการค้นหา" style="display: none;">✕</button>
             </div>
           </div>
