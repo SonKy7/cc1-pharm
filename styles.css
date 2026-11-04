@@ -760,42 +760,152 @@ body::before {
 
 .sidebar-sticky-panel {
   position: sticky;
-  top: 5rem;
-  max-height: calc(100vh - 6rem);
-  overflow-y: auto;
-  padding-right: 0.25rem;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  top: 4.8rem;
+  max-height: calc(100vh - 5.5rem);
+  height: calc(100vh - 5.5rem);
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: var(--bg-surface-solid);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .sidebar-sticky-panel::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari, Opera */
-  width: 0;
-  height: 0;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-.sidebar-topic-link {
+/* Pinned Header: Always visible search & title */
+.sidebar-pinned-header {
+  flex-shrink: 0;
+  padding: 0.85rem 0.85rem 0.6rem 0.85rem;
+  background: var(--bg-surface-solid);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.sidebar-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar-search-icon {
+  position: absolute;
+  left: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.sidebar-search-input {
+  width: 100%;
+  padding: 0.45rem 1.85rem 0.45rem 2rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-color);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.sidebar-search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.sidebar-search-clear {
+  position: absolute;
+  right: 0.45rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.sidebar-search-clear:hover {
+  color: var(--danger);
+}
+
+/* Scrollable Topic List */
+.sidebar-scrollable-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 0.75rem 0.85rem 1.25rem 0.85rem;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sidebar-scrollable-list::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+/* Sidebar & Drawer Topic Links: Distinct Box Frame on Hover (ตามที่ผู้ใช้ขอ: มีกรอบบอกชัดเจนว่าเมาส์อยุ่หัวข้อไหน) */
+.sidebar-topic-link,
+.drawer-topic-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.7rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  transition: all 0.15s ease;
-  margin-bottom: 0.2rem;
-}
-
-.sidebar-topic-link:hover {
+  font-size: 0.92rem;
   color: var(--text-primary);
-  background: var(--bg-elevated);
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-left: 3.5px solid transparent;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  margin-bottom: 0.2rem;
+  box-sizing: border-box;
 }
 
-.sidebar-topic-link.active {
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 700;
-  border-left: 3px solid var(--primary);
+/* Hover: กรอบล้อมรอบชัดเจนก่อนกดเลือก */
+.sidebar-topic-link:hover,
+.drawer-topic-link:hover {
+  border: 1.5px solid var(--primary) !important;
+  border-left: 4.5px solid var(--primary) !important;
+  background: var(--bg-elevated) !important;
+  color: var(--primary) !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14) !important;
+  transform: translateX(2px);
+}
+
+/* Active: หัวข้อปัจจุบันที่กำลังอ่าน */
+.sidebar-topic-link.active,
+.drawer-topic-link.active,
+.sidebar-topic-link[data-active='true'],
+.drawer-topic-link[data-active='true'] {
+  border: 1.5px solid rgba(79, 70, 229, 0.4) !important;
+  border-left: 4.5px solid var(--primary) !important;
+  background: var(--primary-light) !important;
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+
+.sidebar-topic-link.active:hover,
+.drawer-topic-link.active:hover,
+.sidebar-topic-link[data-active='true']:hover,
+.drawer-topic-link[data-active='true']:hover {
+  border: 1.5px solid var(--primary) !important;
+  border-left: 4.5px solid var(--primary) !important;
+  background: var(--primary-light) !important;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.22) !important;
 }
 
 .article-container {
@@ -1143,18 +1253,20 @@ tbody tr:hover {
     max-width: 100% !important;
     min-width: 0 !important;
     position: static !important;
-    max-height: 65vh !important;
-    overflow-y: auto !important;
+    max-height: 70vh !important;
+    height: 70vh !important;
+    overflow: hidden !important;
     margin-bottom: 0.85rem !important;
     border: 2px solid var(--primary) !important;
     border-radius: var(--radius-md) !important;
-    padding: 0.85rem !important;
+    padding: 0 !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
     box-sizing: border-box !important;
   }
 
   #summarySidebar.mobile-expanded {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .mobile-sidebar-toggle-btn {

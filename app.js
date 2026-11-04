@@ -76,8 +76,8 @@ const App = {
                 ${g.topics.map(t => {
                   const active = t.id === currentId;
                   return `
-                    <a href="#/${isQuick ? 'quick-rx' : 'summary'}?topic=${t.id}" class="drawer-topic-link" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="font-size: 0.88rem; padding: 0.35rem 0.5rem; text-decoration: none; border-radius: 6px; display: block; color: ${active ? 'var(--primary)' : 'var(--text-primary)'}; background: ${active ? 'var(--primary-light)' : 'transparent'}; font-weight: ${active ? '700' : '400'}; border-left: 3px solid ${active ? 'var(--primary)' : 'transparent'};">
-                      ${t.titleTh || t.title}
+                    <a href="#/${isQuick ? 'quick-rx' : 'summary'}?topic=${t.id}" class="drawer-topic-link ${active ? 'active' : ''}" data-topic-id="${t.id}" data-active="${active ? 'true' : 'false'}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}">
+                      <span>${t.titleTh || t.title}</span>
                     </a>
                   `;
                 }).join('')}
@@ -125,6 +125,12 @@ const App = {
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
+        const sidebarSearch = document.getElementById('sidebarFilterInput');
+        if (sidebarSearch) {
+          sidebarSearch.focus();
+          sidebarSearch.select();
+          return;
+        }
         const searchInput = document.getElementById('globalSearchInput');
         if (searchInput) {
           searchInput.focus();
@@ -840,10 +846,12 @@ ${this.escapeHtml(df.rawText)}
           a.setAttribute('href', `#/${targetModePrefix}?topic=${tid}`);
         }
         const isTarget = tid === currentTopic.id;
-        a.style.background = isTarget ? 'var(--primary-light)' : 'transparent';
-        a.style.color = isTarget ? 'var(--primary)' : 'var(--text-primary)';
-        a.style.fontWeight = isTarget ? '700' : '400';
-        a.style.borderLeft = isTarget ? '3px solid var(--primary)' : '3px solid transparent';
+        a.setAttribute('data-active', isTarget ? 'true' : 'false');
+        if (isTarget) {
+          a.classList.add('active');
+        } else {
+          a.classList.remove('active');
+        }
       });
       existingSidebar.querySelectorAll('.sidebar-group > a').forEach(a => {
         const tid = a.getAttribute('data-first-topic');
@@ -851,6 +859,10 @@ ${this.escapeHtml(df.rawText)}
           a.setAttribute('href', `#/${targetModePrefix}?topic=${tid}`);
         }
       });
+      const activeLink = existingSidebar.querySelector(`.sidebar-topic-link[data-topic-id="${currentTopic.id}"]`);
+      if (activeLink) {
+        activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
       if (window.innerWidth <= 900) {
         const mobileSb = document.getElementById('summarySidebar');
         if (mobileSb) mobileSb.classList.remove('mobile-expanded');
@@ -866,16 +878,23 @@ ${this.escapeHtml(df.rawText)}
     c.innerHTML = `
       <div class="summary-layout">
         <!-- Sidebar Navigation grouped by Official Blueprint -->
-        <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 4.8rem; padding: 0.9rem;">
-          <!-- Mobile Close Bar -->
-          <div class="mobile-sidebar-close-row no-print" style="margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-color);">
-            <span style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">📖 สารบัญ ${this.data.groups.length} หมวด ${this.getAllTopics().length} เรื่อง</span>
-            <button id="mobileSidebarCloseBtn" type="button" class="btn btn-secondary" style="padding: 0.25rem 0.65rem; font-size: 0.85rem; font-weight: 600;">✕ ปิด</button>
+        <aside id="summarySidebar" class="card no-print sidebar-sticky-panel">
+          <!-- Pinned Header: ALWAYS VISIBLE -->
+          <div class="sidebar-pinned-header">
+            <!-- Mobile Close Bar -->
+            <div class="mobile-sidebar-close-row no-print" style="margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border-color);">
+              <span style="font-weight: 700; color: var(--primary); font-size: 0.92rem;">📖 สารบัญ ${this.data.groups.length} หมวด ${allTopics.length} บท</span>
+              <button id="mobileSidebarCloseBtn" type="button" class="btn btn-secondary" style="padding: 0.2rem 0.55rem; font-size: 0.8rem; font-weight: 600;">✕ ปิด</button>
+            </div>
+            <div class="sidebar-search-container">
+              <span class="sidebar-search-icon">🔍</span>
+              <input type="search" id="sidebarFilterInput" class="sidebar-search-input" placeholder="ค้นหา / กรองหัวข้อ (109 บท)..." autocomplete="off">
+              <button id="sidebarSearchClearBtn" type="button" class="sidebar-search-clear" title="ล้างการค้นหา" style="display: none;">✕</button>
+            </div>
           </div>
-          <div style="margin-bottom: 0.6rem;">
-            <input type="search" id="sidebarFilterInput" placeholder="🔎 กรองหัวข้อ..." style="width: 100%; padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: var(--font-sans); font-size: 0.95rem; background: var(--bg-primary); color: var(--text-primary);">
-          </div>
-          <div id="sidebarTopicList" style="display: flex; flex-direction: column; gap: 0.75rem;">
+
+          <!-- Scrollable Topic List -->
+          <div id="sidebarTopicList" class="sidebar-scrollable-list">
             ${this.data.groups.map((g, gIdx) => `
               <div class="sidebar-group">
                 <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${g.topics[0] ? g.topics[0].id : ''}" data-first-topic="${g.topics[0] ? g.topics[0].id : ''}" style="text-decoration: none; display: block;" title="ไปยังบทแรกของหมวดนี้">
@@ -889,29 +908,17 @@ ${this.escapeHtml(df.rawText)}
                     const read = !!this.state.readTopics[t.id];
                     const bmk = !!this.state.bookmarkedTopics[t.id];
                     return `
-                      <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link" data-topic-id="${t.id}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="
-                        text-decoration: none;
-                        padding: 0.4rem 0.65rem;
-                        border-radius: var(--radius-sm);
-                        font-size: 0.95rem;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        background: ${active ? 'var(--primary-light)' : 'transparent'};
-                        color: ${active ? 'var(--primary)' : 'var(--text-primary)'};
-                        font-weight: ${active ? '700' : '400'};
-                        border-left: 3px solid ${active ? 'var(--primary)' : 'transparent'};
-                      ">
+                      <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link ${active ? 'active' : ''}" data-topic-id="${t.id}" data-active="${active ? 'true' : 'false'}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}">
                         <span>${t.titleTh || t.title}</span>
-                        <span style="font-size: 0.8rem;">${bmk ? '⭐' : ''}${read ? '✅' : ''}</span>
+                        <span style="font-size: 0.8rem; margin-left: 0.35rem; flex-shrink: 0;">${bmk ? '⭐' : ''}${read ? '✅' : ''}</span>
                       </a>
                     `;
                   }).join('')}
                 </div>
               </div>
             `).join('')}
-            <div id="sidebarNoMatch" style="display: none; text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 1rem 0.5rem;">
-              ไม่พบหัวข้อที่ค้นหา
+            <div id="sidebarNoMatch" style="display: none; padding: 1.25rem 0.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+              🔍 ไม่พบหัวข้อที่ตรงกับคำค้น
             </div>
           </div>
         </aside>
@@ -941,10 +948,13 @@ ${this.escapeHtml(df.rawText)}
     document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
 
     const filterInput = document.getElementById('sidebarFilterInput');
+    const clearBtn = document.getElementById('sidebarSearchClearBtn');
     const noMatchEl = document.getElementById('sidebarNoMatch');
-    filterInput?.addEventListener('input', () => {
-      const q = filterInput.value.trim().toLowerCase();
+
+    const updateFilter = () => {
+      const q = (filterInput?.value || '').trim().toLowerCase();
       const isFiltering = q.length > 0;
+      if (clearBtn) clearBtn.style.display = isFiltering ? 'block' : 'none';
       let totalVisible = 0;
 
       document.querySelectorAll('.sidebar-group').forEach(grp => {
@@ -961,11 +971,9 @@ ${this.escapeHtml(df.rawText)}
         });
 
         if (isFiltering) {
-          // When searching: hide chapter headers completely, show only matching topics (red box)
           if (titleEl) titleEl.style.display = 'none';
           grp.style.display = groupMatches > 0 ? 'block' : 'none';
         } else {
-          // Restore regular chapter outline
           if (titleEl) titleEl.style.display = 'block';
           grp.style.display = 'block';
         }
@@ -973,6 +981,21 @@ ${this.escapeHtml(df.rawText)}
 
       if (noMatchEl) {
         noMatchEl.style.display = (isFiltering && totalVisible === 0) ? 'block' : 'none';
+      }
+    };
+
+    filterInput?.addEventListener('input', updateFilter);
+    filterInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        filterInput.value = '';
+        updateFilter();
+      }
+    });
+    clearBtn?.addEventListener('click', () => {
+      if (filterInput) {
+        filterInput.value = '';
+        filterInput.focus();
+        updateFilter();
       }
     });
   },
