@@ -9,9 +9,118 @@ const App = {
     fontScale: 1
   },
 
+
+  // ================= OFF-CANVAS SLIDE DRAWER =================
+  openDrawer() {
+    this.renderDrawer();
+    document.getElementById('slideNavDrawer')?.classList.add('active');
+    document.getElementById('drawerBackdrop')?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeDrawer() {
+    document.getElementById('slideNavDrawer')?.classList.remove('active');
+    document.getElementById('drawerBackdrop')?.classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
+  renderDrawer() {
+    const isQuick = !!this.state.quickMode;
+    const currentId = this.state.currentTopicId || (this.getAllTopics()[0] ? this.getAllTopics()[0].id : 'htn');
+    const drawerBody = document.getElementById('drawerBody');
+    if (!drawerBody) return;
+
+    drawerBody.innerHTML = `
+      <!-- 1. Major Mode Switch (เลือกอันใหญ่ก่อน) -->
+      <div>
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+          🎯 เลือกโหมดหลัก (Major Mode):
+        </div>
+        <div style="background: var(--bg-primary); padding: 0.35rem; border-radius: 10px; display: flex; gap: 0.35rem; border: 1.5px solid var(--border-color);">
+          <a href="#/summary?topic=${currentId}" class="drawer-mode-btn btn ${!isQuick ? 'btn-primary' : 'btn-secondary'}" style="flex: 1; font-size: 0.88rem; padding: 0.55rem 0.35rem; text-align: center; justify-content: center; border-radius: 7px; text-decoration: none;">
+            📖 อ่านรายบท
+          </a>
+          <a href="#/quick-rx?topic=${currentId}" class="drawer-mode-btn btn ${isQuick ? 'btn-primary' : 'btn-secondary'}" style="flex: 1; font-size: 0.88rem; padding: 0.55rem 0.35rem; text-align: center; justify-content: center; border-radius: 7px; text-decoration: none;">
+            ⚡ สรุปย่อ CC1
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Main Navigation Items -->
+      <div>
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+          🧭 เมนูนำทาง:
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+          <a href="#/" class="drawer-nav-item">🏠 สารบัญหลัก</a>
+          <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 อ่านรายบท (เนื้อหาเต็ม)</a>
+          <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุปย่อ CC1 (เน้นสอบ + ตารางยา)</a>
+          <a href="#/drive" class="drawer-nav-item">📂 คลังชีท Drive (23 โฟลเดอร์)</a>
+          <a href="#/cheatsheet" class="drawer-nav-item">⚡ High-Yield สรุปสูตรจำ</a>
+          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">🎯 เว็บฝึกข้อสอบ CC1 ↗</a>
+          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 CC2 OSPE Lab ↗</a>
+        </div>
+      </div>
+
+      <!-- 3. Quick Topic Selector (109 Topics) -->
+      <div>
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+          📑 สลับหัวข้อบทเรียน (109 เรื่อง):
+        </div>
+        <input type="search" id="drawerTopicSearch" placeholder="🔎 ค้นหาหัวข้อบทเรียน..." style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); font-size: 0.9rem; background: var(--bg-primary); color: var(--text-primary); margin-bottom: 0.6rem; outline: none;">
+        <div id="drawerTopicList" style="display: flex; flex-direction: column; gap: 0.65rem; max-height: 280px; overflow-y: auto; padding-right: 0.2rem;">
+          ${this.data.groups.map(g => `
+            <div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.2rem;">${g.icon} ${g.groupName}</div>
+              <div style="display: flex; flex-direction: column; gap: 0.2rem; padding-left: 0.4rem;">
+                ${g.topics.map(t => {
+                  const active = t.id === currentId;
+                  return `
+                    <a href="#/${isQuick ? 'quick-rx' : 'summary'}?topic=${t.id}" class="drawer-topic-link" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="font-size: 0.88rem; padding: 0.35rem 0.5rem; text-decoration: none; border-radius: 6px; display: block; color: ${active ? 'var(--primary)' : 'var(--text-primary)'}; background: ${active ? 'var(--primary-light)' : 'transparent'}; font-weight: ${active ? '700' : '400'}; border-left: 3px solid ${active ? 'var(--primary)' : 'transparent'};">
+                      ${t.titleTh || t.title}
+                    </a>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    // Drawer search event
+    document.getElementById('drawerTopicSearch')?.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('#drawerTopicList .drawer-topic-link').forEach(a => {
+        const title = a.dataset.title || '';
+        const match = !q || title.includes(q);
+        a.style.display = match ? 'block' : 'none';
+      });
+    });
+
+    // Auto-close drawer on any link click
+    drawerBody.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        this.closeDrawer();
+      });
+    });
+  },
+
   init() {
     this.loadProgress();
     this.setupTheme();
+
+    // Drawer triggers (☰ FAB and Topbar)
+    document.getElementById('floatingMenuBtn')?.addEventListener('click', () => this.openDrawer());
+    document.getElementById('topbarMenuBtn')?.addEventListener('click', () => this.openDrawer());
+    document.getElementById('drawerCloseBtn')?.addEventListener('click', () => this.closeDrawer());
+    document.getElementById('drawerBackdrop')?.addEventListener('click', () => this.closeDrawer());
+
+    // Close drawer on ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') this.closeDrawer();
+    });
+
     window.addEventListener('hashchange', () => this.handleRoute());
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -203,14 +312,42 @@ const App = {
 
   renderDriveFilesWidget(driveFiles, isCompact = false) {
     if (!driveFiles || !driveFiles.length) return '';
+    const isUnlocked = sessionStorage.getItem('cc1.drive_unlocked') === 'true';
+
+    if (!isUnlocked) {
+      return `
+        <div class="card no-print" style="margin-top: 1.25rem; border: 1.5px solid var(--primary); background: var(--bg-surface-solid); text-align: center; padding: 1.75rem 1.25rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔒</div>
+          <h3 style="margin-top: 0; margin-bottom: 0.35rem; font-size: 1.15rem; color: var(--text-primary); font-weight: 700;">
+            เอกสารสไลด์ต้นฉบับประจำบท (${driveFiles.length} ไฟล์ PDF)
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.15rem;">
+            ไฟล์สไลด์ PDF ถูกเข้ารหัสเพื่อความปลอดภัย กรุณากรอกรหัสผ่านเพื่อปลดล็อกเข้าดู
+          </p>
+          <form id="topicPdfUnlockForm" onsubmit="event.preventDefault();" style="display: flex; gap: 0.5rem; justify-content: center; align-items: center; max-width: 320px; margin: 0 auto; flex-wrap: wrap;">
+            <input type="password" id="topicPdfPasswordInput" class="search-input" placeholder="ใส่รหัสผ่าน..." style="padding: 0.5rem 0.85rem; font-size: 1rem; text-align: center; width: 170px; letter-spacing: 0.15em;" autocomplete="off">
+            <button type="submit" id="topicPdfSubmitBtn" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.92rem; font-weight: 700;">
+              🔑 ปลดล็อก
+            </button>
+          </form>
+          <div id="topicPdfPassError" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; display: none; margin-top: 0.65rem;">
+            ❌ รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง
+          </div>
+        </div>
+      `;
+    }
+
     return `
       <div class="card" style="margin-top: 1rem; margin-bottom: ${isCompact ? '0.5rem' : '1rem'}; background: var(--bg-primary); border: 1px solid var(--primary);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem;">
           <div style="font-weight: 700; font-size: 1.05rem; color: var(--primary); display: flex; align-items: center; gap: 0.4rem;">
             <span>📂</span>
-            <span>เอกสารสไลด์ต้นฉบับประจำบท (${driveFiles.length} ไฟล์ PDF — รวมเนื้อหา 100% ครบทุกหน้าไว้ในเว็บแล้ว):</span>
+            <span>เอกสารสไลด์ต้นฉบับประจำบท (${driveFiles.length} ไฟล์ PDF — ปลดล็อกแล้ว):</span>
           </div>
-          <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ดูคลังชีททั้ง 23 โฟลเดอร์ →</a>
+          <div style="display: flex; gap: 0.4rem; align-items: center;">
+            <a href="#/drive" class="btn btn-outline no-print" style="padding: 0.2rem 0.6rem; font-size: 0.82rem;">ดูคลังชีททั้ง 23 โฟลเดอร์ →</a>
+            <button id="lockTopicPdfBtn" class="btn btn-secondary no-print" style="padding: 0.2rem 0.55rem; font-size: 0.78rem;" title="ล็อกการเข้าถึงไฟล์ชีท">🔒 ล็อก</button>
+          </div>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -237,6 +374,49 @@ ${this.escapeHtml(df.rawText)}
               ` : ''}
             </div>
           `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  renderVideoWidget(videos) {
+    if (this.state.quickMode) return '';
+    if (!videos || !videos.length) return '';
+    const activeVid = videos[0];
+    return `
+      <div class="card no-print" style="margin-bottom: 1.15rem; background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 1.15rem; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.35rem;">🎬</span>
+            <div>
+              <div style="font-weight: 700; font-size: 1.08rem; color: #38bdf8;">
+                คลิปเสียงและวิดีโอบรรยายสดประจำบท (${videos.length} คลิป)
+              </div>
+              <div style="font-size: 0.84rem; color: #94a3b8;">
+                กด Play เพื่อฟังเสียงอาจารย์บรรยายสดไปพร้อมกับอ่านสรุปเนื้อหาด้านล่าง
+              </div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.8rem; padding: 0.25rem 0.55rem;">
+            📺 รองรับ Picture-in-Picture (ย่อจอลอยขณะอ่านได้)
+          </span>
+        </div>
+
+        ${videos.length > 1 ? `
+          <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem;">
+            ${videos.map((v, i) => `
+              <button type="button" class="btn video-tab-btn ${i === 0 ? 'active' : ''}" data-vid="${v.id}" data-vtitle="${this.escapeHtml(v.title)}" style="padding: 0.35rem 0.75rem; font-size: 0.84rem; border-radius: 6px; background: ${i === 0 ? '#0284c7' : '#1e293b'}; color: #ffffff; border: 1px solid ${i === 0 ? '#38bdf8' : '#334155'}; cursor: pointer;">
+                ▶️ ตอนที่ ${i + 1}: ${this.escapeHtml(v.title.replace(/^Chapter\s*\d+\s*-\s*/i, ''))}
+              </button>
+            `).join('')}
+          </div>
+        ` : ''}
+
+        <div id="topicVideoPlayerContainer" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; border: 1px solid #334155;">
+          <iframe id="topicVideoIframe" src="https://www.youtube-nocookie.com/embed/${activeVid.id}" title="${this.escapeHtml(activeVid.title)}" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div id="topicVideoTitle" style="font-size: 0.86rem; color: #cbd5e1; margin-top: 0.55rem; text-align: center; font-weight: 500;">
+          📹 กำลังเล่น: ${this.escapeHtml(activeVid.title)}
         </div>
       </div>
     `;
@@ -550,13 +730,15 @@ ${this.escapeHtml(df.rawText)}
         ` : ''}
       </div>
 
-      <!-- View Mode Switcher -->
-      <div class="no-print" style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
-        <button id="viewMasterModeBtn" class="btn ${!this.state.quickMode ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.92rem; padding: 0.45rem 0.95rem; font-weight: 600;">
-          📖 สรุปเนื้อหาเต็ม (Master Lecture)
-        </button>
-        <button id="viewQuickRxModeBtn" class="btn ${this.state.quickMode ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.92rem; padding: 0.45rem 0.95rem; font-weight: 600;">
-          ⚡ สรุปย่อเน้นสอบ + ตารางยา (Quick Rx Matrix)
+      <!-- Current Mode Header Banner (เลือกโหมดหลักจากข้างบนหรือเมนูด้านข้าง) -->
+      <div class="card no-print" style="margin-bottom: 1.15rem; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.65rem; background: var(--bg-surface-solid); border: 1.5px solid ${this.state.quickMode ? '#10b981' : '#3b82f6'};">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="badge ${this.state.quickMode ? 'badge-quick-mode' : 'badge-master-mode'}" style="font-size: 0.88rem; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 9999px;">
+            ${this.state.quickMode ? '⚡ สรุปย่อ CC1: ตารางยาแม่บท & จุดจำเน้นสอบ' : '📖 อ่านรายบท: สรุปเนื้อหาเต็ม (Master Lecture)'}
+          </span>
+        </div>
+        <button class="btn btn-secondary no-print" onclick="App.openDrawer()" style="font-size: 0.85rem; padding: 0.4rem 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; cursor: pointer;">
+          <span>สลับโหมด / หัวข้อ</span> <span>☰</span>
         </button>
       </div>
 
@@ -696,29 +878,35 @@ ${this.escapeHtml(df.rawText)}
         }
       });
       document.getElementById('toggleBookmarkBtn')?.addEventListener('click', () => this.toggleBookmark(currentTopic.id));
-      document.getElementById('viewMasterModeBtn')?.addEventListener('click', () => {
-        this.state.quickMode = false;
-        const artEl = getArticleElement();
-        if (artEl) {
-          artEl.innerHTML = renderArticleHtml();
-          attachArticleEvents();
+      // Topic PDF password unlock & lock listeners
+      const topicPdfForm = document.getElementById('topicPdfUnlockForm');
+      const topicPdfInput = document.getElementById('topicPdfPasswordInput');
+      const topicPdfErr = document.getElementById('topicPdfPassError');
+
+      topicPdfForm?.addEventListener('submit', () => {
+        if (topicPdfInput && topicPdfInput.value.trim() === '12345') {
+          sessionStorage.setItem('cc1.drive_unlocked', 'true');
+          const artEl = getArticleElement();
+          if (artEl) {
+            artEl.innerHTML = renderArticleHtml();
+            attachArticleEvents();
+          }
         } else {
-          this.renderSummary(c, currentTopic.id);
+          if (topicPdfErr) topicPdfErr.style.display = 'block';
+          if (topicPdfInput) {
+            topicPdfInput.value = '';
+            topicPdfInput.focus();
+          }
         }
-        try { history.replaceState(null, '', `#/summary?topic=${currentTopic.id}`); } catch(e) {}
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-      document.getElementById('viewQuickRxModeBtn')?.addEventListener('click', () => {
-        this.state.quickMode = true;
+
+      document.getElementById('lockTopicPdfBtn')?.addEventListener('click', () => {
+        sessionStorage.removeItem('cc1.drive_unlocked');
         const artEl = getArticleElement();
         if (artEl) {
           artEl.innerHTML = renderArticleHtml();
           attachArticleEvents();
-        } else {
-          this.renderSummary(c, currentTopic.id);
         }
-        try { history.replaceState(null, '', `#/quick-rx?topic=${currentTopic.id}`); } catch(e) {}
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     };
 

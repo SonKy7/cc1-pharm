@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261104_mobile_v1">
+  <link rel="stylesheet" href="styles.css?v=20261104_mobile_v2">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
   <script>
     (function () {
@@ -37,6 +37,7 @@
     </nav>
     <div style="display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;">
       <button class="icon-btn" id="themeBtn" title="สลับโหมดมืด/สว่าง" aria-label="สลับธีม">🌙</button>
+      <button class="icon-btn mobile-menu-btn no-print" id="topbarMenuBtn" title="เปิดเมนูด้านข้าง (☰)" aria-label="เปิดเมนูด้านข้าง">☰</button>
     </div>
   </header>
 
@@ -51,7 +52,32 @@
     </p>
   </footer>
 
-  <script src="data.js?v=20261104_mobile_v1"></script>
-  <script src="app.js?v=20261104_mobile_v1"></script>
+  <script src="data.js?v=20261104_mobile_v2"></script>
+  <script src="app.js?v=20261104_mobile_v2"></script>
+
+  <!-- Floating 3-Line Action Button (☰ FAB) -->
+  <button id="floatingMenuBtn" class="floating-menu-btn no-print" aria-label="เปิดเมนูด้านข้าง" title="เมนูด้านข้าง & หัวข้อบทเรียน">
+    <span class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <!-- Slide-Over Off-Canvas Drawer Backdrop & Drawer -->
+  <div id="drawerBackdrop" class="drawer-backdrop no-print"></div>
+  <aside id="slideNavDrawer" class="slide-nav-drawer no-print" aria-label="เมนูนำทางและหัวข้อ">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-size: 1.4rem;">📘</span>
+        <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-primary);">PLE-CC1 Knowledge Hub</span>
+      </div>
+      <button id="drawerCloseBtn" class="icon-btn" aria-label="ปิดเมนู" style="font-size: 1.15rem; width: 34px; height: 34px;">✕</button>
+    </div>
+    <div class="drawer-body" id="drawerBody">
+      <!-- Populated dynamically by App.renderDrawer() -->
+    </div>
+  </aside>
+
 </body>
 </html>
