@@ -1,3 +1,19 @@
+
+/* Strict Mobile Viewport Safeguards */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
 /* ==========================================================================
    PLE-CC1 Knowledge Hub — Sleek Modern Dashboard (Linear / Vercel Aesthetic)
    Glassmorphism, Ambient Glow, Obsidian Dark & Frosted Slate Tokens
@@ -729,9 +745,17 @@ body::before {
 /* ================= Summary Reader View ================= */
 .summary-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 1.75rem;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 1.5rem;
   align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.summary-layout > * {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .sidebar-sticky-panel {
@@ -1051,34 +1075,188 @@ tbody tr:hover {
 
 /* Responsive Overrides */
 @media (max-width: 900px) {
-  .summary-layout {
-    grid-template-columns: 1fr;
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
   }
-  .sidebar-sticky-panel {
-    position: static;
-    max-height: none;
-    margin-bottom: 1.5rem;
+
+  .container {
+    padding: 0.85rem 0.6rem !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
-  .exam-layout {
-    grid-template-columns: 1fr;
-  }
+
   .topbar {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    padding: 0.5rem 0.65rem !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
+
   .nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    padding: 0.35rem 0.5rem;
-    justify-content: flex-start;
+    order: 3 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    white-space: nowrap !important;
+    padding: 0.25rem 0.35rem !important;
+    justify-content: flex-start !important;
+    scrollbar-width: none !important;
+    box-sizing: border-box !important;
   }
+  .nav::-webkit-scrollbar {
+    display: none !important;
+  }
+  .nav a {
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.82rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .summary-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .topic-content {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sidebar collapsed by default on mobile */
+  #summarySidebar {
+    display: none !important;
+    order: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    position: static !important;
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+    margin-bottom: 0.85rem !important;
+    border: 2px solid var(--primary) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.85rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+  }
+
+  #summarySidebar.mobile-expanded {
+    display: block !important;
+  }
+
+  .mobile-sidebar-toggle-btn {
+    display: flex !important;
+  }
+
+  .mobile-sidebar-close-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.6rem !important;
+    padding-bottom: 0.4rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+  }
+
+  /* Ergonomic mobile cards & elements */
+  .card {
+    padding: 1rem 0.85rem !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.85rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .drug-card {
+    padding: 0.85rem 0.9rem !important;
+    margin: 0.75rem 0 !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .drug-card-header {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .drug-card ul {
+    padding-left: 1.15rem !important;
+  }
+  .drug-card li {
+    font-size: 0.92rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .rx-subgroup-banner {
+    padding: 0.55rem 0.8rem !important;
+    font-size: 0.96rem !important;
+    margin: 1.1rem 0 0.65rem 0 !important;
+    border-left-width: 4px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mode switcher on mobile: 50/50 touch targets */
+  #viewMasterModeBtn, #viewQuickRxModeBtn {
+    flex: 1 1 calc(50% - 0.35rem) !important;
+    min-height: 44px !important;
+    font-size: 0.82rem !important;
+    padding: 0.5rem 0.3rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Responsive Tables: strictly enclosed in overflow-x: auto */
+  table {
+    font-size: 0.82rem !important;
+    min-width: 460px !important;
+  }
+  th, td {
+    padding: 0.45rem 0.4rem !important;
+  }
+  div[style*="overflow-x:auto"], div[style*="overflow-x: auto"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0.65rem 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Headings */
+  h1 { font-size: 1.4rem !important; line-height: 1.3 !important; }
+  h2 { font-size: 1.2rem !important; }
+  h3 { font-size: 1.08rem !important; }
+  h4 { font-size: 0.98rem !important; }
+
   .hero-banner {
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1rem !important;
   }
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem !important;
   }
 }
 
@@ -1208,4 +1386,34 @@ tbody tr:hover {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
+}
+
+
+/* Mobile Sidebar Toggle Button */
+.mobile-sidebar-toggle-btn {
+  display: none;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-surface-solid);
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.85rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+}
+.mobile-sidebar-toggle-btn:hover {
+  background: var(--primary-light);
+}
+.mobile-sidebar-toggle-btn:active {
+  transform: scale(0.98);
+}
+.mobile-sidebar-close-row {
+  display: none;
 }

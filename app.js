@@ -510,6 +510,15 @@ ${this.escapeHtml(df.rawText)}
     const getArticleElement = () => c.querySelector('.topic-content');
 
     const renderArticleHtml = () => `
+      <!-- Mobile Topic Drawer Toggle Button -->
+      <button id="mobileSidebarToggleBtn" class="mobile-sidebar-toggle-btn no-print" type="button" aria-label="เปิดสารบัญบทเรียน">
+        <span style="display: flex; align-items: center; gap: 0.45rem;">
+          <span>📚</span>
+          <span>สารบัญบทเรียน: ${currentTopic.icon} ${currentTopic.groupName}</span>
+        </span>
+        <span id="mobileSidebarArrow" style="font-size: 1.15rem; transition: transform 0.2s;">▾</span>
+      </button>
+
       <div class="card" style="margin-bottom: 1rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
           <div>
@@ -658,6 +667,28 @@ ${this.escapeHtml(df.rawText)}
         });
       });
       document.getElementById('toggleReadBtn')?.addEventListener('click', () => this.toggleRead(currentTopic.id));
+      // Mobile drawer toggle & close
+      const mobileToggle = document.getElementById('mobileSidebarToggleBtn');
+      const mobileClose = document.getElementById('mobileSidebarCloseBtn');
+      const sb = document.getElementById('summarySidebar');
+      const arrow = document.getElementById('mobileSidebarArrow');
+
+      if (mobileToggle && sb) {
+        mobileToggle.addEventListener('click', () => {
+          sb.classList.toggle('mobile-expanded');
+          if (arrow) arrow.textContent = sb.classList.contains('mobile-expanded') ? '▴' : '▾';
+          if (sb.classList.contains('mobile-expanded')) {
+            sb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+      if (mobileClose && sb) {
+        mobileClose.addEventListener('click', () => {
+          sb.classList.remove('mobile-expanded');
+          if (arrow) arrow.textContent = '▾';
+        });
+      }
+
       document.getElementById('bottomMarkReadBtn')?.addEventListener('click', () => {
         this.toggleRead(currentTopic.id);
         if (!isRead && nextTopic) {
@@ -705,6 +736,12 @@ ${this.escapeHtml(df.rawText)}
         a.style.fontWeight = isTarget ? '700' : '400';
         a.style.borderLeft = isTarget ? '3px solid var(--primary)' : '3px solid transparent';
       });
+      if (window.innerWidth <= 900) {
+        const mobileSb = document.getElementById('summarySidebar');
+        if (mobileSb) mobileSb.classList.remove('mobile-expanded');
+        const arrow = document.getElementById('mobileSidebarArrow');
+        if (arrow) arrow.textContent = '▾';
+      }
 
       existingSidebar.scrollTop = prevScrollTop;
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -715,6 +752,11 @@ ${this.escapeHtml(df.rawText)}
       <div class="summary-layout">
         <!-- Sidebar Navigation grouped by Official Blueprint -->
         <aside id="summarySidebar" class="card no-print" style="max-height: calc(100vh - 6rem); overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 4.8rem; padding: 0.9rem;">
+          <!-- Mobile Close Bar -->
+          <div class="mobile-sidebar-close-row no-print" style="margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-color);">
+            <span style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">📖 สารบัญ 19 หมวด 109 เรื่อง</span>
+            <button id="mobileSidebarCloseBtn" type="button" class="btn btn-secondary" style="padding: 0.25rem 0.65rem; font-size: 0.85rem; font-weight: 600;">✕ ปิด</button>
+          </div>
           <div style="margin-bottom: 0.6rem;">
             <input type="search" id="sidebarFilterInput" placeholder="🔎 กรองหัวข้อ..." style="width: 100%; padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: var(--font-sans); font-size: 0.95rem; background: var(--bg-primary); color: var(--text-primary);">
           </div>
