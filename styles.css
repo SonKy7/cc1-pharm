@@ -3,7 +3,7 @@
 html, body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   position: relative;
   -webkit-text-size-adjust: 100%;
 }
@@ -155,7 +155,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1186,7 +1186,7 @@ tbody tr:hover {
 /* Responsive Overrides */
 @media (max-width: 900px) {
   html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     max-width: 100vw !important;
     width: 100% !important;
   }
@@ -1195,7 +1195,7 @@ tbody tr:hover {
     padding: 0.85rem 0.6rem !important;
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     box-sizing: border-box !important;
   }
 
