@@ -189,6 +189,17 @@ const App = {
     btn.textContent = document.documentElement.dataset.theme === 'dark' ? '☀️' : '🌙';
   },
 
+  
+  getFirstLectureTopic() {
+    const cvsGroup = (this.data.groups || []).find(g => g.group === 'cvs');
+    if (cvsGroup && cvsGroup.topics && cvsGroup.topics[0]) {
+      return cvsGroup.topics[0];
+    }
+    const all = this.getAllTopics();
+    const nonPast = all.find(t => !t.id.startsWith('past-'));
+    return nonPast || all[0] || { id: 'htn' };
+  },
+
   getAllTopics() {
     const list = [];
     (this.data.groups || []).forEach((g, gIdx) => {
@@ -351,14 +362,16 @@ ${this.escapeHtml(df.rawText)}
       this.highlightNav('quick-rx');
       const params = new URLSearchParams(query);
       this.state.quickMode = true;
-      const allTopics = this.getAllTopics();
-      const defaultTopic = this.state.currentTopicId || (allTopics[0] ? allTopics[0].id : 'htn');
-      this.renderSummary(container, params.get('topic') || defaultTopic);
+      const defaultTopic = this.state.currentTopicId || this.getFirstLectureTopic().id;
+      const targetTopic = params.get('topic') || defaultTopic;
+      this.renderSummary(container, targetTopic);
     } else if (path.startsWith('/summary')) {
       this.state.quickMode = false;
       this.highlightNav('summary');
       const params = new URLSearchParams(query);
-      this.renderSummary(container, params.get('topic'));
+      const defaultTopic = this.state.currentTopicId || this.getFirstLectureTopic().id;
+      const targetTopic = params.get('topic') || defaultTopic;
+      this.renderSummary(container, targetTopic);
     } else if (path.startsWith('/drive')) {
       this.highlightNav('drive');
       const params = new URLSearchParams(query);
@@ -375,6 +388,12 @@ ${this.escapeHtml(df.rawText)}
   highlightNav(route) {
     const target = document.querySelector(`.nav a[data-route="${route}"]`);
     if (target) target.classList.add('active');
+
+    const curId = this.state.currentTopicId || this.getFirstLectureTopic().id;
+    const summaryNav = document.querySelector('.nav a[data-route="summary"]');
+    const quickNav = document.querySelector('.nav a[data-route="quick-rx"]');
+    if (summaryNav) summaryNav.setAttribute('href', `#/summary?topic=${curId}`);
+    if (quickNav) quickNav.setAttribute('href', `#/quick-rx?topic=${curId}`);
   },
 
   // ================= VIEW: HOME (BLUEPRINT DIRECTORY & INLINE FULL SUMMARY) =================
@@ -463,11 +482,11 @@ ${this.escapeHtml(df.rawText)}
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
         <div>
-          <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em;">🗂️ สารบัญเนื้อหา 19 หมวดวิชา</h2>
+          <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em;">🗂️ สารบัญเนื้อหา ${this.data.groups.length} หมวดวิชา</h2>
           <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">แยกอ่านทีละสไลด์เดี่ยว ครอบคลุม 109 บทเต็มโครงสร้าง ศสภ.</p>
         </div>
         <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-          <a href="#/summary?topic=${allTopics[0]?.id || ''}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+          <a href="#/summary?topic=${this.getFirstLectureTopic().id}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
             📖 เริ่มอ่านเรียงตามบท
           </a>
         </div>
@@ -585,8 +604,13 @@ ${this.escapeHtml(df.rawText)}
   // ================= VIEW: SUMMARY READER =================
   renderSummary(c, activeTopicId) {
     const allTopics = this.getAllTopics();
-    const currentIndex = Math.max(0, allTopics.findIndex(t => t.id === activeTopicId));
-    const currentTopic = allTopics[currentIndex] || allTopics[0];
+    const defaultTopicObj = this.getFirstLectureTopic();
+    let currentIndex = allTopics.findIndex(t => t.id === activeTopicId);
+    if (currentIndex === -1) {
+      currentIndex = allTopics.findIndex(t => t.id === defaultTopicObj.id);
+      if (currentIndex === -1) currentIndex = 0;
+    }
+    const currentTopic = allTopics[currentIndex] || defaultTopicObj;
 
     if (!currentTopic) {
       c.innerHTML = `<div class="card"><p>ไม่พบเนื้อหาสรุป</p></div>`;
@@ -809,12 +833,23 @@ ${this.escapeHtml(df.rawText)}
       currentArtEl.innerHTML = renderArticleHtml();
       attachArticleEvents();
 
+      const targetModePrefix = this.state.quickMode ? 'quick-rx' : 'summary';
       existingSidebar.querySelectorAll('.sidebar-topic-link').forEach(a => {
-        const isTarget = a.getAttribute('href') === `#/summary?topic=${currentTopic.id}`;
+        const tid = a.getAttribute('data-topic-id');
+        if (tid) {
+          a.setAttribute('href', `#/${targetModePrefix}?topic=${tid}`);
+        }
+        const isTarget = tid === currentTopic.id;
         a.style.background = isTarget ? 'var(--primary-light)' : 'transparent';
         a.style.color = isTarget ? 'var(--primary)' : 'var(--text-primary)';
         a.style.fontWeight = isTarget ? '700' : '400';
         a.style.borderLeft = isTarget ? '3px solid var(--primary)' : '3px solid transparent';
+      });
+      existingSidebar.querySelectorAll('.sidebar-group > a').forEach(a => {
+        const tid = a.getAttribute('data-first-topic');
+        if (tid) {
+          a.setAttribute('href', `#/${targetModePrefix}?topic=${tid}`);
+        }
       });
       if (window.innerWidth <= 900) {
         const mobileSb = document.getElementById('summarySidebar');
@@ -843,7 +878,7 @@ ${this.escapeHtml(df.rawText)}
           <div id="sidebarTopicList" style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${this.data.groups.map((g, gIdx) => `
               <div class="sidebar-group">
-                <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${g.topics[0] ? g.topics[0].id : ''}" style="text-decoration: none; display: block;" title="ไปยังบทแรกของหมวดนี้">
+                <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${g.topics[0] ? g.topics[0].id : ''}" data-first-topic="${g.topics[0] ? g.topics[0].id : ''}" style="text-decoration: none; display: block;" title="ไปยังบทแรกของหมวดนี้">
                   <div class="sidebar-group-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.25rem; padding: 0.2rem 0.3rem; border-radius: 4px; cursor: pointer; transition: all 0.15s ease;">
                     ${g.icon} ${g.groupName}
                   </div>
@@ -854,7 +889,7 @@ ${this.escapeHtml(df.rawText)}
                     const read = !!this.state.readTopics[t.id];
                     const bmk = !!this.state.bookmarkedTopics[t.id];
                     return `
-                      <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="
+                      <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link" data-topic-id="${t.id}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}" style="
                         text-decoration: none;
                         padding: 0.4rem 0.65rem;
                         border-radius: var(--radius-sm);
