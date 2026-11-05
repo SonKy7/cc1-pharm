@@ -86,10 +86,6 @@ const App = {
           `).join('')}
         </div>
       </div>
-        <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
-        <div class="sidebar-ai-desc">พร้อมคลังชีท Drive 23 โฟลเดอร์ และตาราง QuickRx ยาแม่บท</div>
-        <a href="#/quick-rx?topic=${currentId}" class="sidebar-ai-btn" onclick="App.closeDrawer()">สลับโหมดอ่าน QuickRx ↗</a>
-      </div>
     `;
 
     // Drawer search event
@@ -953,10 +949,6 @@ ${this.escapeHtml(df.rawText)}
             <div id="sidebarNoMatch" style="display: none; padding: 1.25rem 0.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
               🔍 ไม่พบหัวข้อที่ตรงกับคำค้น
             </div>
-          </div>
-            <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
-            <div class="sidebar-ai-desc">สไลด์ PDF 119 ไฟล์ 23 โฟลเดอร์ Drive พร้อมตาราง QuickRx</div>
-            <a href="#/quick-rx?topic=${currentTopic.id}" class="sidebar-ai-btn">สลับโหมดอ่าน QuickRx ↗</a>
           </div>
         </aside>
 
