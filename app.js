@@ -31,27 +31,12 @@ const App = {
     if (!drawerBody) return;
 
     drawerBody.innerHTML = `
-      <!-- 1. Major Mode Switch (เลือกอันใหญ่ก่อน) -->
+      <!-- Main Navigation Items -->
       <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-          🎯 เลือกโหมดหลัก (Major Mode):
-        </div>
-        <div style="background: var(--bg-primary); padding: 0.35rem; border-radius: 10px; display: flex; gap: 0.35rem; border: 1.5px solid var(--border-color);">
-          <a href="#/summary?topic=${currentId}" class="drawer-mode-btn btn ${!isQuick ? 'btn-primary' : 'btn-secondary'}" style="flex: 1; font-size: 0.88rem; padding: 0.55rem 0.35rem; text-align: center; justify-content: center; border-radius: 7px; text-decoration: none;">
-            📖 อ่านรายบท
-          </a>
-          <a href="#/quick-rx?topic=${currentId}" class="drawer-mode-btn btn ${isQuick ? 'btn-primary' : 'btn-secondary'}" style="flex: 1; font-size: 0.88rem; padding: 0.55rem 0.35rem; text-align: center; justify-content: center; border-radius: 7px; text-decoration: none;">
-            ⚡ สรุปย่อ CC1
-          </a>
-        </div>
-      </div>
-
-      <!-- 2. Main Navigation Items -->
-      <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.05em;">
           🧭 เมนูนำทาง:
         </div>
-        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.45rem;">
           <a href="#/" class="drawer-nav-item">🏠 สารบัญหลัก</a>
           <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 อ่านรายบท (เนื้อหาเต็ม)</a>
           <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุปย่อ CC1 (เน้นสอบ + ตารางยา)</a>
@@ -61,42 +46,7 @@ const App = {
           <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 CC2 OSPE Lab ↗</a>
         </div>
       </div>
-
-      <!-- 3. Quick Topic Selector (109 Topics) -->
-      <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-          📑 สลับหัวข้อบทเรียน (${this.getAllTopics().length} บท):
-        </div>
-        <input type="search" id="drawerTopicSearch" placeholder="🔎 ค้นหาหัวข้อบทเรียน..." style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); font-size: 0.9rem; background: var(--bg-primary); color: var(--text-primary); margin-bottom: 0.6rem; outline: none;">
-        <div id="drawerTopicList" style="display: flex; flex-direction: column; gap: 0.65rem; max-height: 280px; overflow-y: auto; padding-right: 0.2rem;">
-          ${this.data.groups.map(g => `
-            <div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.2rem;">${g.icon} ${g.groupName}</div>
-              <div style="display: flex; flex-direction: column; gap: 0.2rem; padding-left: 0.4rem;">
-                ${g.topics.map(t => {
-                  const active = t.id === currentId;
-                  return `
-                    <a href="#/${isQuick ? 'quick-rx' : 'summary'}?topic=${t.id}" class="drawer-topic-link ${active ? 'active' : ''}" data-topic-id="${t.id}" data-active="${active ? 'true' : 'false'}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}">
-                      <span>${t.titleTh || t.title}</span>
-                    </a>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
     `;
-
-    // Drawer search event
-    document.getElementById('drawerTopicSearch')?.addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      document.querySelectorAll('#drawerTopicList .drawer-topic-link').forEach(a => {
-        const title = a.dataset.title || '';
-        const match = !q || title.includes(q);
-        a.style.display = match ? 'block' : 'none';
-      });
-    });
 
     // Auto-close drawer on any link click
     drawerBody.querySelectorAll('a').forEach(a => {
