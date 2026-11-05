@@ -86,6 +86,14 @@ const App = {
           `).join('')}
         </div>
       </div>
+
+      <!-- Drawer Bottom AI Helper Card (Mockup Style) -->
+      <div class="sidebar-bottom-ai-card no-print" style="margin: 1rem 0 0.5rem 0;">
+        <div class="sidebar-ai-badge">⚡ PLE-CC1 SMART ENGINE</div>
+        <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
+        <div class="sidebar-ai-desc">พร้อมคลังชีท Drive 23 โฟลเดอร์ และตาราง QuickRx ยาแม่บท</div>
+        <a href="#/quick-rx?topic=${currentId}" class="sidebar-ai-btn" onclick="App.closeDrawer()">สลับโหมดอ่าน QuickRx ↗</a>
+      </div>
     `;
 
     // Drawer search event
@@ -410,201 +418,234 @@ ${this.escapeHtml(df.rawText)}
     const percentRead = allTopics.length ? Math.round((readCount / allTopics.length) * 100) : 0;
     const totalDriveFolders = (this.data.driveFolders || []).length;
     const totalDriveFiles = (this.data.driveFolders || []).reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0);
+    const firstTopic = this.getFirstLectureTopic();
 
     c.innerHTML = `
-      <div class="hero-banner">
-        <div class="hero-pill">
+      <!-- Overview Top Bar (Mockup Style) -->
+      <div class="overview-top-bar">
+        <div class="overview-title-group">
+          <h2 class="overview-heading">ภาพรวมระบบ (Overview)</h2>
+          <span class="overview-pill-badge">
+            <span class="ping-dot" style="width:7px; height:7px; border-radius:50%; background:#16a34a;"></span>
+            <span>เกณฑ์ ศสภ. ที่ 5/2566 · ฉบับอัปเดตล่าสุด</span>
+          </span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+          <a href="#/drive" class="btn btn-secondary" style="border-radius: 9999px; padding: 0.45rem 1rem; font-size: 0.88rem;">
+            📁 คลังชีท Drive (${totalDriveFolders})
+          </a>
+          <a href="#/quick-rx?topic=${firstTopic.id}" class="btn-lime-pill" style="font-size: 0.88rem;">
+            ⚡ สรุปด่วน QuickRx
+          </a>
+          <a href="#/summary?topic=${firstTopic.id}" class="btn-dark-pill" style="font-size: 0.88rem;">
+            + เริ่มอ่านบทเรียน
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Dark Banner (Image 1 & 4 Style) -->
+      <div class="hero-banner-dark">
+        <div class="hero-lime-tag">
           <span class="ping-dot"></span>
-          <span>เกณฑ์ ศสภ. ที่ 5/2566 · 23 โฟลเดอร์ Drive (${totalDriveFiles} ไฟล์ PDF / 6,104 หน้าสไลด์)</span>
+          <span>ระบบพร้อมสอบ 100% สรุปครบ 22 หมวด 106 หัวข้อ 119 สไลด์</span>
         </div>
-        <h1 class="hero-title">
-          📘 PLE-CC1 <span class="gradient-text">Knowledge Hub</span>
-        </h1>
-        <p class="hero-subtitle">
-          คลังสรุปเนื้อหาเข้มข้นเพื่อสอบใบประกอบวิชาชีพเภสัชกรรม ครบทั้ง 16 กลุ่มโรค เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร และกฎหมายวิชาชีพ แยกอ่าน 1 สไลด์/1 โรค = 1 บทเดี่ยวชัดเจน
+        <h1>ระบบบริหารจัดการความรู้และเตรียมสอบใบประกอบวิชาชีพ PLE-CC1</h1>
+        <p>
+          คลังสรุปเนื้อหาเข้มข้นตรงตามเกณฑ์มาตรฐาน ศสภ. ครบทั้ง 16 กลุ่มโรค เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร และกฎหมายวิชาชีพ แยกอ่าน 1 สไลด์/1 โรค = 1 บทเดี่ยว พร้อมตาราง QuickRx ยาแม่บท และเชื่อมโยงไฟล์สไลด์ต้นฉบับ
         </p>
+        <div class="hero-dark-watermark">📘</div>
+      </div>
 
-        <!-- Metric Pods -->
-        <div class="metric-grid">
-          <div class="metric-pod">
-            <div class="metric-label">หมวดวิชาหลัก</div>
-            <div class="metric-val">19 <span class="metric-sub">หมวด</span></div>
+      <!-- Metrics Strip (4 Clean White Cards as in Mockup) -->
+      <div class="metric-strip-modern">
+        <div class="metric-card-modern">
+          <div class="metric-left-col">
+            <span class="metric-label-clean">หมวดวิชาทั้งหมด</span>
+            <span class="metric-val-clean">22</span>
+            <span class="metric-sub-clean" style="color: #d97706;">✓ โครงสร้างมาตรฐาน ศสภ.</span>
           </div>
-          <div class="metric-pod">
-            <div class="metric-label">บทสรุปรายโรค/สไลด์</div>
-            <div class="metric-val">109 <span class="metric-sub">บทเดี่ยว</span></div>
-          </div>
-          <div class="metric-pod">
-            <div class="metric-label">สไลด์ PDF ต้นฉบับ</div>
-            <div class="metric-val">${totalDriveFiles} <span class="metric-sub">ไฟล์ (6,104 หน้า)</span></div>
-          </div>
-          <div class="metric-pod" style="border-color: var(--primary);">
-            <div class="metric-label">ความคืบหน้าการอ่าน</div>
-            <div class="metric-val" style="color: var(--primary);">${percentRead}% <span class="metric-sub">(${readCount}/${allTopics.length})</span></div>
-          </div>
+          <div class="metric-badge-icon icon-amber">📚</div>
         </div>
 
-        <!-- Spotlight Search Bar -->
-        <div class="search-wrapper">
-          <span class="search-icon-fixed">🔍</span>
-          <input type="search" id="globalSearchInput" class="search-input" placeholder="ค้นหาได้ทั้งสรุปและสไลด์ PDF 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
-          <span class="search-kbd">⌘K / Ctrl+K</span>
+        <div class="metric-card-modern">
+          <div class="metric-left-col">
+            <span class="metric-label-clean">บทสรุปเจาะลึกในระบบ</span>
+            <span class="metric-val-clean">106</span>
+            <span class="metric-sub-clean" style="color: #2563eb;">✓ 1.89 ล้านตัวอักษร</span>
+          </div>
+          <div class="metric-badge-icon icon-blue">📖</div>
         </div>
-        <div id="searchResultsBox" style="margin-top: 0.75rem;"></div>
 
-        <!-- Quick Action & Companion App Pills -->
-        <div class="action-pills-bar">
-          <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);">🔗 เครือข่ายเตรียมสอบ:</span>
-          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn btn-purple" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
-            🧪 CC2 OSPE Lab · ห้องฝึก OSPE เภสัช ↗
-          </a>
-          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
-            🎯 เว็บฝึกทำข้อสอบ PLE-CC1 ↗
-          </a>
-          <a href="#/drive" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
-            📂 คลังชีท Drive (${totalDriveFolders} โฟลเดอร์)
-          </a>
-          <a href="#/cheatsheet" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
-            ⚡ รวมจุดเน้น High-Yield
-          </a>
+        <div class="metric-card-modern">
+          <div class="metric-left-col">
+            <span class="metric-label-clean">สไลด์ PDF ต้นฉบับ</span>
+            <span class="metric-val-clean">${totalDriveFiles}</span>
+            <span class="metric-sub-clean" style="color: #16a34a;">📁 Drive 23 โฟลเดอร์</span>
+          </div>
+          <div class="metric-badge-icon icon-green">📄</div>
+        </div>
+
+        <div class="metric-card-modern">
+          <div class="metric-left-col">
+            <span class="metric-label-clean">ความคืบหน้าการอ่าน</span>
+            <span class="metric-val-clean">${percentRead}%</span>
+            <span class="metric-sub-clean" style="color: #4d7c0f;">● อ่านแล้ว ${readCount}/${allTopics.length} บท</span>
+          </div>
+          <div class="metric-badge-icon icon-lime">🎯</div>
         </div>
       </div>
 
-      ${bookmarkedList.length > 0 ? `
-        <div class="card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--warning);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-            <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;">⭐ หัวข้อที่คุณปักหมุดไว้ทบทวนด่วน (${bookmarkedList.length})</h3>
-            <span class="badge" style="background: var(--warning-bg); color: var(--warning); border-color: var(--warning-border);">ทบทวนซ้ำ</span>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            ${bookmarkedList.map(t => `
-              <a href="#/summary?topic=${t.id}" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.4rem 0.85rem;">
-                ${t.icon} ${t.titleTh || t.title}
-              </a>
-            `).join('')}
-          </div>
-        </div>
-      ` : ''}
-
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
-        <div>
-          <h2 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em;">🗂️ สารบัญเนื้อหา ${this.data.groups.length} หมวดวิชา</h2>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.2rem;">แยกอ่านทีละสไลด์เดี่ยว ครอบคลุม  บทเต็มโครงสร้าง ศสภ.</p>
-        </div>
-        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-          <a href="#/summary?topic=${this.getFirstLectureTopic().id}" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
-            📖 เริ่มอ่านเรียงตามบท
-          </a>
-        </div>
+      <!-- Spotlight Search Bar Full Pill -->
+      <div class="search-wrapper-pill">
+        <span class="search-icon-pill">🔍</span>
+        <input type="search" id="globalSearchInput" class="search-input-pill" placeholder="ค้นหาได้ทั้งสรุปและสไลด์ PDF 119 ไฟล์ (เช่น allopurinol, GINA, ข.ย.11, HLB, ICER, ยาเบญจกูล, lithium, SAR)..." autocomplete="off">
       </div>
+      <div id="searchResultsBox" style="margin-top: -1rem; margin-bottom: 1.5rem;"></div>
 
-      <div class="chapter-grid">
-        ${this.data.groups.map((g, idx) => {
-          const doneInGroup = g.topics.filter(t => this.state.readTopics[t.id]).length;
-          const isComplete = doneInGroup === g.topics.length && g.topics.length > 0;
-          return `
-            <div class="chapter-card">
-              <div>
-                <div class="chapter-header">
-                  <div class="chapter-title-group">
-                    <span class="chapter-icon">${g.icon || '📌'}</span>
-                    <div>
-                      <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">หมวด ${idx + 1}</div>
-                      <h3 class="chapter-title">${g.groupName}</h3>
+      <!-- Dashboard Two Column Content -->
+      <div class="dashboard-grid-cols">
+        <!-- Left: Chapter Progress List -->
+        <div class="card" style="padding: 1.75rem 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: var(--text-primary);">
+              ความคืบหน้าการจัดตารางอ่านรายหมวด
+            </h3>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">22 หมวดวิชา</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            ${this.data.groups.map(g => {
+              const gTopics = g.topics || [];
+              const gRead = gTopics.filter(t => this.state.readTopics[t.id]).length;
+              const gPercent = gTopics.length ? Math.round((gRead / gTopics.length) * 100) : 0;
+              const firstTid = gTopics[0] ? gTopics[0].id : '';
+              return `
+                <a href="#/summary?topic=${firstTid}" class="dashboard-chapter-row" title="เปิดหมวด ${g.groupName}">
+                  <div style="display: flex; align-items: center; gap: 0.65rem; min-width: 0;">
+                    <span style="font-size: 1.25rem; flex-shrink: 0;">${g.icon}</span>
+                    <div style="min-width: 0;">
+                      <div style="font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        ${g.groupName}
+                      </div>
+                      <div style="font-size: 0.78rem; color: var(--text-muted);">
+                        ${gTopics.length} บทเรียน (${gRead}/${gTopics.length} จบแล้ว)
+                      </div>
                     </div>
                   </div>
-                  <span class="badge ${isComplete ? 'conf-high' : ''}">
-                    ${doneInGroup}/${g.topics.length} บท
-                  </span>
-                </div>
-                <div class="topic-list-group">
-                  ${g.topics.map(t => {
-                    const isRead = !!this.state.readTopics[t.id];
-                    const isBookmarked = !!this.state.bookmarkedTopics[t.id];
-                    const pdfCount = (t.driveFiles || []).length;
-                    return `
-                      <a href="#/summary?topic=${t.id}" class="topic-row-link ${isRead ? 'is-read' : ''}">
-                        <div>
-                          <div class="topic-row-title">
-                            <span>${isRead ? '✅' : '📄'}</span>
-                            <span>${t.titleTh || t.title}</span>
-                          </div>
-                          <div class="topic-row-sub">
-                            ${t.title} ${pdfCount ? `<span class="badge badge-blue" style="font-size: 0.72rem; padding: 0.1rem 0.45rem; margin-left: 0.25rem;">📂 ${pdfCount} PDF</span>` : ''}
-                          </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.4rem;">
-                          ${isBookmarked ? '<span>⭐</span>' : ''}
-                          <span class="topic-arrow">→</span>
-                        </div>
-                      </a>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
+                  <div style="display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;">
+                    <div class="chapter-progress-bar-bg">
+                      <div class="chapter-progress-bar-fill" style="width: ${gPercent}%;"></div>
+                    </div>
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); width: 35px; text-align: right;">${gPercent}%</span>
+                    <span style="font-size: 0.95rem; color: var(--text-muted); margin-left: 0.25rem;">›</span>
+                  </div>
+                </a>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- Right: Subject Modules & Tools -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="card" style="padding: 1.75rem 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: var(--text-primary);">
+                กลุ่มสาระ / หมวดวิชาในระบบ
+              </h3>
             </div>
-          `;
-        }).join('')}
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              เลือกคลิกเข้าสู่บทสรุปของแต่ละกลุ่มวิชาได้โดยตรง:
+            </p>
+            <div class="subject-pill-grid">
+              ${this.data.groups.map(g => {
+                const firstTid = g.topics[0] ? g.topics[0].id : '';
+                return `
+                  <a href="#/summary?topic=${firstTid}" class="subject-pill-link" title="${g.groupName}">
+                    <span>${g.icon}</span>
+                    <span>${g.groupName.split('(')[0].trim()}</span>
+                  </a>
+                `;
+              }).join('')}
+            </div>
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+              <a href="#/summary?topic=${firstTopic.id}" class="btn-dark-pill" style="width: 100%; justify-content: center; padding: 0.65rem 1rem !important;">
+                📖 อ่านสรุปรายบททั้งหมด
+              </a>
+            </div>
+          </div>
+
+          <!-- Companion Apps Card -->
+          <div class="card" style="padding: 1.75rem 2rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.65rem; color: var(--text-primary);">
+              🔗 แหล่งเรียนรู้เตรียมสอบคู่เคียง
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+              <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="btn btn-secondary" style="border-radius: var(--radius-lg); text-align: left; justify-content: flex-start; padding: 0.75rem 1rem;">
+                <span style="font-size: 1.25rem;">📝</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.92rem;">เว็บฝึกข้อสอบ PLE-CC1 ↗</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">คลังโจทย์เสมือนจริง จับเวลาและเฉลยละเอียด</div>
+                </div>
+              </a>
+              <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn btn-secondary" style="border-radius: var(--radius-lg); text-align: left; justify-content: flex-start; padding: 0.75rem 1rem;">
+                <span style="font-size: 1.25rem;">🧪</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.92rem;">CC2 OSPE Lab ↗</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">ห้องฝึกทักษะปฏิบัติการ OSPE เภสัชกรรม</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     `;
 
-    // Bind live search: shows ONLY matching topics directly without noisy clutter
+    // Reattach search listeners
     const searchInput = document.getElementById('globalSearchInput');
     const resultsBox = document.getElementById('searchResultsBox');
-    searchInput?.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (q.length < 2) {
-        resultsBox.innerHTML = '';
-        return;
-      }
+    if (searchInput && resultsBox) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        if (!query) {
+          resultsBox.innerHTML = '';
+          return;
+        }
 
-      const matches = [];
-      allTopics.forEach(t => {
-        let isMatch = false;
-        if ((t.title + ' ' + (t.titleTh || '')).toLowerCase().includes(q)) {
-          isMatch = true;
-        } else if ((t.highYield || []).some(hy => hy.toLowerCase().includes(q))) {
-          isMatch = true;
-        } else if ((t.sections || []).some(s => (s.heading + ' ' + this.stripHtml(s.html)).toLowerCase().includes(q))) {
-          isMatch = true;
-        } else if ((t.driveFiles || []).some(df => df.name.toLowerCase().includes(q))) {
-          isMatch = true;
+        const hits = [];
+        allTopics.forEach(t => {
+          const matchTitle = (t.title + ' ' + (t.titleTh || '')).toLowerCase().includes(query);
+          const matchHighYield = (t.highYield || []).some(y => y.toLowerCase().includes(query));
+          const matchSection = (t.sections || []).some(s => s.heading.toLowerCase().includes(query) || s.html.toLowerCase().includes(query));
+          if (matchTitle || matchHighYield || matchSection) {
+            hits.push(t);
+          }
+        });
+
+        if (hits.length === 0) {
+          resultsBox.innerHTML = `<div class="card" style="padding: 1rem; text-align: center; color: var(--text-muted); border-radius: var(--radius-2xl);">🔍 ไม่พบบทเรียนที่ตรงกับคำค้น "${e.target.value}"</div>`;
+          return;
         }
-        if (isMatch) {
-          matches.push(t);
-        }
+
+        resultsBox.innerHTML = `
+          <div class="card" style="padding: 1rem 1.25rem; border-radius: var(--radius-2xl); border-color: var(--border-hover);">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">
+              ผลการค้นหา (${hits.length} หัวข้อ):
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.45rem; max-height: 380px; overflow-y: auto;">
+              ${hits.slice(0, 10).map(h => `
+                <a href="#/summary?topic=${h.id}" class="dashboard-chapter-row" style="margin-bottom:0; padding:0.6rem 0.85rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span>${h.icon}</span>
+                    <span style="font-weight: 600; font-size: 0.92rem;">${h.titleTh || h.title}</span>
+                    <span style="font-size: 0.78rem; color: var(--text-muted);">(${h.groupName})</span>
+                  </div>
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">›</span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `;
       });
-
-      if (matches.length === 0) {
-        resultsBox.innerHTML = `<div class="card" style="margin-bottom:0; padding: 0.8rem; font-size: 0.95rem;">ไม่พบบทเรียนที่ตรงกับคำว่า "<b>${this.escapeHtml(q)}</b>"</div>`;
-        return;
-      }
-
-      resultsBox.innerHTML = `
-        <div class="card" style="margin-bottom: 0; max-height: 420px; overflow-y: auto; border: 1.5px solid var(--primary); box-shadow: var(--shadow-md);">
-          <div style="font-size: 0.92rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
-            <span>🔍 พบบทเรียนที่เกี่ยวข้อง (${matches.length} บท):</span>
-            <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="document.getElementById('searchResultsBox').innerHTML='';">ปิด ✕</button>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem;">
-            ${matches.map(m => `
-              <a href="#/summary?topic=${m.id}" class="topic-row-link" style="background: var(--bg-primary); padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-decoration: none;">
-                <div>
-                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
-                    หมวด: ${m.groupName}
-                  </div>
-                  <div style="font-weight: 700; font-size: 0.98rem; color: var(--text-primary); margin-top: 0.15rem;">
-                    ${m.icon || '📄'} ${m.titleTh || m.title}
-                  </div>
-                  <div style="font-size: 0.8rem; color: var(--text-secondary);">${m.title}</div>
-                </div>
-                <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; white-space: nowrap;">อ่านบทนี้ →</span>
-              </a>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    });
+    }
   },
 
   // ================= VIEW: SUMMARY READER =================
@@ -928,6 +969,14 @@ ${this.escapeHtml(df.rawText)}
             <div id="sidebarNoMatch" style="display: none; padding: 1.25rem 0.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
               🔍 ไม่พบหัวข้อที่ตรงกับคำค้น
             </div>
+          </div>
+
+          <!-- Bottom Sidebar Electric Lime Helper Card (Inspired by User's Mockup) -->
+          <div class="sidebar-bottom-ai-card no-print">
+            <div class="sidebar-ai-badge">⚡ PLE-CC1 SMART ENGINE</div>
+            <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
+            <div class="sidebar-ai-desc">สไลด์ PDF 119 ไฟล์ 23 โฟลเดอร์ Drive พร้อมตาราง QuickRx</div>
+            <a href="#/quick-rx?topic=${currentTopic.id}" class="sidebar-ai-btn">สลับโหมดอ่าน QuickRx ↗</a>
           </div>
         </aside>
 
