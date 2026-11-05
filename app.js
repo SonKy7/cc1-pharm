@@ -86,10 +86,6 @@ const App = {
           `).join('')}
         </div>
       </div>
-
-      <!-- Drawer Bottom AI Helper Card (Mockup Style) -->
-      <div class="sidebar-bottom-ai-card no-print" style="margin: 1rem 0 0.5rem 0;">
-        <div class="sidebar-ai-badge">⚡ PLE-CC1 SMART ENGINE</div>
         <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
         <div class="sidebar-ai-desc">พร้อมคลังชีท Drive 23 โฟลเดอร์ และตาราง QuickRx ยาแม่บท</div>
         <a href="#/quick-rx?topic=${currentId}" class="sidebar-ai-btn" onclick="App.closeDrawer()">สลับโหมดอ่าน QuickRx ↗</a>
@@ -715,18 +711,6 @@ ${this.escapeHtml(df.rawText)}
         ` : ''}
       </div>
 
-      <!-- Current Mode Header Banner (เลือกโหมดหลักจากข้างบนหรือเมนูด้านข้าง) -->
-      <div class="card no-print" style="margin-bottom: 1.15rem; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.65rem; background: var(--bg-surface-solid); border: 1.5px solid ${this.state.quickMode ? '#10b981' : '#3b82f6'};">
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span class="badge ${this.state.quickMode ? 'badge-quick-mode' : 'badge-master-mode'}" style="font-size: 0.88rem; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 9999px;">
-            ${this.state.quickMode ? '⚡ สรุปย่อ CC1: ตารางยาแม่บท & จุดจำเน้นสอบ' : '📖 อ่านรายบท: สรุปเนื้อหาเต็ม (Master Lecture)'}
-          </span>
-        </div>
-        <button class="btn btn-secondary no-print" onclick="App.openDrawer()" style="font-size: 0.85rem; padding: 0.4rem 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; cursor: pointer;">
-          <span>สลับโหมด / หัวข้อ</span> <span>☰</span>
-        </button>
-      </div>
-
       <!-- Detailed Sections / Quick Mode Filter -->
       ${this.state.quickMode ? (
         currentTopic.quickSummaryHtml ? `
@@ -970,10 +954,6 @@ ${this.escapeHtml(df.rawText)}
               🔍 ไม่พบหัวข้อที่ตรงกับคำค้น
             </div>
           </div>
-
-          <!-- Bottom Sidebar Electric Lime Helper Card (Inspired by User's Mockup) -->
-          <div class="sidebar-bottom-ai-card no-print">
-            <div class="sidebar-ai-badge">⚡ PLE-CC1 SMART ENGINE</div>
             <div class="sidebar-ai-title">สรุปครบ 106 บทเรียน</div>
             <div class="sidebar-ai-desc">สไลด์ PDF 119 ไฟล์ 23 โฟลเดอร์ Drive พร้อมตาราง QuickRx</div>
             <a href="#/quick-rx?topic=${currentTopic.id}" class="sidebar-ai-btn">สลับโหมดอ่าน QuickRx ↗</a>
