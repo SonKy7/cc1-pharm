@@ -119,7 +119,7 @@ const App = {
     this.setupTheme();
 
     // Drawer triggers (☰ FAB and Topbar)
-    document.getElementById('floatingMenuBtn')?.addEventListener('click', () => this.openDrawer());
+    // floatingMenuBtn removed
     document.getElementById('topbarMenuBtn')?.addEventListener('click', () => this.openDrawer());
     document.getElementById('drawerCloseBtn')?.addEventListener('click', () => this.closeDrawer());
     document.getElementById('drawerBackdrop')?.addEventListener('click', () => this.closeDrawer());

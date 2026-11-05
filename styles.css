@@ -1570,27 +1570,7 @@ tbody tr:hover {
    Floating 3-Line Action Button (☰ FAB) & Side Slide Drawer
    ========================================================================== */
 
-.floating-menu-btn {
-  position: fixed;
-  top: 0.65rem;
-  left: 0.75rem;
-  bottom: auto;
-  right: auto;
-  display: none;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 9998;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.floating-menu-btn { display: none !important; }
 .floating-menu-btn:hover {
   transform: scale(1.08) translateY(-2px);
   box-shadow: 0 6px 24px rgba(37, 99, 235, 0.6);
@@ -1717,30 +1697,31 @@ tbody tr:hover {
 
 
 /* Top-Left Hamburger Button */
+
 .topbar-hamburger-btn {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 42px !important;
   height: 42px !important;
-  border-radius: var(--radius-sm) !important;
-  background: var(--bg-elevated) !important;
+  border-radius: 14px !important;
+  background: var(--bg-surface) !important;
   border: 1.5px solid var(--border-color) !important;
   color: var(--text-primary) !important;
   cursor: pointer !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
   flex-shrink: 0 !important;
   padding: 0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 .topbar-hamburger-btn:hover {
-  background: var(--primary-light) !important;
-  border-color: var(--primary) !important;
-  color: var(--primary) !important;
+  background: var(--bg-elevated) !important;
+  border-color: #CBD5E1 !important;
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 .topbar-hamburger-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 .topbar-hamburger-btn .hamburger-icon {
   display: flex !important;
@@ -1753,10 +1734,11 @@ tbody tr:hover {
   display: block !important;
   height: 2.2px !important;
   width: 100% !important;
-  background: currentColor !important;
-  border-radius: 2px !important;
-  transition: all 0.2s !important;
+  background: var(--text-primary) !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
 }
+
 
 
 /* ==========================================================================
