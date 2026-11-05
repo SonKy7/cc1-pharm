@@ -694,6 +694,14 @@ ${this.escapeHtml(df.rawText)}
               ${this.renderQuickSummary(currentTopic.quickSummaryHtml)}
             </div>
           </section>
+          ${currentTopic.quickRx && currentTopic.quickRx.html ? `
+            <section class="card" style="margin-bottom: 1rem; padding: 1.5rem 1.75rem;">
+              <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--accent);">
+                ${currentTopic.quickRx.title || '⚡ ตารางยาแม่บท & จุดจำเน้นสอบ (QuickRx Cards)'}
+              </h2>
+              ${currentTopic.quickRx.html}
+            </section>
+          ` : ''}
         ` : `
           <section class="card" style="margin-bottom: 1rem; padding: 1.5rem;">
             <div class="callout callout-info" style="margin-bottom: 1rem;">
