@@ -11,6 +11,24 @@ const App = {
 
 
   // ================= OFF-CANVAS SLIDE DRAWER =================
+  wrapResponsiveTables(root = document) {
+    if (!root) return;
+    try {
+      const tables = root.querySelectorAll('table');
+      tables.forEach(table => {
+        const parent = table.parentElement;
+        if (parent && !parent.classList.contains('table-responsive') && !parent.getAttribute('style')?.includes('overflow-x')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-responsive';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+    } catch (e) {
+      console.warn('wrapResponsiveTables:', e);
+    }
+  },
+
   openDrawer() {
     this.renderDrawer();
     document.getElementById('slideNavDrawer')?.classList.add('active');
@@ -339,6 +357,7 @@ ${this.escapeHtml(df.rawText)}
       this.highlightNav('home');
       this.renderHome(container);
     }
+    this.wrapResponsiveTables(container);
   },
 
   highlightNav(route) {
@@ -790,7 +809,8 @@ ${this.escapeHtml(df.rawText)}
           const artEl = getArticleElement();
           if (artEl) {
             artEl.innerHTML = renderArticleHtml();
-            attachArticleEvents();
+            this.wrapResponsiveTables(c);
+    attachArticleEvents();
           }
         } else {
           if (topicPdfErr) topicPdfErr.style.display = 'block';
@@ -806,7 +826,8 @@ ${this.escapeHtml(df.rawText)}
         const artEl = getArticleElement();
         if (artEl) {
           artEl.innerHTML = renderArticleHtml();
-          attachArticleEvents();
+          this.wrapResponsiveTables(c);
+    attachArticleEvents();
         }
       });
     };
@@ -816,7 +837,8 @@ ${this.escapeHtml(df.rawText)}
       // In-place update: sidebar preserves its exact scroll position, main article updates and jumps smoothly to top
       const prevScrollTop = existingSidebar.scrollTop;
       currentArtEl.innerHTML = renderArticleHtml();
-      attachArticleEvents();
+      this.wrapResponsiveTables(c);
+    attachArticleEvents();
 
       const targetModePrefix = this.state.quickMode ? 'quick-rx' : 'summary';
       existingSidebar.querySelectorAll('.sidebar-topic-link').forEach(a => {
@@ -909,6 +931,7 @@ ${this.escapeHtml(df.rawText)}
       </div>
     `;
 
+    this.wrapResponsiveTables(c);
     attachArticleEvents();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 

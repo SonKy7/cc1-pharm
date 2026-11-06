@@ -988,6 +988,36 @@ body::before {
 }
 
 /* Modern Tables */
+.table-responsive {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 1.15rem 0 !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-color) !important;
+  background: var(--bg-card) !important; color: var(--text-primary);
+  box-sizing: border-box !important;
+  display: block !important;
+  scrollbar-width: thin;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 3px;
+}
+
+.table-responsive table {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+}
+
 table {
   width: 100%;
   border-collapse: separate;
@@ -1004,6 +1034,8 @@ th, td {
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
+  color: var(--text-primary);
+  background: var(--bg-card);
 }
 
 th:last-child, td:last-child {
@@ -1365,9 +1397,31 @@ tbody tr:hover {
   }
 
   /* Responsive Tables: strictly enclosed in overflow-x: auto */
+  .table-responsive {
+    margin: 0.65rem 0 !important;
+    border-radius: 8px !important;
+  }
+  .table-responsive table {
+    min-width: 480px !important;
+  }
+  
+  /* Fallback: any standalone table not inside .table-responsive or scroll div gets direct horizontal scroll */
+  div:not(.table-responsive):not([style*="overflow-x"]) > table,
+  section > table,
+  article > table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0.65rem 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    box-sizing: border-box !important;
+  }
+
   table {
     font-size: 0.82rem !important;
-    min-width: 460px !important;
   }
   th, td {
     padding: 0.45rem 0.4rem !important;
