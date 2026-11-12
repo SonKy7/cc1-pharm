@@ -720,26 +720,6 @@ ${this.escapeHtml(df.rawText)}
         `).join('')
       )}
 
-      ${currentTopic.videos && currentTopic.videos.length > 0 ? `
-        <div class="card no-print" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(220, 38, 38, 0.02)); border: 1px solid rgba(239, 68, 68, 0.25); padding: 1.1rem 1.25rem; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
-            <div style="display: flex; align-items: center; gap: 0.65rem;">
-              <span style="font-size: 1.6rem;">▶️</span>
-              <div>
-                <div style="font-weight: 700; color: #dc2626; font-size: 1.05rem;">วิดีโอบรรยายสดตรงตามบทเรียน (Pharma Plus Lecture Video)</div>
-                <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.15rem;">คลิกเปิดฟังคลิปเสียงบรรยายของ อ.พงษ์ศิริ ประกอบสไลด์และเนื้อหาสรุปเพื่อเก็บจุดเน้นและลูกเล่นข้อสอบ</div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              ${currentTopic.videos.map(v => `
-                <a href="${v.url}" target="_blank" rel="noopener" class="btn btn-outline" style="border-color: #dc2626; color: #dc2626; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600;">
-                  <span>📺</span> <span>${v.title}</span>
-                </a>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-      ` : ''}
 
       <!-- Attached Google Drive PDFs & Full Extracted Slides -->
       ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
