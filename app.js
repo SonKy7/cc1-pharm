@@ -414,7 +414,7 @@ ${this.escapeHtml(df.rawText)}
         <p>
           คลังสรุปเนื้อหาเข้มข้นตรงตามเกณฑ์มาตรฐาน ศสภ. ครบทั้ง 16 กลุ่มโรค เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร และกฎหมายวิชาชีพ แยกอ่าน 1 สไลด์/1 โรค = 1 บทเดี่ยว พร้อมตาราง QuickRx ยาแม่บท และเชื่อมโยงไฟล์สไลด์ต้นฉบับ
         </p>
-        <div class="hero-dark-watermark">📘</div>
+        <div class="hero-dark-watermark"><img src="logo-mark.png" alt="" class="hero-watermark-img"></div>
       </div>
 
       <!-- Metrics Strip (4 Clean White Cards as in Mockup) -->
