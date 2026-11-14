@@ -60,11 +60,11 @@ const App = {
           🧭 เมนูนำทาง:
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-          <a href="#/" class="drawer-nav-item">🏠 สารบัญหลัก</a>
+          <a href="#/" class="drawer-nav-item ${this.state.route === 'home' ? 'active' : ''}">🏠 สารบัญหลัก</a>
           <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 อ่านรายบท (เนื้อหาเต็ม)</a>
           <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุปย่อ CC1 (เน้นสอบ + ตารางยา)</a>
-          <a href="#/drive" class="drawer-nav-item">📂 คลังชีท Drive (23 โฟลเดอร์)</a>
-          <a href="#/cheatsheet" class="drawer-nav-item">⚡ High-Yield สรุปสูตรจำ</a>
+          <a href="#/drive" class="drawer-nav-item ${this.state.route === 'drive' ? 'active' : ''}">📂 คลังชีท Drive (23 โฟลเดอร์)</a>
+          <a href="#/cheatsheet" class="drawer-nav-item ${this.state.route === 'cheatsheet' ? 'active' : ''}">⚡ High-Yield สรุปสูตรจำ</a>
           <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">🎯 เว็บฝึกข้อสอบ CC1 ↗</a>
           <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 CC2 OSPE Lab ↗</a>
         </div>
@@ -375,6 +375,8 @@ ${this.escapeHtml(df.rawText)}
   },
 
   highlightNav(route) {
+    this.state.route = route;
+    this.renderDrawer();
     const target = document.querySelector(`.nav a[data-route="${route}"]`);
     if (target) target.classList.add('active');
 
