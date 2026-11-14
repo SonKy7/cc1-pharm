@@ -2385,3 +2385,149 @@ tbody tr:hover {
   background: #A3E635 !important;
   transform: translateY(-1px) !important;
 }
+
+/* ==========================================================================
+   In-Page Find (Ctrl+F / Mobile Find Bar)
+   ========================================================================== */
+.inpage-find-bar {
+  position: fixed;
+  top: 72px;
+  right: 1.25rem;
+  z-index: 120;
+  width: min(420px, calc(100vw - 1.5rem));
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 0.45rem 0.6rem;
+}
+
+.inpage-find-bar[hidden] {
+  display: none !important;
+}
+
+.inpage-find-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.inpage-find-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.inpage-find-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: 0.42rem 0.65rem;
+  outline: none;
+}
+
+.inpage-find-input:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.inpage-find-count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 3.1rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.inpage-find-count.is-empty {
+  color: var(--danger);
+}
+
+.inpage-find-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.inpage-find-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.inpage-find-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+  border-color: var(--border-hover);
+}
+
+.inpage-find-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.inpage-find-close {
+  font-size: 0.9rem;
+}
+
+#findToggleBtn[aria-expanded="true"] {
+  background: var(--dark-pill);
+  color: var(--dark-pill-text);
+  border-color: var(--dark-pill);
+}
+
+mark.inpage-find-hit {
+  background: rgba(250, 204, 21, 0.45);
+  color: #0F172A;
+  padding: 0.04em 0.14em;
+  border-radius: 3px;
+  border-bottom: none;
+  font-weight: inherit;
+}
+
+mark.inpage-find-hit.is-active {
+  background: #F97316;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.35);
+}
+
+[data-theme="dark"] mark.inpage-find-hit {
+  background: rgba(250, 204, 21, 0.32);
+  color: #FEF08A;
+}
+
+[data-theme="dark"] mark.inpage-find-hit.is-active {
+  background: var(--accent-lime);
+  color: #0F172A;
+  box-shadow: 0 0 0 2px rgba(190, 242, 100, 0.45);
+}
+
+@media (max-width: 640px) {
+  .inpage-find-bar {
+    top: 64px;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+  }
+}

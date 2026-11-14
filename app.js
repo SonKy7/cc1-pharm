@@ -6,7 +6,12 @@ const App = {
     route: 'home',
     readTopics: {},
     bookmarkedTopics: {},
-    fontScale: 1
+    fontScale: 1,
+    inPageFind: {
+      isOpen: false,
+      matches: [],
+      activeIndex: -1
+    }
   },
 
 
@@ -77,6 +82,7 @@ const App = {
   init() {
     this.loadProgress();
     this.setupTheme();
+    this.setupInPageFind();
 
     // Drawer triggers (☰ FAB and Topbar)
     // floatingMenuBtn removed
@@ -358,6 +364,14 @@ ${this.escapeHtml(df.rawText)}
       this.renderHome(container);
     }
     this.wrapResponsiveTables(container);
+    if (this.state.inPageFind && this.state.inPageFind.isOpen) {
+      const findInput = document.getElementById('inPageFindInput');
+      if (findInput && findInput.value.trim()) {
+        this.runInPageFind(findInput.value, false);
+      } else {
+        this.clearInPageFindHighlights();
+      }
+    }
   },
 
   highlightNav(route) {
@@ -721,9 +735,6 @@ ${this.escapeHtml(df.rawText)}
       )}
 
 
-      <!-- Attached Google Drive PDFs & Full Extracted Slides -->
-      ${this.renderDriveFilesWidget(currentTopic.driveFiles, false)}
-
       ${currentTopic.refs && currentTopic.refs.length > 0 ? `
         <div class="card" style="background: var(--bg-primary); font-size: 0.9rem; color: var(--text-secondary);">
           <b>📚 แนวทางเวชปฏิบัติและเอกสารอ้างอิง:</b>
@@ -732,19 +743,6 @@ ${this.escapeHtml(df.rawText)}
           </ul>
         </div>
       ` : ''}
-
-      <!-- Partner CC2 OSPE Banner -->
-      <div class="card no-print" style="background: rgba(139, 92, 246, 0.08); border: 1px dashed rgba(139, 92, 246, 0.35); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
-        <div>
-          <div style="font-weight: 700; color: #7c3aed; font-size: 1rem;">🧪 เตรียมต่อการสอบปฏิบัติการ PLE-CC2?</div>
-          <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">
-            เมื่ออ่านทฤษฎี CC1 เข้าใจแล้ว สามารถไปฝึกจำลองสถานี OSPE ซักประวัติและจ่ายยาต่อได้ที่ <b>CC2 OSPE Lab · ห้องฝึก OSPE เภสัช</b>
-          </div>
-        </div>
-        <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="btn" style="background: #7c3aed; color: #ffffff; text-decoration: none; font-size: 0.88rem; padding: 0.45rem 0.9rem; font-weight: 600; white-space: nowrap;">
-          เข้าห้องฝึก CC2 OSPE Lab ↗
-        </a>
-      </div>
 
       <!-- Prev / Next Topic Footer Navigation -->
       <div class="card no-print" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
@@ -1156,6 +1154,221 @@ ${this.escapeHtml(df.rawText)}
       `).join('')}
     `;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  // ================= IN-PAGE FIND (CTRL+F / MOBILE FIND BAR) =================
+  setupInPageFind() {
+    const toggleBtn = document.getElementById('findToggleBtn');
+    const bar = document.getElementById('inPageFindBar');
+    const input = document.getElementById('inPageFindInput');
+    const prevBtn = document.getElementById('inPageFindPrev');
+    const nextBtn = document.getElementById('inPageFindNext');
+    const closeBtn = document.getElementById('inPageFindClose');
+    if (!toggleBtn || !bar || !input) return;
+
+    toggleBtn.addEventListener('click', () => this.toggleInPageFind());
+    closeBtn?.addEventListener('click', () => this.closeInPageFind());
+    prevBtn?.addEventListener('click', () => this.stepInPageFind(-1));
+    nextBtn?.addEventListener('click', () => this.stepInPageFind(1));
+
+    let debounceTimer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => this.runInPageFind(input.value, true), 90);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (this.state.inPageFind.matches.length === 0 && input.value.trim()) {
+          this.runInPageFind(input.value, true);
+        } else {
+          this.stepInPageFind(e.shiftKey ? -1 : 1);
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        this.closeInPageFind();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'f') {
+        e.preventDefault();
+        this.openInPageFind();
+      } else if (e.key === 'Escape' && this.state.inPageFind.isOpen) {
+        this.closeInPageFind();
+      }
+    });
+  },
+
+  toggleInPageFind() {
+    if (this.state.inPageFind.isOpen) {
+      this.closeInPageFind();
+    } else {
+      this.openInPageFind();
+    }
+  },
+
+  positionInPageFindBar() {
+    const bar = document.getElementById('inPageFindBar');
+    const topbar = document.querySelector('.topbar');
+    if (!bar || !topbar) return;
+    const rect = topbar.getBoundingClientRect();
+    bar.style.top = `${Math.max(8, Math.round(rect.bottom + 8))}px`;
+  },
+
+  openInPageFind() {
+    const bar = document.getElementById('inPageFindBar');
+    const input = document.getElementById('inPageFindInput');
+    const toggleBtn = document.getElementById('findToggleBtn');
+    if (!bar || !input) return;
+
+    this.state.inPageFind.isOpen = true;
+    this.positionInPageFindBar();
+    bar.hidden = false;
+    toggleBtn?.setAttribute('aria-expanded', 'true');
+    input.focus();
+    input.select();
+
+    if (input.value.trim()) {
+      this.runInPageFind(input.value, false);
+    } else {
+      this.updateInPageFindUI();
+    }
+  },
+
+  closeInPageFind() {
+    const bar = document.getElementById('inPageFindBar');
+    const toggleBtn = document.getElementById('findToggleBtn');
+    if (!bar) return;
+
+    this.state.inPageFind.isOpen = false;
+    bar.hidden = true;
+    toggleBtn?.setAttribute('aria-expanded', 'false');
+    this.clearInPageFindHighlights();
+  },
+
+  clearInPageFindHighlights() {
+    const appEl = document.getElementById('app');
+    if (appEl) {
+      const marks = appEl.querySelectorAll('mark.inpage-find-hit');
+      const parentsToNormalize = new Set();
+      marks.forEach(mark => {
+        const parent = mark.parentNode;
+        if (!parent) return;
+        parentsToNormalize.add(parent);
+        parent.replaceChild(document.createTextNode(mark.textContent || ''), mark);
+      });
+      parentsToNormalize.forEach(p => p.normalize());
+    }
+    this.state.inPageFind.matches = [];
+    this.state.inPageFind.activeIndex = -1;
+    this.updateInPageFindUI();
+  },
+
+  runInPageFind(rawQuery, shouldScroll = true) {
+    this.clearInPageFindHighlights();
+    const query = (rawQuery || '').trim();
+    if (!query) return;
+
+    const appEl = document.getElementById('app');
+    if (!appEl) return;
+
+    const qLower = query.toLowerCase();
+    const qLen = query.length;
+    const textNodes = [];
+
+    const walker = document.createTreeWalker(appEl, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const el = node.parentElement;
+        if (!el) return NodeFilter.FILTER_REJECT;
+        if (el.closest('svg, script, style, noscript, input, textarea, select, [hidden], mark.inpage-find-hit')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    let current;
+    while ((current = walker.nextNode())) {
+      textNodes.push(current);
+    }
+
+    const matches = [];
+    textNodes.forEach(node => {
+      const text = node.nodeValue;
+      const lower = text.toLowerCase();
+      let idx = lower.indexOf(qLower, 0);
+      if (idx === -1) return;
+
+      const frag = document.createDocumentFragment();
+      let lastPos = 0;
+      while (idx !== -1) {
+        if (idx > lastPos) {
+          frag.appendChild(document.createTextNode(text.slice(lastPos, idx)));
+        }
+        const mark = document.createElement('mark');
+        mark.className = 'inpage-find-hit';
+        mark.textContent = text.slice(idx, idx + qLen);
+        frag.appendChild(mark);
+        matches.push(mark);
+        lastPos = idx + qLen;
+        idx = lower.indexOf(qLower, lastPos);
+      }
+      if (lastPos < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(lastPos)));
+      }
+      node.parentNode?.replaceChild(frag, node);
+    });
+
+    this.state.inPageFind.matches = matches;
+    this.state.inPageFind.activeIndex = matches.length ? 0 : -1;
+    if (matches.length) {
+      this.scrollToInPageMatch(0, shouldScroll);
+    } else {
+      this.updateInPageFindUI();
+    }
+  },
+
+  stepInPageFind(delta) {
+    const { matches, activeIndex } = this.state.inPageFind;
+    if (!matches.length) return;
+    const nextIdx = (activeIndex + delta + matches.length) % matches.length;
+    this.scrollToInPageMatch(nextIdx, true);
+  },
+
+  scrollToInPageMatch(index, shouldScroll = true) {
+    const { matches } = this.state.inPageFind;
+    if (!matches.length || index < 0 || index >= matches.length) return;
+
+    matches.forEach(m => m.classList.remove('is-active'));
+    const target = matches[index];
+    target.classList.add('is-active');
+    this.state.inPageFind.activeIndex = index;
+
+    if (shouldScroll) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    }
+    this.updateInPageFindUI();
+  },
+
+  updateInPageFindUI() {
+    const countEl = document.getElementById('inPageFindCount');
+    const prevBtn = document.getElementById('inPageFindPrev');
+    const nextBtn = document.getElementById('inPageFindNext');
+    const input = document.getElementById('inPageFindInput');
+    if (!countEl) return;
+
+    const { matches, activeIndex } = this.state.inPageFind;
+    const hasQuery = !!(input && input.value.trim());
+    const total = matches.length;
+    const current = total > 0 && activeIndex >= 0 ? activeIndex + 1 : 0;
+
+    countEl.textContent = `${current} / ${total}`;
+    countEl.classList.toggle('is-empty', hasQuery && total === 0);
+    if (prevBtn) prevBtn.disabled = total === 0;
+    if (nextBtn) nextBtn.disabled = total === 0;
   }
 };
 

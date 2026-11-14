@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261113_new_logo">
+  <link rel="stylesheet" href="styles.css?v=20261115_find_v1">
   <!-- Mobile Add to Home Screen & PWA Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20261113_logo">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=20261113_logo">
@@ -59,9 +59,23 @@
       <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="nav-external nav-cc2" title="CC2 OSPE Lab · ห้องฝึก OSPE เภสัช">🧪 CC2 OSPE Lab ↗</a>
     </nav>
     <div style="display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;">
+      <button class="icon-btn no-print" id="findToggleBtn" title="ค้นหาในหน้า (Ctrl+F)" aria-label="ค้นหาข้อความในหน้า" aria-expanded="false">🔍</button>
       <button class="icon-btn" id="themeBtn" title="สลับโหมดมืด/สว่าง" aria-label="สลับธีม">🌙</button>
     </div>
   </header>
+
+  <div id="inPageFindBar" class="inpage-find-bar no-print" role="search" aria-label="ค้นหาข้อความในหน้านี้" hidden>
+    <div class="inpage-find-inner">
+      <span class="inpage-find-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="inPageFindInput" class="inpage-find-input" placeholder="ค้นหาคำในหน้านี้..." autocomplete="off" enterkeyhint="search" aria-label="ค้นหาคำในหน้านี้">
+      <span id="inPageFindCount" class="inpage-find-count" aria-live="polite">0 / 0</span>
+      <div class="inpage-find-actions">
+        <button type="button" id="inPageFindPrev" class="inpage-find-btn" title="ผลลัพธ์ก่อนหน้า (Shift+Enter)" aria-label="ผลลัพธ์ก่อนหน้า" disabled>▲</button>
+        <button type="button" id="inPageFindNext" class="inpage-find-btn" title="ผลลัพธ์ถัดไป (Enter)" aria-label="ผลลัพธ์ถัดไป" disabled>▼</button>
+        <button type="button" id="inPageFindClose" class="inpage-find-btn inpage-find-close" title="ปิด (Esc)" aria-label="ปิดแถบค้นหา">✕</button>
+      </div>
+    </div>
+  </div>
 
   <main id="app" class="container"></main>
 
@@ -75,7 +89,7 @@
   </footer>
 
   <script src="data.js?v=20261115_obesity_v2"></script>
-  <script src="app.js?v=20261113_new_logo"></script>
+  <script src="app.js?v=20261115_find_v1"></script>
 
   <!-- Slide-Over Off-Canvas Drawer Backdrop & Drawer -->
   <div id="drawerBackdrop" class="drawer-backdrop no-print"></div>
