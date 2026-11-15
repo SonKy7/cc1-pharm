@@ -1,4 +1,4 @@
-// PLE-CC1 Knowledge Hub — Study Summary Web App + Integrated 23-Folder Google Drive Sheet Library
+// CC1 x SonKy — Study Summary Web App + Integrated 23-Folder Google Drive Sheet Library
 
 const App = {
   data: window.CC1_DATA || { groups: [], driveFolders: [] },
@@ -6,6 +6,7 @@ const App = {
     route: 'home',
     readTopics: {},
     bookmarkedTopics: {},
+    expandedHomeGroups: {},
     fontScale: 1,
     inPageFind: {
       isOpen: false,
@@ -60,13 +61,13 @@ const App = {
           🧭 เมนูนำทาง:
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-          <a href="#/" class="drawer-nav-item ${this.state.route === 'home' ? 'active' : ''}">🏠 สารบัญหลัก</a>
-          <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 อ่านรายบท (เนื้อหาเต็ม)</a>
-          <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุปย่อ CC1 (เน้นสอบ + ตารางยา)</a>
-          <a href="#/drive" class="drawer-nav-item ${this.state.route === 'drive' ? 'active' : ''}">📂 คลังชีท Drive (23 โฟลเดอร์)</a>
-          <a href="#/cheatsheet" class="drawer-nav-item ${this.state.route === 'cheatsheet' ? 'active' : ''}">⚡ High-Yield สรุปสูตรจำ</a>
-          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">🎯 เว็บฝึกข้อสอบ CC1 ↗</a>
-          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 CC2 OSPE Lab ↗</a>
+          <a href="#/" class="drawer-nav-item ${this.state.route === 'home' ? 'active' : ''}">🏠 หน้าแรก</a>
+          <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 เนื้อหา</a>
+          <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุป</a>
+          <a href="#/drive" class="drawer-nav-item ${this.state.route === 'drive' ? 'active' : ''}">📂 Drive</a>
+          <a href="#/cheatsheet" class="drawer-nav-item ${this.state.route === 'cheatsheet' ? 'active' : ''}">⚡ สรุปรวม</a>
+          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">🎯 ทำข้อสอบCC1 ↗</a>
+          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 OSPE CC2 ↗</a>
         </div>
       </div>
     `;
@@ -144,6 +145,36 @@ const App = {
     }
     localStorage.setItem('cc1.readTopics', JSON.stringify(this.state.readTopics));
     this.handleRoute();
+  },
+
+  toggleGroupRead(groupIdx) {
+    const g = (this.data.groups || [])[groupIdx];
+    if (!g || !g.topics || !g.topics.length) return;
+    const allRead = g.topics.every(t => !!this.state.readTopics[t.id]);
+    g.topics.forEach(t => {
+      if (allRead) {
+        delete this.state.readTopics[t.id];
+      } else {
+        this.state.readTopics[t.id] = true;
+      }
+    });
+    localStorage.setItem('cc1.readTopics', JSON.stringify(this.state.readTopics));
+    this.handleRoute();
+  },
+
+  toggleHomeGroup(groupIdx) {
+    this.state.expandedHomeGroups[groupIdx] = !this.state.expandedHomeGroups[groupIdx];
+    this.handleRoute();
+  },
+
+  formatDurationMin(min) {
+    if (!min || min <= 0) return '';
+    if (min >= 60) {
+      const h = Math.floor(min / 60);
+      const m = min % 60;
+      return m ? `${h} ชม. ${m} นาที` : `${h} ชม.`;
+    }
+    return `${min} นาที`;
   },
 
   toggleBookmark(topicId) {
@@ -426,7 +457,7 @@ ${this.escapeHtml(df.rawText)}
           <span class="ping-dot"></span>
           <span>ระบบพร้อมสอบ 100% สรุปครบ 22 หมวด 106 หัวข้อ 119 สไลด์</span>
         </div>
-        <h1>ระบบบริหารจัดการความรู้และเตรียมสอบใบประกอบวิชาชีพ PLE-CC1</h1>
+        <h1>CC1 x SonKy — ระบบเตรียมสอบใบประกอบวิชาชีพเภสัชกรรม</h1>
         <p>
           คลังสรุปเนื้อหาเข้มข้นตรงตามเกณฑ์มาตรฐาน ศสภ. ครบทั้ง 16 กลุ่มโรค เภสัชภัณฑ์ เภสัชเคมี (SAR) การควบคุมคุณภาพ สมุนไพร และกฎหมายวิชาชีพ แยกอ่าน 1 สไลด์/1 โรค = 1 บทเดี่ยว พร้อมตาราง QuickRx ยาแม่บท และเชื่อมโยงไฟล์สไลด์ต้นฉบับ
         </p>
@@ -490,32 +521,60 @@ ${this.escapeHtml(df.rawText)}
             <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">22 หมวดวิชา</span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-            ${this.data.groups.map(g => {
+            ${this.data.groups.map((g, gi) => {
               const gTopics = g.topics || [];
               const gRead = gTopics.filter(t => this.state.readTopics[t.id]).length;
               const gPercent = gTopics.length ? Math.round((gRead / gTopics.length) * 100) : 0;
-              const firstTid = gTopics[0] ? gTopics[0].id : '';
+              const allRead = gTopics.length > 0 && gRead === gTopics.length;
+              const partialRead = gRead > 0 && !allRead;
+              const isExpanded = !!this.state.expandedHomeGroups[gi];
+              const totalGroupMin = gTopics.reduce((acc, t) => acc + (t.videoDurationMin || 0), 0);
+              const groupDurLabel = totalGroupMin ? ` · ⏱ ${this.formatDurationMin(totalGroupMin)}` : '';
               return `
-                <a href="#/summary?topic=${firstTid}" class="dashboard-chapter-row" title="เปิดหมวด ${g.groupName}">
-                  <div style="display: flex; align-items: center; gap: 0.65rem; min-width: 0;">
-                    <span style="font-size: 1.25rem; flex-shrink: 0;">${g.icon}</span>
-                    <div style="min-width: 0;">
-                      <div style="font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        ${g.groupName}
-                      </div>
-                      <div style="font-size: 0.78rem; color: var(--text-muted);">
-                        ${gTopics.length} บทเรียน (${gRead}/${gTopics.length} จบแล้ว)
+                <div class="dashboard-chapter-card">
+                  <div class="dashboard-chapter-row" data-toggle-group="${gi}" title="คลิกเพื่อดูหัวข้อย่อยใน ${g.groupName}">
+                    <div style="display: flex; align-items: center; gap: 0.55rem; min-width: 0; flex: 1;">
+                      <button type="button" class="chapter-check-btn ${allRead ? 'checked' : (partialRead ? 'partial' : '')}" data-check-group="${gi}" title="${allRead ? 'ยกเลิกติ๊กทั้งหมวด' : 'ติ๊กทั้งหมวดว่าอ่านแล้ว'}" aria-label="ติ๊กทั้งหมวด ${g.groupName}">
+                        ${allRead ? '✓' : (partialRead ? '–' : '')}
+                      </button>
+                      <span style="font-size: 1.2rem; flex-shrink: 0;">${g.icon}</span>
+                      <div style="min-width: 0; flex: 1;">
+                        <div style="font-weight: 600; font-size: 0.92rem; line-height: 1.3; word-break: break-word;">
+                          ${g.groupName}
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.1rem;">
+                          ${gTopics.length} บทเรียน (${gRead}/${gTopics.length} จบแล้ว)${groupDurLabel}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;">
-                    <div class="chapter-progress-bar-bg">
-                      <div class="chapter-progress-bar-fill" style="width: ${gPercent}%;"></div>
+                    <div style="display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0;">
+                      <div class="chapter-progress-bar-bg">
+                        <div class="chapter-progress-bar-fill" style="width: ${gPercent}%;"></div>
+                      </div>
+                      <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); min-width: 32px; text-align: right;">${gPercent}%</span>
+                      <button type="button" class="chapter-expand-btn ${isExpanded ? 'expanded' : ''}" data-expand-group="${gi}" aria-expanded="${isExpanded}" aria-label="แสดงรายการเลกเชอร์ใน ${g.groupName}">▾</button>
                     </div>
-                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); width: 35px; text-align: right;">${gPercent}%</span>
-                    <span style="font-size: 0.95rem; color: var(--text-muted); margin-left: 0.25rem;">›</span>
                   </div>
-                </a>
+                  ${isExpanded ? `
+                    <div class="chapter-lecture-list">
+                      ${gTopics.map(t => {
+                        const tRead = !!this.state.readTopics[t.id];
+                        const durText = t.videoDurationMin ? this.formatDurationMin(t.videoDurationMin) : '';
+                        return `
+                          <div class="chapter-lecture-item">
+                            <div class="chapter-lecture-left">
+                              <button type="button" class="lecture-check-btn ${tRead ? 'checked' : ''}" data-check-topic="${t.id}" title="${tRead ? 'ยกเลิกติ๊กอ่านแล้ว' : 'ติ๊กอ่านแล้ว'}" aria-label="ติ๊ก ${t.title}">
+                                ${tRead ? '✓' : ''}
+                              </button>
+                              <a href="#/summary?topic=${t.id}" class="lecture-item-link ${tRead ? 'is-read' : ''}">${t.title}</a>
+                            </div>
+                            ${durText ? `<span class="lecture-duration-badge" title="ความยาวคลิปวิดีโอเลกเชอร์">⏱ ${durText}</span>` : ''}
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  ` : ''}
+                </div>
               `;
             }).join('')}
           </div>
@@ -575,6 +634,26 @@ ${this.escapeHtml(df.rawText)}
         </div>
       </div>
     `;
+
+    // Attach chapter check, dropdown expand, and lecture check listeners
+    c.querySelectorAll('[data-check-group]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleGroupRead(parseInt(btn.getAttribute('data-check-group'), 10));
+      });
+    });
+    c.querySelectorAll('[data-toggle-group]').forEach(row => {
+      row.addEventListener('click', (e) => {
+        if (e.target.closest('[data-check-group]')) return;
+        this.toggleHomeGroup(parseInt(row.getAttribute('data-toggle-group'), 10));
+      });
+    });
+    c.querySelectorAll('[data-check-topic]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleRead(btn.getAttribute('data-check-topic'));
+      });
+    });
 
     // Reattach search listeners
     const searchInput = document.getElementById('globalSearchInput');

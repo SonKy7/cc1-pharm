@@ -1,6 +1,6 @@
 {
-  "name": "PLE-CC1 Knowledge Hub",
-  "short_name": "PLE-CC1",
+  "name": "CC1 x SonKy",
+  "short_name": "CC1 x SonKy",
   "description": "คลังสรุปเนื้อหาเข้มข้นสอบใบประกอบวิชาชีพเภสัชกรรม PLE-CC1",
   "start_url": "./index.html",
   "display": "standalone",
