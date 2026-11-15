@@ -580,35 +580,8 @@ ${this.escapeHtml(df.rawText)}
           </div>
         </div>
 
-        <!-- Right: Subject Modules & Tools -->
+        <!-- Right: Companion Apps -->
         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-          <div class="card" style="padding: 1.75rem 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0; color: var(--text-primary);">
-                กลุ่มสาระ / หมวดวิชาในระบบ
-              </h3>
-            </div>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              เลือกคลิกเข้าสู่บทสรุปของแต่ละกลุ่มวิชาได้โดยตรง:
-            </p>
-            <div class="subject-pill-grid">
-              ${this.data.groups.map(g => {
-                const firstTid = g.topics[0] ? g.topics[0].id : '';
-                return `
-                  <a href="#/summary?topic=${firstTid}" class="subject-pill-link" title="${g.groupName}">
-                    <span>${g.icon}</span>
-                    <span>${g.groupName.split('(')[0].trim()}</span>
-                  </a>
-                `;
-              }).join('')}
-            </div>
-            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
-              <a href="#/summary?topic=${firstTopic.id}" class="btn-dark-pill" style="width: 100%; justify-content: center; padding: 0.65rem 1rem !important;">
-                📖 อ่านสรุปรายบททั้งหมด
-              </a>
-            </div>
-          </div>
-
           <!-- Companion Apps Card -->
           <div class="card" style="padding: 1.75rem 2rem;">
             <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.65rem; color: var(--text-primary);">
