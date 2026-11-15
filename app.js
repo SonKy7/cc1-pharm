@@ -691,7 +691,7 @@ ${this.escapeHtml(df.rawText)}
                 <a href="#/summary?topic=${h.id}" class="dashboard-chapter-row" style="margin-bottom:0; padding:0.6rem 0.85rem;">
                   <div style="display: flex; align-items: center; gap: 0.5rem;">
                     <span>${h.icon}</span>
-                    <span style="font-weight: 600; font-size: 0.92rem;">${h.titleTh || h.title}</span>
+                    <span style="font-weight: 600; font-size: 0.92rem;">${h.title}</span>
                     <span style="font-size: 0.78rem; color: var(--text-muted);">(${h.groupName})</span>
                   </div>
                   <span style="font-size: 0.85rem; color: var(--text-muted);">›</span>
@@ -745,9 +745,9 @@ ${this.escapeHtml(df.rawText)}
           <div>
             <span class="badge badge-blue" style="font-size: 0.85rem;">${currentTopic.icon} ${currentTopic.groupName}</span>
             <h1 style="font-size: 1.85rem; font-weight: 700; margin: 0.35rem 0 0.15rem 0;">
-              ${currentTopic.titleTh || currentTopic.title}
+              ${currentTopic.title}
             </h1>
-            <div style="color: var(--text-secondary); font-size: 1.05rem; font-weight: 500;">${currentTopic.title}</div>
+            ${currentTopic.titleTh && currentTopic.titleTh !== currentTopic.title ? `<div style="color: var(--text-secondary); font-size: 1.05rem; font-weight: 500;">${currentTopic.titleTh}</div>` : ''}
           </div>
           <div class="no-print" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <button id="toggleBookmarkBtn" class="btn btn-secondary" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
@@ -825,7 +825,7 @@ ${this.escapeHtml(df.rawText)}
         <div>
           ${prevTopic ? `
             <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${prevTopic.id}" class="btn btn-secondary">
-              ⬅️ ก่อนหน้า: ${prevTopic.titleTh || prevTopic.title}
+              ⬅️ ก่อนหน้า: ${prevTopic.title}
             </a>
           ` : `<span></span>`}
         </div>
@@ -835,7 +835,7 @@ ${this.escapeHtml(df.rawText)}
         <div>
           ${nextTopic ? `
             <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${nextTopic.id}" class="btn btn-primary">
-              ถัดไป: ${nextTopic.titleTh || nextTopic.title} ➡️
+              ถัดไป: ${nextTopic.title} ➡️
             </a>
           ` : `<a href="#/" class="btn btn-primary">🏠 กลับหน้าสารบัญ</a>`}
         </div>
@@ -985,7 +985,7 @@ ${this.escapeHtml(df.rawText)}
                     const bmk = !!this.state.bookmarkedTopics[t.id];
                     return `
                       <a href="#/${this.state.quickMode ? 'quick-rx' : 'summary'}?topic=${t.id}" class="sidebar-topic-link ${active ? 'active' : ''}" data-topic-id="${t.id}" data-active="${active ? 'true' : 'false'}" data-title="${(t.title + ' ' + (t.titleTh || '')).toLowerCase()}">
-                        <span>${t.titleTh || t.title}</span>
+                        <span>${t.title}</span>
                         <span style="font-size: 0.8rem; margin-left: 0.35rem; flex-shrink: 0;">${bmk ? '⭐' : ''}${read ? '✅' : ''}</span>
                       </a>
                     `;
@@ -1217,7 +1217,7 @@ ${this.escapeHtml(df.rawText)}
             ${g.topics.map(t => `
               <div style="padding: 0.75rem 1rem; background: var(--bg-primary); border-radius: var(--radius-sm); border-left: 4px solid var(--primary);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-                  <h3 style="font-size: 1.15rem; font-weight: 700;">${t.titleTh || t.title} (${t.title})</h3>
+                  <h3 style="font-size: 1.15rem; font-weight: 700;">${t.title}</h3>
                   <a href="#/summary?topic=${t.id}" class="btn btn-secondary no-print" style="padding: 0.25rem 0.65rem; font-size: 0.85rem;">อ่านตารางเต็ม + ชีท Drive →</a>
                 </div>
                 <ul style="padding-left: 1.3rem;">
