@@ -679,17 +679,6 @@ ${this.escapeHtml(df.rawText)}
             </button>
           </div>
         </div>
-
-        ${currentTopic.highYield && currentTopic.highYield.length > 0 ? `
-          <div class="tip" style="margin-top: 1.1rem; font-size: 1rem;">
-            <div style="font-weight: 700; font-size: 1.08rem; margin-bottom: 0.4rem; color: var(--primary);">
-              ⚡ สรุปจุดเน้น High-Yield ที่ออกสอบ PLE-CC1 บ่อยที่สุด:
-            </div>
-            <ul style="padding-left: 1.3rem;">
-              ${currentTopic.highYield.map(y => `<li style="margin-bottom: 0.35rem;">${y}</li>`).join('')}
-            </ul>
-          </div>
-        ` : ''}
       </div>
 
       <!-- Detailed Sections / Quick Mode Filter -->
