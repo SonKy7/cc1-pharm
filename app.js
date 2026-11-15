@@ -591,7 +591,7 @@ ${this.escapeHtml(df.rawText)}
         allTopics.forEach(t => {
           const matchTitle = (t.title + ' ' + (t.titleTh || '')).toLowerCase().includes(query);
           const matchHighYield = (t.highYield || []).some(y => y.toLowerCase().includes(query));
-          const matchSection = (t.sections || []).some(s => s.heading.toLowerCase().includes(query) || s.html.toLowerCase().includes(query));
+          const matchSection = (t.sections || []).some(s => ((s.heading || s.title || '').toLowerCase().includes(query)) || (s.html || '').toLowerCase().includes(query));
           if (matchTitle || matchHighYield || matchSection) {
             hits.push(t);
           }
@@ -713,16 +713,22 @@ ${this.escapeHtml(df.rawText)}
           </section>
         `
       ) : (
-        currentTopic.sections.filter(s => !s.heading.includes('สรุปคำสอนสด') && !s.heading.includes('Quick Rx')).map((s, idx) => `
+        currentTopic.sections.filter(s => {
+          const h = s.heading || s.title || '';
+          return !h.includes('สรุปคำสอนสด') && !h.includes('Quick Rx');
+        }).map((s, idx) => {
+          const h = s.heading || s.title || '';
+          return `
           <section class="card" style="margin-bottom: 1rem;">
             <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.45rem;">
-              ${/^\d+\./.test((s.heading || '').trim()) ? s.heading : `${idx + 1}. ${s.heading}`}
+              ${/^\d+\./.test(h.trim()) ? h : `${idx + 1}. ${h}`}
             </h2>
             <div style="line-height: 1.75; font-size: 1.05rem;">
               ${s.html}
             </div>
           </section>
-        `).join('')
+        `;
+        }).join('')
       )}
 
 
