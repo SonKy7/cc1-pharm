@@ -5869,7 +5869,18 @@ window.CC1_DATA = {
             "<strong>★ ข้อสอบบ่อย (บรรยาย):</strong> ล้างคอนแทคเลนส์ไม่สะอาดเสี่ยงติดเชื้อ <em>Pseudomonas aeruginosa</em> → ใช้ยาหยอดตา <strong>Levofloxacin</strong>, <strong>Ciprofloxacin</strong>, หรือ <strong>Moxifloxacin</strong>"
           ],
           "quickSummaryHtml": "\n<table>\n  <thead>\n    <tr><th>หัวข้อ</th><th>สรุปใจความสำคัญ [P.2–6, บรรยาย]</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>สถานะ</strong></td><td>เครื่องมือแพทย์ (Medical device) ทั้งแบบรักษาสายตาและเสริมความงาม</td></tr>\n    <tr><td><strong>Soft lens</strong></td><td><strong>Silicone hydrogel</strong> — นิ่ม อุ้มน้ำสูง ชุ่มชื้น ระคายเคืองน้อย (นิยมสุด)</td></tr>\n    <tr><td><strong>RGP (Hard)</strong></td><td>พลาสติกชนิดพิเศษ — Oxygen transmission, Visual acuity, ราคาไม่แพง แต่แข็ง ระคายเคือง</td></tr>\n    <tr><td><strong>ภาวะแทรกซ้อน</strong></td><td>Xerophthalmia, Conjunctivitis (พบใน Hard &gt; Soft), Blepharitis, Inflammation, Infection</td></tr>\n    <tr><td><strong>★ ติดเชื้อ</strong></td><td>ล้างไม่ดี → <em>Pseudomonas aeruginosa</em> → หยอด <strong>Levofloxacin / Ciprofloxacin / Moxifloxacin</strong></td></tr>\n  </tbody>\n</table>\n",
-          "quickRx": "\n<ul>\n  <li><strong>ติดเชื้อ <em>Pseudomonas aeruginosa</em> จากคอนแทคเลนส์ (บรรยาย):</strong> เลือกยาหยอดตา Fluoroquinolone ที่มีฤทธิ์ฆ่า <em>Pseudomonas</em> ได้แก่ <strong>Levofloxacin</strong>, <strong>Ciprofloxacin</strong>, หรือ <strong>Moxifloxacin</strong></li>\n</ul>\n"
+          "quickRx": "\n<ul>\n  <li><strong>ติดเชื้อ <em>Pseudomonas aeruginosa</em> จากคอนแทคเลนส์ (บรรยาย):</strong> เลือกยาหยอดตา Fluoroquinolone ที่มีฤทธิ์ฆ่า <em>Pseudomonas</em> ได้แก่ <strong>Levofloxacin</strong>, <strong>Ciprofloxacin</strong>, หรือ <strong>Moxifloxacin</strong></li>\n</ul>\n",
+          "videos": [
+            {
+              "title": "Chapter 16 - Contact lens · อ.พงศิริ Pharma Plus",
+              "url": "https://www.youtube.com/watch?v=F_2C27nVuik",
+              "id": "F_2C27nVuik",
+              "durationMin": 5,
+              "durationSec": 309
+            }
+          ],
+          "videoDurationSec": 309,
+          "videoDurationMin": 5
         },
         {
           "id": "eye_disorders",
@@ -5903,7 +5914,18 @@ window.CC1_DATA = {
             "<strong>ต้อกระจก [P.28–30]:</strong> รักษาหลัก = ผ่าตัด; <strong>Pirenoxine (Catalin®)</strong> หยอด 1–2 หยด 4–6 ครั้ง/วัน; ยังไม่ผสมเก็บ &lt; 25°C, ผสม Sterile water for injection แล้วเก็บ <strong>2–8°C ใช้ใน 1 เดือน</strong>"
           ],
           "quickSummaryHtml": "\n<table>\n  <thead>\n    <tr><th>โรคตา [สไลด์]</th><th>ลักษณะเด่น / เชื้อก่อโรค</th><th>การรักษาหลักที่ออกสอบ</th></tr>\n  </thead>\n  <tbody>\n    <tr><td><strong>ตากุ้งยิง [P.3–4]</strong></td><td>ตุ่มฝีเปลือกตา, <em>Staphylococcus</em></td><td>ประคบร้อน + ATB ป้าย/หยอด; กิน Cloxacillin/Dicloxacillin (ก่อนอาหาร) หรือ Erythromycin (หลังอาหาร) 5–10 วัน</td></tr>\n    <tr><td><strong>หนังตาอักเสบ [P.5]</strong></td><td>ขอบตาบวมแดง ไม่มีจุดหนอง</td><td>ล้างด้วย NSS + Baby soap เช้า–เย็น + ยาหยอดกลางวัน/ป้ายก่อนนอน 5–10 วัน</td></tr>\n    <tr><td><strong>Bacterial conj. [P.8]</strong></td><td>ขี้ตาเขียวเหลืองมาก เริ่มข้างเดียว</td><td>Tobramycin / Chloramphenicol ห้าม Topical steroid!</td></tr>\n    <tr><td><strong>Allergic conj. [P.9]</strong></td><td>คันตามาก ขี้ตาใส ภูมิแพ้</td><td>Antihistamine + ประคบเย็น; Steroid ≤ 7 วัน</td></tr>\n    <tr><td><strong>Viral conj. [P.10]</strong></td><td>Adenovirus ตาแดงมาก หน้าหูโต</td><td>หายเอง 1–2 สัปดาห์; ให้ ATB หยอดกันติดเชื้อซ้ำซ้อน</td></tr>\n    <tr><td><strong>Trachoma [P.11–12]</strong></td><td><em>Chlamydia</em>, Pannus, ขนตาเก</td><td>กิน Tetracycline/Sulfadiazine 1 สัปดาห์ + ป้าย 6 สัปดาห์ + รักษาคนใกล้ชิด</td></tr>\n    <tr><td><strong>Corneal ulcer [P.13–14]</strong></td><td>ตาดำขุ่น ปวด สู้แสงไม่ได้</td><td>Cefazolin/Ceftazidime + Tobra/Genta หรือ Ciprofloxacin หยอดทุก 1 ชม. ใน 24 ชม. แรก</td></tr>\n    <tr><td><strong>ต้อหิน [P.20–27]</strong></td><td>IOP สูง เดินชนของข้างๆ</td><td>มุมเปิด: Beta-blocker / PG agonist; มุมปิดเฉียบพลัน: Glycerine / Mannitol; CAI ห้ามแพ้ sulfa</td></tr>\n    <tr><td><strong>ต้อกระจก [P.28–30]</strong></td><td>เลนส์แก้วตาขุ่น แสงกระเจิง</td><td>ผ่าตัด; Catalin® ผสมแล้วเก็บ 2–8°C ใช้ใน 1 เดือน</td></tr>\n  </tbody>\n</table>\n",
-          "quickRx": "\n<ul>\n  <li><strong>ตากุ้งยิง:</strong> ประคบร้อน + <code>Cloxacillin</code> / <code>Dicloxacillin</code> 250–500 mg qid ac (แพ้ Penicillin → <code>Erythromycin</code> 250–500 mg qid pc) x 5–10 วัน + ป้าย <code>Terramycin®</code></li>\n  <li><strong>หนังตาอักเสบ:</strong> เช็ดขอบตาด้วย NSS + Baby soap เช้า–เย็น + Antibiotic eye drop กลางวัน / Ointment ก่อนนอน x 5–10 วัน</li>\n  <li><strong>แผลกระจกตา:</strong> <code>Cefazolin</code> หรือ <code>Ceftazidime</code> + <code>Tobramycin</code>/<code>Gentamicin</code> (หรือ <code>Ciprofloxacin</code> เดี่ยว) หยอดทุก 1 ชม. ใน 24 ชม. แรก</li>\n  <li><strong>ริดสีดวงตา:</strong> กิน <code>Tetracycline</code> / <code>Sulfadiazine</code> qid x 1 สัปดาห์ + ป้าย <code>Tetracycline</code> จนครบ 6 สัปดาห์</li>\n  <li><strong>ต้อหินมุมเปิด (First-line):</strong> Beta-blocker (<code>Timolol</code>) หรือ Prostaglandin agonist (<code>Latanoprost</code>); <strong>มุมปิดเฉียบพลัน:</strong> <code>Glycerine</code> / <code>Mannitol</code></li>\n  <li><strong>ต้อกระจก (Catalin®):</strong> หยอด 1–2 หยด วันละ 4–6 ครั้ง; ผสมแล้วแช่ตู้เย็น 2–8°C ใช้ให้หมดใน 1 เดือน</li>\n</ul>\n"
+          "quickRx": "\n<ul>\n  <li><strong>ตากุ้งยิง:</strong> ประคบร้อน + <code>Cloxacillin</code> / <code>Dicloxacillin</code> 250–500 mg qid ac (แพ้ Penicillin → <code>Erythromycin</code> 250–500 mg qid pc) x 5–10 วัน + ป้าย <code>Terramycin®</code></li>\n  <li><strong>หนังตาอักเสบ:</strong> เช็ดขอบตาด้วย NSS + Baby soap เช้า–เย็น + Antibiotic eye drop กลางวัน / Ointment ก่อนนอน x 5–10 วัน</li>\n  <li><strong>แผลกระจกตา:</strong> <code>Cefazolin</code> หรือ <code>Ceftazidime</code> + <code>Tobramycin</code>/<code>Gentamicin</code> (หรือ <code>Ciprofloxacin</code> เดี่ยว) หยอดทุก 1 ชม. ใน 24 ชม. แรก</li>\n  <li><strong>ริดสีดวงตา:</strong> กิน <code>Tetracycline</code> / <code>Sulfadiazine</code> qid x 1 สัปดาห์ + ป้าย <code>Tetracycline</code> จนครบ 6 สัปดาห์</li>\n  <li><strong>ต้อหินมุมเปิด (First-line):</strong> Beta-blocker (<code>Timolol</code>) หรือ Prostaglandin agonist (<code>Latanoprost</code>); <strong>มุมปิดเฉียบพลัน:</strong> <code>Glycerine</code> / <code>Mannitol</code></li>\n  <li><strong>ต้อกระจก (Catalin®):</strong> หยอด 1–2 หยด วันละ 4–6 ครั้ง; ผสมแล้วแช่ตู้เย็น 2–8°C ใช้ให้หมดใน 1 เดือน</li>\n</ul>\n",
+          "videos": [
+            {
+              "title": "Chapter 16 - Eye disorders 1080p · อ.พงศิริ Pharma Plus",
+              "url": "https://www.youtube.com/watch?v=D9lvo-wpYW8",
+              "id": "D9lvo-wpYW8",
+              "durationMin": 37,
+              "durationSec": 2210
+            }
+          ],
+          "videoDurationSec": 2210,
+          "videoDurationMin": 37
         }
       ]
     },
@@ -7573,13 +7595,15 @@ window.CC1_DATA = {
           "quickSummaryHtml": "<ul>\n  <li><strong>Titration:</strong> Titrant (ใน burette, ทราบเข้มข้น) vs Titrand (ไม่ทราบเข้มข้น); Direct vs Indirect (ต่อผลิตภัณฑ์ C) vs Back/Residual (ต่อสาร B ที่เหลือ); ห้ามกรดอ่อน+เบสอ่อน</li>\n  <li><strong>Optical:</strong> Refractometer (ของเหลว/น้ำมัน) | Polarimeter (Chiral center, (+)D/(-)L, Saccharimeter สำหรับน้ำตาล)</li>\n  <li><strong>Chromatography:</strong> TLC (คุณภาพเท่านั้น, Rf &lt; 1) | HPLC Reversed-phase (C18, มีขั้วออกก่อน) | GC (สารระเหย/แก๊ส)</li>\n  <li><strong>Spectroscopy &amp; Solid:</strong> UV-Vis (C=C/Benzene, λmax) | FT-IR (หมู่ฟังก์ชัน) | NMR (ตำแหน่งอะตอม, H ข้างเคียง = พีค−1) | AAS (แร่ธาตุ) | MS (MW, m/z) | XRD (ผลึก/Polymorphism)</li>\n</ul>",
           "videos": [
             {
-              "title": "Pharmaceutical Quality Control · อ.พงศิริ Pharma Plus",
+              "title": "QA&QC Quality control 1080p · อ.พงศิริ Pharma Plus",
               "url": "https://www.youtube.com/watch?v=57VqisKtMgw",
               "id": "57VqisKtMgw",
               "durationMin": 56,
-              "durationSec": 3369
+              "durationSec": 3381
             }
-          ]
+          ],
+          "videoDurationSec": 3381,
+          "videoDurationMin": 56
         }
       ]
     },
@@ -7758,7 +7782,52 @@ window.CC1_DATA = {
             }
           ],
           "refs": [],
-          "videos": []
+          "videos": [
+            {
+              "title": "Social - พรบยา 2510 และฉบับแก้ไข",
+              "url": "https://www.youtube.com/watch?v=vgT3prVdNaA",
+              "id": "vgT3prVdNaA",
+              "durationMin": 85,
+              "durationSec": 5090
+            },
+            {
+              "title": "Social - พรบ สมุนไพร 2562",
+              "url": "https://www.youtube.com/watch?v=rJ_17dKObCE",
+              "id": "rJ_17dKObCE",
+              "durationMin": 31,
+              "durationSec": 1850
+            },
+            {
+              "title": "Social - ยาอันตราย",
+              "url": "https://www.youtube.com/watch?v=nf6riuP38Jk",
+              "id": "nf6riuP38Jk",
+              "durationMin": 22,
+              "durationSec": 1296
+            },
+            {
+              "title": "Social - ยาสามัญประจำบ้าน 720p",
+              "url": "https://www.youtube.com/watch?v=LAxvAwvyC5s",
+              "id": "LAxvAwvyC5s",
+              "durationMin": 20,
+              "durationSec": 1184
+            },
+            {
+              "title": "Social - การเรียกคืนผลิตภัณฑ์และ GPP ร้านยา",
+              "url": "https://www.youtube.com/watch?v=UpslxOJV5Mk",
+              "id": "UpslxOJV5Mk",
+              "durationMin": 19,
+              "durationSec": 1141
+            },
+            {
+              "title": "Social - ยาควบคุมพิเศษ",
+              "url": "https://www.youtube.com/watch?v=QbccXr4dI9Y",
+              "id": "QbccXr4dI9Y",
+              "durationMin": 9,
+              "durationSec": 522
+            }
+          ],
+          "videoDurationSec": 11083,
+          "videoDurationMin": 185
         },
         {
           "id": "pharmacy_jurisprudence",
@@ -7820,7 +7889,24 @@ window.CC1_DATA = {
             }
           ],
           "refs": [],
-          "videos": []
+          "videos": [
+            {
+              "title": "Social - Pharmacy Jurisprudence 720p (ลำดับศักดิ์กฎหมาย ยาเสพติด & วัตถุออกฤทธิ์)",
+              "url": "https://www.youtube.com/watch?v=Y802isRzS64",
+              "id": "Y802isRzS64",
+              "durationMin": 33,
+              "durationSec": 1989
+            },
+            {
+              "title": "Social - พรบ วิชาชีพ 2537 และจรรยาบรรณวิชาชีพ",
+              "url": "https://www.youtube.com/watch?v=WZjPp2b-cX8",
+              "id": "WZjPp2b-cX8",
+              "durationMin": 25,
+              "durationSec": 1487
+            }
+          ],
+          "videoDurationSec": 3476,
+          "videoDurationMin": 58
         },
         {
           "id": "pharmacoeconomics",
@@ -7878,7 +7964,17 @@ window.CC1_DATA = {
             }
           ],
           "refs": [],
-          "videos": []
+          "videos": [
+            {
+              "title": "Social - Pharmacoeconomic · อ.พงศิริ Pharma Plus",
+              "url": "https://www.youtube.com/watch?v=rmaXBR1UH4g",
+              "id": "rmaXBR1UH4g",
+              "durationMin": 103,
+              "durationSec": 6201
+            }
+          ],
+          "videoDurationSec": 6201,
+          "videoDurationMin": 103
         },
         {
           "id": "pharmacoepidemiology",
@@ -7934,7 +8030,17 @@ window.CC1_DATA = {
             }
           ],
           "refs": [],
-          "videos": []
+          "videos": [
+            {
+              "title": "Social - Pharmacoepidemiology · อ.พงศิริ Pharma Plus",
+              "url": "https://www.youtube.com/watch?v=zm8YFJcbunw",
+              "id": "zm8YFJcbunw",
+              "durationMin": 99,
+              "durationSec": 5914
+            }
+          ],
+          "videoDurationSec": 5914,
+          "videoDurationMin": 99
         }
       ]
     }

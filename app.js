@@ -560,15 +560,21 @@ ${this.escapeHtml(df.rawText)}
                       ${gTopics.map(t => {
                         const tRead = !!this.state.readTopics[t.id];
                         const durText = t.videoDurationMin ? this.formatDurationMin(t.videoDurationMin) : '';
+                        const multiVids = Array.isArray(t.videos) && t.videos.length > 1 ? t.videos : null;
                         return `
-                          <div class="chapter-lecture-item">
+                          <div class="chapter-lecture-item" style="${multiVids ? 'flex-wrap: wrap;' : ''}">
                             <div class="chapter-lecture-left">
                               <button type="button" class="lecture-check-btn ${tRead ? 'checked' : ''}" data-check-topic="${t.id}" title="${tRead ? 'ยกเลิกติ๊กอ่านแล้ว' : 'ติ๊กอ่านแล้ว'}" aria-label="ติ๊ก ${t.title}">
                                 ${tRead ? '✓' : ''}
                               </button>
                               <a href="#/summary?topic=${t.id}" class="lecture-item-link ${tRead ? 'is-read' : ''}">${t.title}</a>
                             </div>
-                            ${durText ? `<span class="lecture-duration-badge" title="ความยาวคลิปวิดีโอเลกเชอร์">⏱ ${durText}</span>` : ''}
+                            ${durText ? `<span class="lecture-duration-badge" title="ความยาวคลิปวิดีโอเลกเชอร์">⏱ ${durText}${multiVids ? ` (${multiVids.length} คลิป)` : ''}</span>` : ''}
+                            ${multiVids ? `
+                              <div style="width: 100%; padding-left: 1.9rem; margin-top: 0.3rem; display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                                ${multiVids.map(v => `<span style="font-size: 0.74rem; padding: 0.12rem 0.48rem; border-radius: 999px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">🎬 ${this.escapeHtml(v.title.replace(/^Social\s*-\s*/i, ''))} · <b>${this.formatDurationMin(v.durationMin)}</b></span>`).join('')}
+                              </div>
+                            ` : ''}
                           </div>
                         `;
                       }).join('')}
@@ -716,11 +722,19 @@ ${this.escapeHtml(df.rawText)}
       <div class="card" style="margin-bottom: 1rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
           <div>
-            <span class="badge badge-blue" style="font-size: 0.85rem;">${currentTopic.icon} ${currentTopic.groupName}</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="badge badge-blue" style="font-size: 0.85rem;">${currentTopic.icon} ${currentTopic.groupName}</span>
+              ${currentTopic.videoDurationMin ? `<span class="lecture-duration-badge" style="font-size: 0.82rem;">⏱ เวลาเรียนรวม ${this.formatDurationMin(currentTopic.videoDurationMin)}${Array.isArray(currentTopic.videos) && currentTopic.videos.length > 1 ? ` (${currentTopic.videos.length} คลิป)` : ''}</span>` : ''}
+            </div>
             <h1 style="font-size: 1.85rem; font-weight: 700; margin: 0.35rem 0 0.15rem 0;">
               ${currentTopic.title}
             </h1>
             ${currentTopic.titleTh && currentTopic.titleTh !== currentTopic.title ? `<div style="color: var(--text-secondary); font-size: 1.05rem; font-weight: 500;">${currentTopic.titleTh}</div>` : ''}
+            ${Array.isArray(currentTopic.videos) && currentTopic.videos.length > 1 ? `
+              <div style="margin-top: 0.55rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                ${currentTopic.videos.map(v => `<span style="font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">🎬 ${this.escapeHtml(v.title)} · <b>${this.formatDurationMin(v.durationMin)}</b></span>`).join('')}
+              </div>
+            ` : ''}
           </div>
           <div class="no-print" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <button id="toggleBookmarkBtn" class="btn btn-secondary" style="padding: 0.45rem 0.85rem; font-size: 0.9rem;">
