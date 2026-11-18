@@ -1460,6 +1460,7 @@ ${this.escapeHtml(df.rawText)}
     document.body.appendChild(tip);
 
     let activeEl = null;
+    let lastTouchTime = 0;
     const hideTip = () => {
       tip.hidden = true;
       activeEl = null;
@@ -1487,24 +1488,32 @@ ${this.escapeHtml(df.rawText)}
       tip.style.top = `${Math.round(top)}px`;
     };
 
-    document.addEventListener('mouseover', (e) => {
+    document.addEventListener('touchstart', () => {
+      lastTouchTime = Date.now();
+    }, { passive: true });
+    document.addEventListener('pointerover', (e) => {
+      if (e.pointerType !== 'mouse') return;
       const abbr = e.target.closest('abbr.cc1-abbr');
       if (abbr) showTip(abbr);
     });
-    document.addEventListener('mouseout', (e) => {
+    document.addEventListener('pointerout', (e) => {
+      if (e.pointerType !== 'mouse') return;
       const abbr = e.target.closest('abbr.cc1-abbr');
       if (abbr && abbr === activeEl) hideTip();
     });
     document.addEventListener('focusin', (e) => {
+      if (Date.now() - lastTouchTime < 600) return;
       const abbr = e.target.closest('abbr.cc1-abbr');
       if (abbr) showTip(abbr);
     });
     document.addEventListener('focusout', (e) => {
+      if (Date.now() - lastTouchTime < 600) return;
       if (e.target.closest('abbr.cc1-abbr')) hideTip();
     });
     document.addEventListener('click', (e) => {
       const abbr = e.target.closest('abbr.cc1-abbr');
       if (abbr) {
+        e.preventDefault();
         e.stopPropagation();
         if (!tip.hidden && activeEl === abbr) hideTip();
         else showTip(abbr);
