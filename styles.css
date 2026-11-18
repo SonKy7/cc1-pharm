@@ -319,6 +319,63 @@ body::before {
   transform: translateY(-1px);
 }
 
+.icon-btn-frameless {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn-frameless:hover {
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .icon-btn-frameless:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  padding: 3px;
+  border: none;
+  border-radius: 999px;
+  background: #CBD5E1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.25s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .theme-switch {
+  background: #334155;
+}
+
+.theme-switch-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+}
+
+[data-theme="dark"] .theme-switch-thumb {
+  transform: translateX(22px);
+}
+
 .icon-btn {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
@@ -2726,9 +2783,13 @@ tbody tr:hover {
 }
 
 #findToggleBtn[aria-expanded="true"] {
-  background: var(--dark-pill);
-  color: var(--dark-pill-text);
-  border-color: var(--dark-pill);
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--primary);
+}
+
+[data-theme="dark"] #findToggleBtn[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--primary);
 }
 
 mark.inpage-find-hit {

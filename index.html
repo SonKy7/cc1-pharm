@@ -47,8 +47,15 @@
       <img class="brand-logo-img" src="logo-mark.png" alt="CC1 x SonKy">
     </a>
     <div class="topbar-actions">
-      <button class="icon-btn no-print" id="findToggleBtn" title="ค้นหาในหน้า (Ctrl+F)" aria-label="ค้นหาข้อความในหน้า" aria-expanded="false">🔍</button>
-      <button class="icon-btn" id="themeBtn" title="สลับโหมดมืด/สว่าง" aria-label="สลับธีม">🌙</button>
+      <button class="icon-btn-frameless no-print" id="findToggleBtn" title="ค้นหาในหน้า (Ctrl+F)" aria-label="ค้นหาข้อความในหน้า" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button class="theme-switch" id="themeBtn" role="switch" aria-checked="false" title="สลับโหมดมืด/สว่าง" aria-label="สลับธีม">
+        <span class="theme-switch-thumb" aria-hidden="true"></span>
+      </button>
     </div>
   </header>
 

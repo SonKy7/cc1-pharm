@@ -190,14 +190,17 @@ const App = {
   setupTheme() {
     const btn = document.getElementById('themeBtn');
     if (!btn) return;
+    const syncState = (theme) => {
+      btn.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+    };
     btn.addEventListener('click', () => {
       const isDark = document.documentElement.dataset.theme === 'dark';
       const nextTheme = isDark ? 'light' : 'dark';
       document.documentElement.dataset.theme = nextTheme;
       localStorage.setItem('cc1.theme', nextTheme);
-      btn.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
+      syncState(nextTheme);
     });
-    btn.textContent = document.documentElement.dataset.theme === 'dark' ? '☀️' : '🌙';
+    syncState(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
   },
 
   
