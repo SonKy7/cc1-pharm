@@ -57,17 +57,14 @@ const App = {
     drawerBody.innerHTML = `
       <!-- Main Navigation Items -->
       <div>
-        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.05em;">
-          🧭 เมนูนำทาง:
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-          <a href="#/" class="drawer-nav-item ${this.state.route === 'home' ? 'active' : ''}">🏠 หน้าแรก</a>
-          <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">📖 เนื้อหา</a>
-          <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">⚡ สรุป</a>
-          <a href="#/drive" class="drawer-nav-item ${this.state.route === 'drive' ? 'active' : ''}">📂 Drive</a>
-          <a href="#/cheatsheet" class="drawer-nav-item ${this.state.route === 'cheatsheet' ? 'active' : ''}">⚡ สรุปรวม</a>
-          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">🎯 ทำข้อสอบCC1 ↗</a>
-          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">🧪 OSPE CC2 ↗</a>
+        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+          <a href="#/" class="drawer-nav-item ${this.state.route === 'home' ? 'active' : ''}">หน้าแรก</a>
+          <a href="#/summary?topic=${currentId}" class="drawer-nav-item ${!isQuick && this.state.route === 'summary' ? 'active' : ''}">เนื้อหา</a>
+          <a href="#/quick-rx?topic=${currentId}" class="drawer-nav-item ${isQuick ? 'active' : ''}">สรุป</a>
+          <a href="#/drive" class="drawer-nav-item ${this.state.route === 'drive' ? 'active' : ''}">Drive</a>
+          <a href="#/cheatsheet" class="drawer-nav-item ${this.state.route === 'cheatsheet' ? 'active' : ''}">สรุปรวม</a>
+          <a href="https://rx-practice-ple-cc1-2026.lushlarch17.chatgpt.site/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #059669; font-weight: 600;">ทำข้อสอบ CC1 ↗</a>
+          <a href="https://jame0854117312-blip.github.io/cc2-app/" target="_blank" rel="noopener" class="drawer-nav-item" style="color: #7c3aed; font-weight: 600;">OSPE CC2 ↗</a>
         </div>
       </div>
     `;
@@ -90,6 +87,12 @@ const App = {
     document.getElementById('topbarMenuBtn')?.addEventListener('click', () => this.openDrawer());
     document.getElementById('drawerCloseBtn')?.addEventListener('click', () => this.closeDrawer());
     document.getElementById('drawerBackdrop')?.addEventListener('click', () => this.closeDrawer());
+    document.querySelector('.brand')?.addEventListener('click', (e) => {
+      if (window.location.hash === '#/' || window.location.hash === '' || window.location.hash === '#') {
+        e.preventDefault();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Close drawer on ESC
     window.addEventListener('keydown', (e) => {
@@ -650,10 +653,15 @@ ${this.escapeHtml(df.rawText)}
 
         const hits = [];
         allTopics.forEach(t => {
-          const matchTitle = (t.title + ' ' + (t.titleTh || '')).toLowerCase().includes(query);
-          const matchHighYield = (t.highYield || []).some(y => y.toLowerCase().includes(query));
+          const matchTitle = ((t.title || '') + ' ' + (t.titleTh || '')).toLowerCase().includes(query);
+          const matchHighYield = (t.highYield || []).some(y => {
+            const yText = typeof y === 'string' ? y : ((y && ((y.title || '') + ' ' + (y.text || ''))) || '');
+            return yText.toLowerCase().includes(query);
+          });
           const matchSection = (t.sections || []).some(s => ((s.heading || s.title || '').toLowerCase().includes(query)) || (s.html || '').toLowerCase().includes(query));
-          if (matchTitle || matchHighYield || matchSection) {
+          const matchSummary = (t.quickSummaryHtml || '').toLowerCase().includes(query);
+          const matchQuickRx = (t.quickRx && typeof t.quickRx === 'object' ? ((t.quickRx.title || '') + ' ' + (t.quickRx.html || '')).toLowerCase().includes(query) : false);
+          if (matchTitle || matchHighYield || matchSection || matchSummary || matchQuickRx) {
             hits.push(t);
           }
         });
