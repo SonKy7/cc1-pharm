@@ -81,6 +81,7 @@ const App = {
     this.loadProgress();
     this.setupTheme();
     this.setupInPageFind();
+    this.setupAbbrTooltip();
 
     // Drawer triggers (☰ FAB and Topbar)
     // floatingMenuBtn removed
@@ -883,6 +884,7 @@ ${this.escapeHtml(df.rawText)}
           if (artEl) {
             artEl.innerHTML = renderArticleHtml();
             this.wrapResponsiveTables(c);
+    this.enhanceAbbreviations(c);
     attachArticleEvents();
           }
         } else {
@@ -900,6 +902,7 @@ ${this.escapeHtml(df.rawText)}
         if (artEl) {
           artEl.innerHTML = renderArticleHtml();
           this.wrapResponsiveTables(c);
+    this.enhanceAbbreviations(c);
     attachArticleEvents();
         }
       });
@@ -911,6 +914,7 @@ ${this.escapeHtml(df.rawText)}
       const prevScrollTop = existingSidebar.scrollTop;
       currentArtEl.innerHTML = renderArticleHtml();
       this.wrapResponsiveTables(c);
+    this.enhanceAbbreviations(c);
     attachArticleEvents();
 
       const targetModePrefix = this.state.quickMode ? 'quick-rx' : 'summary';
@@ -1005,6 +1009,7 @@ ${this.escapeHtml(df.rawText)}
     `;
 
     this.wrapResponsiveTables(c);
+    this.enhanceAbbreviations(c);
     attachArticleEvents();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1443,6 +1448,123 @@ ${this.escapeHtml(df.rawText)}
     countEl.classList.toggle('is-empty', hasQuery && total === 0);
     if (prevBtn) prevBtn.disabled = total === 0;
     if (nextBtn) nextBtn.disabled = total === 0;
+  },
+
+  setupAbbrTooltip() {
+    if (document.getElementById('cc1AbbrTooltip')) return;
+    const tip = document.createElement('div');
+    tip.id = 'cc1AbbrTooltip';
+    tip.className = 'cc1-abbr-tooltip';
+    tip.setAttribute('role', 'tooltip');
+    tip.hidden = true;
+    document.body.appendChild(tip);
+
+    let activeEl = null;
+    const hideTip = () => {
+      tip.hidden = true;
+      activeEl = null;
+    };
+    const showTip = (el) => {
+      const key = el.dataset.abbr;
+      const glossary = window.CC1_ABBR_GLOSSARY || {};
+      const meaning = glossary[key];
+      if (!meaning) return;
+      activeEl = el;
+      const [enPart, thPart] = meaning.split(' — ');
+      tip.innerHTML = `<span class="cc1-abbr-tip-key">${key}</span><span class="cc1-abbr-tip-en">${enPart || ''}</span>${thPart ? `<span class="cc1-abbr-tip-th">${thPart}</span>` : ''}`;
+      tip.hidden = false;
+
+      const rect = el.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      const pad = 10;
+      let left = rect.left + rect.width / 2 - tipRect.width / 2;
+      left = Math.max(pad, Math.min(left, window.innerWidth - tipRect.width - pad));
+      let top = rect.top - tipRect.height - 8;
+      if (top < pad) {
+        top = rect.bottom + 8;
+      }
+      tip.style.left = `${Math.round(left)}px`;
+      tip.style.top = `${Math.round(top)}px`;
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      const abbr = e.target.closest('abbr.cc1-abbr');
+      if (abbr) showTip(abbr);
+    });
+    document.addEventListener('mouseout', (e) => {
+      const abbr = e.target.closest('abbr.cc1-abbr');
+      if (abbr && abbr === activeEl) hideTip();
+    });
+    document.addEventListener('focusin', (e) => {
+      const abbr = e.target.closest('abbr.cc1-abbr');
+      if (abbr) showTip(abbr);
+    });
+    document.addEventListener('focusout', (e) => {
+      if (e.target.closest('abbr.cc1-abbr')) hideTip();
+    });
+    document.addEventListener('click', (e) => {
+      const abbr = e.target.closest('abbr.cc1-abbr');
+      if (abbr) {
+        e.stopPropagation();
+        if (!tip.hidden && activeEl === abbr) hideTip();
+        else showTip(abbr);
+      } else if (!tip.hidden) {
+        hideTip();
+      }
+    });
+    window.addEventListener('scroll', hideTip, { passive: true });
+  },
+
+  enhanceAbbreviations(rootEl) {
+    const glossary = window.CC1_ABBR_GLOSSARY;
+    if (!rootEl || !glossary) return;
+    const keys = Object.keys(glossary).sort((a, b) => b.length - a.length);
+    if (!keys.length) return;
+    if (!this._abbrRegex) {
+      const escaped = keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      this._abbrRegex = new RegExp(`(?<![A-Za-z0-9\\-])(${escaped.join('|')})(?![A-Za-z0-9\\-])`, 'g');
+    }
+    const regex = this._abbrRegex;
+    const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p = node.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        if (p.closest('aside, script, style, code, pre, svg, a, button, abbr, mark, input, textarea, select, h1, h2, h3')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const textNodes = [];
+    let n;
+    while ((n = walker.nextNode())) textNodes.push(n);
+
+    textNodes.forEach(node => {
+      const text = node.nodeValue;
+      regex.lastIndex = 0;
+      if (!regex.test(text)) return;
+      regex.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let lastIdx = 0;
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIdx) {
+          frag.appendChild(document.createTextNode(text.slice(lastIdx, match.index)));
+        }
+        const abbr = document.createElement('abbr');
+        abbr.className = 'cc1-abbr';
+        abbr.dataset.abbr = match[1];
+        abbr.tabIndex = 0;
+        abbr.textContent = match[1];
+        frag.appendChild(abbr);
+        lastIdx = regex.lastIndex;
+      }
+      if (lastIdx < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
   }
 };
 

@@ -2839,3 +2839,76 @@ mark.inpage-find-hit.is-active {
     width: auto;
   }
 }
+
+/* ==========================================================================
+   Abbreviation Glossary Tooltip (Hover / Tap)
+   ========================================================================== */
+abbr.cc1-abbr {
+  text-decoration: underline dotted rgba(100, 116, 139, 0.55);
+  text-underline-offset: 3px;
+  cursor: help;
+  border-bottom: none;
+  border-radius: 3px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+abbr.cc1-abbr:hover,
+abbr.cc1-abbr:focus {
+  background: rgba(37, 99, 235, 0.08);
+  color: #1D4ED8;
+  outline: none;
+}
+
+[data-theme="dark"] abbr.cc1-abbr:hover,
+[data-theme="dark"] abbr.cc1-abbr:focus {
+  background: rgba(96, 165, 250, 0.14);
+  color: #93C5FD;
+}
+
+.cc1-abbr-tooltip {
+  position: fixed;
+  z-index: 9999;
+  max-width: min(320px, calc(100vw - 20px));
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  pointer-events: none;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.cc1-abbr-tooltip[hidden] {
+  display: none !important;
+}
+
+[data-theme="dark"] .cc1-abbr-tooltip {
+  background: rgba(24, 24, 27, 0.96);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.cc1-abbr-tip-key {
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #2563EB;
+}
+
+[data-theme="dark"] .cc1-abbr-tip-key {
+  color: #60A5FA;
+}
+
+.cc1-abbr-tip-en {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cc1-abbr-tip-th {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
