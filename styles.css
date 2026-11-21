@@ -2308,27 +2308,30 @@ tbody tr:hover {
 }
 
 .chapter-expand-btn {
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-primary);
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
   color: var(--text-secondary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
+  line-height: 1;
   cursor: pointer;
-  transition: transform 0.18s ease, background 0.15s ease;
+  transition: transform 0.18s ease, color 0.15s ease;
   padding: 0;
+}
+
+.chapter-expand-btn:hover {
+  color: var(--text-primary);
 }
 
 .chapter-expand-btn.expanded {
   transform: rotate(180deg);
-  background: var(--dark-pill);
-  color: var(--dark-pill-text);
-  border-color: var(--dark-pill);
+  color: var(--text-primary);
 }
 
 .chapter-lecture-list {
